@@ -1,0 +1,23 @@
+{
+  "name": "claude-research-skills",
+  "owner": {
+    "name": "starpig1129",
+    "email": "james911129@gmail.com"
+  },
+  "metadata": {
+    "description": "Research experiment logging and SVG/PPTX slide generation skills for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "research-tools",
+      "description": "Log experiments with /research-log and generate progress presentations with /report-slides",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/research-log",
+        "./skills/report-slides"
+      ]
+    }
+  ]
+}

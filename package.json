@@ -1,0 +1,23 @@
+{
+  "name": "claude-research-skills",
+  "version": "1.0.0",
+  "description": "Research log and presentation slide skills for Claude Code and other AI coding assistants",
+  "bin": {
+    "crs": "./bin/crs.js"
+  },
+  "files": [
+    "bin/",
+    "skills/"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "keywords": [
+    "claude", "claude-code", "ai-skills", "research-log", "slides", "presentation"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/starpig1129/claude-research-skills.git"
+  }
+}

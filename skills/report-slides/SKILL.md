@@ -16,14 +16,16 @@ After generation, slides can optionally be packaged into a PPTX with native SVG 
 
 ## Setup (first use in a project)
 
-Copy scripts from the skill bundle:
+One command from the project root:
 ```bash
-mkdir -p scripts docs/slides/reports
-find ~/.claude -path "*/report-slides/scripts/generate_slides.py" | head -1 | xargs -I{} cp {} scripts/
-find ~/.claude -path "*/report-slides/scripts/to_pptx.py"        | head -1 | xargs -I{} cp {} scripts/
+bash "$(find ~/.claude -path "*/report-slides/scripts/setup.sh" | head -1)"
 ```
 
-Check for Mermaid (optional):
+This copies `generate_slides.py` and `to_pptx.py` into `scripts/` and creates `docs/slides/reports/`.
+
+**Auto-setup:** if you invoke `/report-slides` and `scripts/generate_slides.py` is missing, run this command automatically before proceeding — no need to ask the user.
+
+Check for Mermaid (optional, for diagram slides):
 ```bash
 which mmdc && echo "Mermaid OK" || echo "Mermaid missing (npm i -g @mermaid-js/mermaid-cli)"
 ```
@@ -33,19 +35,17 @@ which mmdc && echo "Mermaid OK" || echo "Mermaid missing (npm i -g @mermaid-js/m
 ## Style system
 
 Slides inherit colors and fonts from a **style file** — a `.md` file with YAML frontmatter.
-Three built-in styles ship with this skill: `default`, `minimal`, `dark`.
+Three built-in styles ship with this skill: `default`, `minimal`, `dark`, `paper`.
 Full schema and color role descriptions are in `references/styles/STYLES.md` (read it when resolving styles).
 
 **Project default:** if `docs/slides/_style.md` exists it is applied automatically to every deck.
 
 ### set-style \<name\>
 
-Copy a built-in style as the project default:
+Copy a built-in style as the project default (one command):
 
 ```bash
-mkdir -p docs/slides
-find ~/.claude -path "*/report-slides/references/styles/<name>.md" | head -1 \
-  | xargs cat > docs/slides/_style.md
+bash "$(find ~/.claude -path "*/report-slides/scripts/set-style.sh" | head -1)" <name>
 # built-in names: default  minimal  dark  paper
 ```
 

@@ -11,11 +11,37 @@ Two Claude Code skills for research teams:
 
 ## Installation
 
+### Global install (all projects)
+
 ```bash
-claude /plugins add github:starpig1129/claude-research-skills
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh)
 ```
 
-Restart Claude Code — `/research-log` and `/report-slides` will be available in every project.
+### Project-local install
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --local
+```
+
+Restart Claude Code — `/research-log` and `/report-slides` will be available.
+
+### Uninstall
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) uninstall
+```
+
+---
+
+## First-time project setup (report-slides only)
+
+After installing the skills globally, run once per project to copy the helper scripts:
+
+```bash
+bash "$(find ~/.claude -path "*/report-slides/scripts/setup.sh" | head -1)"
+```
+
+Or just invoke `/report-slides` — it detects missing scripts and runs setup automatically.
 
 ---
 
@@ -24,13 +50,10 @@ Restart Claude Code — `/research-log` and `/report-slides` will be available i
 Install once per environment (only needed for `report-slides`):
 
 ```bash
-pip install python-pptx cairosvg
-# fallback converters if cairosvg fails on your system:
-# sudo apt install inkscape         # inkscape fallback
-# sudo apt install librsvg2-bin    # rsvg-convert fallback
+pip install python-pptx
 ```
 
-Optional (Path B diagram slides):
+Optional (diagram slides via Mermaid):
 
 ```bash
 npm install -g @mermaid-js/mermaid-cli
@@ -63,15 +86,18 @@ Reads journal entries, proposes a slide outline for confirmation, then generates
 
 Output: `docs/slides/reports/YYYY-MM-DD_<deck-name>/`
 - `slide01_title.svg`, `slide02_bar_chart.svg`, … (editable SVG source)
-- `deck.pptx` (16:9 PPTX, each slide embedded as a high-res PNG)
+- `deck.pptx` (16:9 PPTX with native SVG embedding)
 - `slide_data.json` (Path A source, use `--slide N` to re-render one slide)
 - `chart_list.md` (list of existing plot files to insert manually)
 
-**Note:** PPTX slides are embedded images — to edit a slide, modify the SVG then re-run `--to-pptx`.
+### Slide styles
 
-### First-time project setup
+Four built-in styles: `default`, `minimal`, `dark`, `paper`
 
-On first use in a new project, the skill copies `generate_slides.py` to `scripts/` automatically. No manual setup needed.
+```bash
+# Set project default style (run from project root)
+bash "$(find ~/.claude -path "*/report-slides/scripts/set-style.sh" | head -1)" paper
+```
 
 ---
 
@@ -83,16 +109,19 @@ docs/research_log/
   2026-05-15_backbone_v3.md
   2026-05-18_finetune_v3.md
 
-docs/slides/reports/
-  2026-05-19_weekly/
-    slide01_title.svg
-    slide02_bar_chart.svg
-    deck.pptx
-    slide_data.json
-    chart_list.md
+docs/slides/
+  _style.md                             ← project default style (optional)
+  reports/
+    2026-05-19_weekly/
+      slide01_title.svg
+      slide02_bar_chart.svg
+      deck.pptx
+      slide_data.json
+      chart_list.md
 
 scripts/
   generate_slides.py                    ← copied from skill on first use
+  to_pptx.py
 ```
 
 ---

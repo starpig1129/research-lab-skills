@@ -3,3 +3,4 @@ __pycache__/
 .DS_Store
 *.pptx
 *.png
+node_modules/

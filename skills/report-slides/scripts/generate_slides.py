@@ -659,7 +659,7 @@ def main() -> None:
     ap.add_argument("--out",      help="Output directory for SVG files")
     ap.add_argument("--slide",    type=int, default=None, help="Render only slide N")
     ap.add_argument("--style",    metavar="FILE",      default=None,
-                    help="Style .md file to override colors/fonts (see styles/STYLES.md)")
+                    help="Style .md file to override colors/fonts (see references/styles/STYLES.md in skill bundle)")
     ap.add_argument("--to-pptx",  metavar="SVG_DIR",
                     help="Convert all slide*.svg in SVG_DIR to PPTX (skips SVG generation)")
     ap.add_argument("--pptx-out", metavar="FILE", default=None,

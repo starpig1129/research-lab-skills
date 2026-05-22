@@ -19,8 +19,8 @@ After generation, slides can optionally be packaged into a PPTX with native SVG 
 Copy scripts from the skill bundle:
 ```bash
 mkdir -p scripts docs/slides/reports
-find ~/.claude -path "*/report-slides/generate_slides.py" | head -1 | xargs -I{} cp {} scripts/
-find ~/.claude -path "*/report-slides/to_pptx.py"        | head -1 | xargs -I{} cp {} scripts/
+find ~/.claude -path "*/report-slides/scripts/generate_slides.py" | head -1 | xargs -I{} cp {} scripts/
+find ~/.claude -path "*/report-slides/scripts/to_pptx.py"        | head -1 | xargs -I{} cp {} scripts/
 ```
 
 Check for Mermaid (optional):
@@ -34,7 +34,7 @@ which mmdc && echo "Mermaid OK" || echo "Mermaid missing (npm i -g @mermaid-js/m
 
 Slides inherit colors and fonts from a **style file** — a `.md` file with YAML frontmatter.
 Three built-in styles ship with this skill: `default`, `minimal`, `dark`.
-Full schema and color role descriptions are in `styles/STYLES.md` (read it when resolving styles).
+Full schema and color role descriptions are in `references/styles/STYLES.md` (read it when resolving styles).
 
 **Project default:** if `docs/slides/_style.md` exists it is applied automatically to every deck.
 
@@ -44,13 +44,13 @@ Copy a built-in style as the project default:
 
 ```bash
 mkdir -p docs/slides
-find ~/.claude -path "*/report-slides/styles/<name>.md" | head -1 \
+find ~/.claude -path "*/report-slides/references/styles/<name>.md" | head -1 \
   | xargs cat > docs/slides/_style.md
-# built-in names: default  minimal  dark
+# built-in names: default  minimal  dark  paper
 ```
 
 To **create a custom style**: make `docs/slides/styles/<name>.md` using the schema in
-`styles/STYLES.md`, then copy it to `docs/slides/_style.md` to activate it as the project default.
+`references/styles/STYLES.md`, then copy it to `docs/slides/_style.md` to activate it as the project default.
 
 ---
 
@@ -125,7 +125,7 @@ If the user named a style in Q6, search in order:
 1. `docs/slides/styles/<name>.md` (project-local)
 2. Skill bundle `styles/<name>.md` (built-in)
 
-Set `STYLE_FILE` to whichever path exists. If the user chose `custom`, read `styles/STYLES.md`
+Set `STYLE_FILE` to whichever path exists. If the user chose `custom`, read `references/styles/STYLES.md`
 and ask for the required frontmatter values, then write `docs/slides/styles/<name>.md`.
 
 ---
@@ -225,7 +225,7 @@ Prefer `flowchart LR` for pipelines, `flowchart TD` for training stages, `stateD
 
 #### [C] Claude SVG
 
-Write SVG directly. If `STYLE_FILE` is set, read it and load `styles/STYLES.md` for the full
+Write SVG directly. If `STYLE_FILE` is set, read it and load `references/styles/STYLES.md` for the full
 role descriptions; otherwise use the defaults in the table below.
 
 | Style key | SVG usage | Default |

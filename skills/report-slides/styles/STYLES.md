@@ -12,6 +12,7 @@ Read this file when resolving a style or when writing [C] Claude SVG slides.
 | `default` | `styles/default.md` | Academic meetings, research progress reports |
 | `minimal` | `styles/minimal.md` | Print, publications, no-color contexts |
 | `dark` | `styles/dark.md` | Projector rooms, conference presentations |
+| `paper` | `styles/paper.md` | Thesis / journal paper style — dark teal-blue on white |
 
 ---
 

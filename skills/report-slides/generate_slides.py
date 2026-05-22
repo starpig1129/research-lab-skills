@@ -31,7 +31,63 @@ S = {
     "muted":  "#64748b",
     "white":  "#ffffff",
     "font":   "'Helvetica Neue', Arial, sans-serif",
+    "top_bar_h": 6,
 }
+
+# ── Style loading ─────────────────────────────────────────────────────────────
+
+def _parse_frontmatter(path: str) -> dict:
+    """Parse YAML frontmatter from a .md file without requiring PyYAML."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            lines = f.readlines()
+    except OSError as e:
+        print(f"  [style] Cannot read {path}: {e}")
+        return {}
+    if not lines or lines[0].strip() != "---":
+        return {}
+    fm: dict = {}
+    for line in lines[1:]:
+        stripped = line.rstrip("\n")
+        if stripped.strip() == "---":
+            break
+        if ":" not in stripped:
+            continue
+        key, _, val = stripped.partition(":")
+        key = key.strip()
+        val = val.strip().strip('"').strip("'")
+        if key and val:
+            fm[key] = val
+    return fm
+
+
+def apply_style(style_path: str) -> None:
+    """Load a style .md file and override the global S dict."""
+    fm = _parse_frontmatter(style_path)
+    if not fm:
+        return
+    key_map = {
+        "primary":  "accent",
+        "bg":       "bg",
+        "body":     "body",
+        "muted":    "muted",
+        "border":   "border",
+        "card":     "card",
+        "positive": "good",
+        "warn":     "warn",
+        "danger":   "danger",
+        "font":     "font",
+    }
+    for style_key, s_key in key_map.items():
+        if style_key in fm:
+            S[s_key] = fm[style_key]
+    if "top_bar_h" in fm:
+        try:
+            S["top_bar_h"] = int(fm["top_bar_h"])
+        except ValueError:
+            pass
+    print(f"  [style] Applied: {style_path}")
+
 
 # Chart drawing area
 CL, CR, CT, CB = 130, 1100, 100, 520
@@ -72,9 +128,10 @@ def tlines(lines: list, x, y, size, color,
 # ── Common slide frame ────────────────────────────────────────────────────────
 
 def frame(title: str, footer: str = "") -> str:
+    h = S["top_bar_h"]
     parts = [
         f'<rect width="{S["w"]}" height="{S["h"]}" fill="{S["bg"]}"/>',
-        f'<rect x="0" y="0" width="{S["w"]}" height="6" fill="{S["accent"]}"/>',
+        f'<rect x="0" y="0" width="{S["w"]}" height="{h}" fill="{S["accent"]}"/>',
         f'<text x="600" y="44" font-size="20" font-weight="700" fill="{S["accent"]}" '
         f'text-anchor="middle">{esc(title)}</text>',
         f'<line x1="40" y1="54" x2="1160" y2="54" stroke="{S["border"]}" stroke-width="1.5"/>',
@@ -418,10 +475,12 @@ def render_timeline(sl: dict, meta: dict) -> str:
 
 
 def render_conclusion(sl: dict, meta: dict) -> str:
-    title       = sl.get("title", "結論與下一步")
+    title       = sl.get("title", "Conclusion & Next Steps")
     conclusions = sl.get("conclusions", [])
     next_steps  = sl.get("next_steps", [])
     footer      = meta.get("footer", "")
+    c_head      = sl.get("conclusions_heading", "Conclusions")
+    n_head      = sl.get("next_steps_heading",  "Next Steps")
 
     parts = [frame(title, footer)]
 
@@ -450,8 +509,8 @@ def render_conclusion(sl: dict, meta: dict) -> str:
             iy += 28 * len(lines) + 10
         return out
 
-    parts += block(conclusions, 60,  66, 500, 562, S["accent"], "結論",   numbered=False)
-    parts += block(next_steps,  640, 66, 500, 562, S["good"],   "下一步", numbered=True)
+    parts += block(conclusions, 60,  66, 500, 562, S["accent"], c_head, numbered=False)
+    parts += block(next_steps,  640, 66, 500, 562, S["good"],   n_head, numbered=True)
 
     return svg("\n  ".join(parts))
 
@@ -599,6 +658,8 @@ def main() -> None:
     ap.add_argument("--data",     help="Path to slide_data.json")
     ap.add_argument("--out",      help="Output directory for SVG files")
     ap.add_argument("--slide",    type=int, default=None, help="Render only slide N")
+    ap.add_argument("--style",    metavar="FILE",      default=None,
+                    help="Style .md file to override colors/fonts (see styles/STYLES.md)")
     ap.add_argument("--to-pptx",  metavar="SVG_DIR",
                     help="Convert all slide*.svg in SVG_DIR to PPTX (skips SVG generation)")
     ap.add_argument("--pptx-out", metavar="FILE", default=None,
@@ -614,6 +675,9 @@ def main() -> None:
     # ── Mode: generate SVGs from JSON ──
     if not args.data or not args.out:
         ap.error("--data and --out are required when not using --to-pptx")
+
+    if args.style:
+        apply_style(args.style)
 
     with open(args.data, encoding="utf-8") as f:
         data = json.load(f)

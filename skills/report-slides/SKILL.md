@@ -30,6 +30,30 @@ which mmdc && echo "Mermaid OK" || echo "Mermaid missing (npm i -g @mermaid-js/m
 
 ---
 
+## Style system
+
+Slides inherit colors and fonts from a **style file** — a `.md` file with YAML frontmatter.
+Three built-in styles ship with this skill: `default`, `minimal`, `dark`.
+Full schema and color role descriptions are in `styles/STYLES.md` (read it when resolving styles).
+
+**Project default:** if `docs/slides/_style.md` exists it is applied automatically to every deck.
+
+### set-style \<name\>
+
+Copy a built-in style as the project default:
+
+```bash
+mkdir -p docs/slides
+find ~/.claude -path "*/report-slides/styles/<name>.md" | head -1 \
+  | xargs cat > docs/slides/_style.md
+# built-in names: default  minimal  dark
+```
+
+To **create a custom style**: make `docs/slides/styles/<name>.md` using the schema in
+`styles/STYLES.md`, then copy it to `docs/slides/_style.md` to activate it as the project default.
+
+---
+
 ## Workflow
 
 ### 1. Show available logs
@@ -51,6 +75,7 @@ If no log files exist, tell the user to run `/research-log add` first and stop.
 3. Charts? (`list` = output paths to `chart_list.md` / `embed` = base64 into SVG)
 4. Language? (follow log language / force English / force another language)
 5. Emphasis? (progression / final results / failure analysis / let Claude decide)
+6. Style? (skip = use `docs/slides/_style.md` if present / name a built-in / `custom` to create one)
 
 ---
 
@@ -87,6 +112,24 @@ Confirm? (say "ok" to proceed, or specify changes)
 
 ---
 
+### 3.5 Resolve style
+
+Before generating, determine which style file to use and export `STYLE_FILE`:
+
+```bash
+STYLE_FILE=""
+[ -f docs/slides/_style.md ] && STYLE_FILE="docs/slides/_style.md"
+```
+
+If the user named a style in Q6, search in order:
+1. `docs/slides/styles/<name>.md` (project-local)
+2. Skill bundle `styles/<name>.md` (built-in)
+
+Set `STYLE_FILE` to whichever path exists. If the user chose `custom`, read `styles/STYLES.md`
+and ask for the required frontmatter values, then write `docs/slides/styles/<name>.md`.
+
+---
+
 ### 4. Generate slides
 
 Output directory: `docs/slides/reports/YYYY-MM-DD_<name>/`
@@ -99,9 +142,11 @@ Output directory: `docs/slides/reports/YYYY-MM-DD_<name>/`
 
 Write `slide_data.json` then run:
 ```bash
-python scripts/generate_slides.py --data <dir>/slide_data.json --out <dir>/
+python scripts/generate_slides.py --data <dir>/slide_data.json --out <dir>/ \
+    ${STYLE_FILE:+--style "$STYLE_FILE"}
 # Re-render one slide:
-python scripts/generate_slides.py --data <dir>/slide_data.json --out <dir>/ --slide N
+python scripts/generate_slides.py --data <dir>/slide_data.json --out <dir>/ --slide N \
+    ${STYLE_FILE:+--style "$STYLE_FILE"}
 ```
 
 **JSON format:**
@@ -180,18 +225,22 @@ Prefer `flowchart LR` for pipelines, `flowchart TD` for training stages, `stateD
 
 #### [C] Claude SVG
 
-Write SVG directly. All [C] slides must follow this style:
+Write SVG directly. If `STYLE_FILE` is set, read it and load `styles/STYLES.md` for the full
+role descriptions; otherwise use the defaults in the table below.
 
-| Element | Value |
-|---------|-------|
-| Canvas | `viewBox="0 0 1200 675"` |
-| Background | `#ffffff` |
-| Top bar | `<rect x="0" y="0" width="1200" height="6" fill="#1e3a5f"/>` |
-| Title | `font-size="20" font-weight="700" fill="#1e3a5f"` at `x="600" y="44" text-anchor="middle"` |
-| Divider | `<line x1="40" y1="54" x2="1160" y2="54" stroke="#e2e8f0" stroke-width="1.5"/>` |
-| Footer | `font-size="10" fill="#64748b"` at `x="1160" y="660" text-anchor="end"` |
-| Font | `font-family="'Helvetica Neue', Arial, sans-serif"` |
-| Positive | `#059669` · Warn `#d97706` · Danger `#dc2626` · Body `#374151` · Muted `#64748b` |
+| Style key | SVG usage | Default |
+|-----------|-----------|---------|
+| — | Canvas: `viewBox="0 0 1200 675"` | fixed |
+| `bg` | Slide background `<rect fill="..."/>` | `#ffffff` |
+| `primary` | Top bar, title text, bullet markers | `#1e3a5f` |
+| `top_bar_h` | Top bar `height` in px | `6` |
+| `border` | Divider line, card borders | `#e2e8f0` |
+| `body` | Main paragraph text | `#374151` |
+| `muted` | Footer, axis labels, captions | `#64748b` |
+| `font` | `font-family` attribute | `'Helvetica Neue', Arial, sans-serif` |
+| `positive` | Success / improvement values | `#059669` |
+| `warn` | Caution values | `#d97706` |
+| `danger` | Error / regression values | `#dc2626` |
 
 Rules: no `<image>` tags; escape `&` `<` `>` in text; split long text with `<tspan dy="...">`.
 

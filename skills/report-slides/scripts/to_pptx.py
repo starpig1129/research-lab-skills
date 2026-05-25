@@ -4,56 +4,48 @@
 SVG files are embedded directly into the PPTX (viewed natively by PowerPoint 2016+/365).
 A minimal white PNG is included as a fallback for older viewers.
 
-Only requires:  pip install python-pptx
-No cairosvg, Pillow, Inkscape, or any image converter needed.
+Requirements:  pip install python-pptx
+No cairosvg, Pillow, lxml, Inkscape, or any image converter needed.
+Uses only the public python-pptx API + Python stdlib (zipfile, re, struct, zlib).
+Works on Windows, macOS, and Linux.
 
 Usage:
-    python scripts/to_pptx.py \
-        --slides docs/slides/reports/2026-05-19_deck/ \
-        --out    docs/slides/reports/2026-05-19_deck/deck.pptx
+    python to_pptx.py --slides path/to/slides/ --out deck.pptx
 """
 
 import argparse
+import io
+import re
 import struct
+import zipfile
 import zlib
 from pathlib import Path
 
 from pptx import Presentation
 from pptx.util import Emu
-from pptx.opc.packuri import PackURI
-from pptx.opc.package import Part
-import lxml.etree as etree
 
+# ── Constants ─────────────────────────────────────────────────────────────────
 
-# ── Slide dimensions (16:9 widescreen) ───────────────────────────────────────
-
-SLIDE_W = 12_192_000   # EMU
+SLIDE_W = 12_192_000   # EMU  (16:9 widescreen, 33.87 cm)
 SLIDE_H =  6_858_000   # EMU
 
-# Relationship type for images
 IMG_REL = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-
-# XML namespaces used in the <p:pic> element
-NS_A    = "http://schemas.openxmlformats.org/drawingml/2006/main"
-NS_P    = "http://schemas.openxmlformats.org/presentationml/2006/main"
-NS_R    = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 NS_ASVG = "http://schemas.microsoft.com/office/drawing/2016/SVG/main"
+NS_R    = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+SVG_EXT = "{96DAC541-7B7A-43D3-8B79-37D633B846F1}"
 
-# Extension URI that tells PowerPoint "this pic has an SVG version"
-SVG_EXT_URI = "{96DAC541-7B7A-43D3-8B79-37D633B846F1}"
 
+# ── Minimal white PNG — no Pillow required ────────────────────────────────────
 
-# ── Minimal white PNG — no Pillow or cairosvg required ───────────────────────
-
-def _make_white_png(width: int = 4, height: int = 3) -> bytes:
-    """Return a tiny white PNG using Python stdlib only."""
+def _make_white_png(w: int = 4, h: int = 3) -> bytes:
+    """Generate a tiny white PNG using Python stdlib only."""
     def chunk(name: bytes, data: bytes) -> bytes:
         crc = zlib.crc32(name + data) & 0xFFFFFFFF
         return struct.pack(">I", len(data)) + name + data + struct.pack(">I", crc)
 
-    ihdr = struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)   # RGB 8-bit
-    row  = b"\x00" + b"\xff\xff\xff" * width                        # filter + white pixels
-    idat = zlib.compress(row * height)
+    ihdr = struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0)   # RGB 8-bit
+    row  = b"\x00" + b"\xff\xff\xff" * w                   # filter byte + white pixels
+    idat = zlib.compress(row * h)
 
     return (
         b"\x89PNG\r\n\x1a\n"
@@ -66,76 +58,103 @@ def _make_white_png(width: int = 4, height: int = 3) -> bytes:
 _WHITE_PNG = _make_white_png()
 
 
-# ── SVG embedding ─────────────────────────────────────────────────────────────
+# ── Core packing logic ────────────────────────────────────────────────────────
 
-def _relate_media(slide_part, blob: bytes, ext: str, content_type: str,
-                  slide_idx: int, tag: str) -> str:
-    """Add a media blob as a package Part and return its relationship ID."""
-    partname = PackURI(f"/ppt/media/slide{slide_idx:02d}_{tag}.{ext}")
-    part     = Part(partname, content_type, slide_part.package, blob)
-    return slide_part.relate_to(part, IMG_REL)
+def pack_slides(svg_files: list, out_path: Path) -> None:
+    """Build a PPTX from a list of SVG paths with native SVG embedding.
 
+    Strategy:
+      Step 1 — Build a base PPTX using only the public python-pptx API.
+               Each slide gets a full-slide white PNG via add_picture().
+      Step 2 — Post-process the PPTX ZIP with stdlib zipfile:
+               • Add SVG files as media entries.
+               • Register SVG relationships in each slide's .rels file.
+               • Inject <p:extLst><asvg:svgBlip/> into each slide's <p:pic>.
+               • Declare image/svg+xml in [Content_Types].xml.
+    """
 
-def _build_pic_xml(png_rid: str, svg_rid: str, pic_id: int) -> etree._Element:
-    """Build the <p:pic> lxml element for a full-slide SVG picture."""
-    xml = (
-        f'<p:pic'
-        f' xmlns:p="{NS_P}"'
-        f' xmlns:a="{NS_A}"'
-        f' xmlns:r="{NS_R}"'
-        f' xmlns:asvg="{NS_ASVG}">'
+    # ── Step 1: public python-pptx API only ────────────────────────────────────
+    prs = Presentation()
+    prs.slide_width  = Emu(SLIDE_W)
+    prs.slide_height = Emu(SLIDE_H)
 
-        f'<p:nvPicPr>'
-        f'  <p:cNvPr id="{pic_id}" name="Slide {pic_id}"/>'
-        f'  <p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr>'
-        f'  <p:nvPr/>'
-        f'</p:nvPicPr>'
+    for _ in svg_files:
+        slide = prs.slides.add_slide(prs.slide_layouts[6])   # blank layout
+        slide.shapes.add_picture(
+            io.BytesIO(_WHITE_PNG), 0, 0, Emu(SLIDE_W), Emu(SLIDE_H)
+        )
 
-        # PNG fallback in blipFill
-        f'<p:blipFill>'
-        f'  <a:blip r:embed="{png_rid}"/>'
-        f'  <a:stretch><a:fillRect/></a:stretch>'
-        f'</p:blipFill>'
+    raw = io.BytesIO()
+    prs.save(raw)
 
-        # Full-slide geometry
-        f'<p:spPr>'
-        f'  <a:xfrm>'
-        f'    <a:off x="0" y="0"/>'
-        f'    <a:ext cx="{SLIDE_W}" cy="{SLIDE_H}"/>'
-        f'  </a:xfrm>'
-        f'  <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
-        f'</p:spPr>'
+    # ── Step 2: post-process ZIP ───────────────────────────────────────────────
+    raw.seek(0)
+    with zipfile.ZipFile(raw, "r") as zin:
+        files = {name: zin.read(name) for name in zin.namelist()}
 
-        # SVG extension — PowerPoint 2016+ uses this instead of the PNG
-        f'<p:extLst>'
-        f'  <p:ext uri="{SVG_EXT_URI}">'
-        f'    <asvg:svgBlip r:embed="{svg_rid}"/>'
-        f'  </p:ext>'
-        f'</p:extLst>'
+    # 2a. [Content_Types].xml — register image/svg+xml once
+    ct_key = "[Content_Types].xml"
+    if b"image/svg+xml" not in files[ct_key]:
+        files[ct_key] = files[ct_key].replace(
+            b"</Types>",
+            b'<Default Extension="svg" ContentType="image/svg+xml"/></Types>',
+        )
 
-        f'</p:pic>'
-    )
-    return etree.fromstring(xml.encode("utf-8"))
+    # 2b. Per-slide: add relationship + media file
+    slide_svg_rids: dict = {}
 
+    for i, svg_path in enumerate(svg_files, start=1):
+        rels_key  = f"ppt/slides/_rels/slide{i}.xml.rels"
+        slide_key = f"ppt/slides/slide{i}.xml"
 
-def add_svg_slide(prs: Presentation, svg_path: Path, slide_idx: int) -> None:
-    """Append one blank slide to *prs* with the given SVG embedded natively."""
-    slide = prs.slides.add_slide(prs.slide_layouts[6])   # blank layout
+        if rels_key not in files or slide_key not in files:
+            continue
 
-    png_rid = _relate_media(slide.part, _WHITE_PNG,
-                             "png", "image/png", slide_idx, "fallback")
-    svg_rid = _relate_media(slide.part, svg_path.read_bytes(),
-                             "svg", "image/svg+xml", slide_idx, "main")
+        # Allocate next available rId
+        existing_ids = [int(x) for x in re.findall(rb'Id="rId(\d+)"', files[rels_key])]
+        svg_rid      = f"rId{max(existing_ids, default=0) + 1}"
+        svg_target   = f"../media/slide{i:02d}_svg.svg"
 
-    pic_elem = _build_pic_xml(png_rid, svg_rid, slide_idx + 1)
-    slide.shapes._spTree.append(pic_elem)
+        new_rel = (
+            f'<Relationship Id="{svg_rid}" Type="{IMG_REL}" Target="{svg_target}"/>'
+        ).encode()
+        files[rels_key] = files[rels_key].replace(
+            b"</Relationships>", new_rel + b"</Relationships>"
+        )
+
+        files[f"ppt/media/slide{i:02d}_svg.svg"] = Path(svg_path).read_bytes()
+        slide_svg_rids[i] = svg_rid
+
+    # 2c. Patch slide XMLs — append <p:extLst> inside the first <p:pic>
+    for i, svg_rid in slide_svg_rids.items():
+        slide_key = f"ppt/slides/slide{i}.xml"
+        ext_block = (
+            f'<p:extLst>'
+            f'<p:ext uri="{SVG_EXT}">'
+            f'<asvg:svgBlip'
+            f' xmlns:asvg="{NS_ASVG}"'
+            f' xmlns:r="{NS_R}"'
+            f' r:embed="{svg_rid}"/>'
+            f'</p:ext>'
+            f'</p:extLst>'
+        ).encode("utf-8")
+        files[slide_key] = files[slide_key].replace(
+            b"</p:pic>", ext_block + b"</p:pic>", 1
+        )
+
+    # ── Step 3: write patched ZIP to output path ───────────────────────────────
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(str(out_path), "w", compression=zipfile.ZIP_DEFLATED) as zout:
+        for name, data in files.items():
+            zout.writestr(name, data)
 
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="Pack SVG slides into a PPTX with native SVG embedding")
+        description="Pack SVG slides into a PPTX with native SVG embedding"
+    )
     ap.add_argument("--slides", required=True,
                     help="Directory containing slide*.svg files")
     ap.add_argument("--out",    required=True,
@@ -149,19 +168,14 @@ def main() -> None:
         print(f"No slide*.svg files found in {slide_dir}")
         return
 
-    prs = Presentation()
-    prs.slide_width  = Emu(SLIDE_W)
-    prs.slide_height = Emu(SLIDE_H)
-
-    for i, svg_path in enumerate(svg_files, start=1):
-        add_svg_slide(prs, svg_path, i)
-        print(f"  ✓ {svg_path.name}")
-
     out_path = Path(args.out)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    prs.save(str(out_path))
-    print(f"\n{len(svg_files)} slide(s) → {out_path}")
-    print("Open with PowerPoint 2016+ / 365 for best SVG rendering.")
+    pack_slides(svg_files, out_path)
+
+    for svg in svg_files:
+        print(f"  + {svg.name}")
+    print(f"\n{len(svg_files)} slide(s) -> {out_path}")
+    print("Open with PowerPoint 2016+ / 365 for native SVG rendering.")
+    print("Older viewers display the white PNG fallback (slide content is visible in SVG mode only).")
 
 
 if __name__ == "__main__":

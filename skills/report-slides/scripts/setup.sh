@@ -10,11 +10,9 @@ BUNDLE_DIR="$(dirname "$SCRIPT_DIR")"
 mkdir -p scripts docs/slides/reports
 
 cp "$SCRIPT_DIR/generate_slides.py" scripts/
-cp "$SCRIPT_DIR/to_pptx.py"        scripts/
 
 echo "report-slides setup complete:"
 echo "  scripts/generate_slides.py"
-echo "  scripts/to_pptx.py"
 echo "  docs/slides/reports/"
 echo ""
 echo "Optional — set a default slide style (default | minimal | dark | paper):"

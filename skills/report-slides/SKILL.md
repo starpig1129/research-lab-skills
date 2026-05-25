@@ -16,18 +16,27 @@ After generation, slides can optionally be packaged into a PPTX with native SVG 
 
 ## Setup (first use in a project)
 
-One command from the project root:
+**macOS / Linux / Git Bash:**
 ```bash
 bash "$(find ~/.claude -path "*/report-slides/scripts/setup.sh" | head -1)"
 ```
 
-This copies `generate_slides.py` and `to_pptx.py` into `scripts/` and creates `docs/slides/reports/`.
+**Windows (PowerShell):**
+```powershell
+& (Get-ChildItem $env:USERPROFILE\.claude -Recurse -Filter setup.ps1 |
+    Where-Object FullName -like "*report-slides*" | Select-Object -First 1).FullName
+```
 
-**Auto-setup:** if you invoke `/report-slides` and `scripts/generate_slides.py` is missing, run this command automatically before proceeding — no need to ask the user.
+This copies `generate_slides.py` into `scripts/` and creates `docs/slides/reports/`. `to_pptx.py` stays in the skill bundle and is invoked directly from there.
+
+**Auto-setup:** if you invoke `/report-slides` and `scripts/generate_slides.py` is missing, run the appropriate setup command automatically before proceeding — no need to ask the user.
 
 Check for Mermaid (optional, for diagram slides):
 ```bash
+# macOS / Linux
 which mmdc && echo "Mermaid OK" || echo "Mermaid missing (npm i -g @mermaid-js/mermaid-cli)"
+# Windows
+Get-Command mmdc -ErrorAction SilentlyContinue && "Mermaid OK" || "Mermaid missing (npm i -g @mermaid-js/mermaid-cli)"
 ```
 
 ---
@@ -45,7 +54,11 @@ Full schema and color role descriptions are in `references/styles/STYLES.md` (re
 Copy a built-in style as the project default (one command):
 
 ```bash
+# macOS / Linux / Git Bash:
 bash "$(find ~/.claude -path "*/report-slides/scripts/set-style.sh" | head -1)" <name>
+# Windows (PowerShell):
+& (Get-ChildItem $env:USERPROFILE\.claude -Recurse -Filter set-style.ps1 |
+    Where-Object FullName -like "*report-slides*" | Select-Object -First 1).FullName <name>
 # built-in names: default  minimal  dark  paper
 ```
 
@@ -263,13 +276,23 @@ Add the deck path to `slide_decks:` in each included log file's frontmatter. Reb
 ## PPTX export (optional)
 
 After slides are generated:
+
 ```bash
-python scripts/to_pptx.py \
+# macOS / Linux / Git Bash:
+python "$(find ~/.claude -path "*/report-slides/scripts/to_pptx.py" | head -1)" \
     --slides docs/slides/reports/YYYY-MM-DD_<name>/ \
     --out    docs/slides/reports/YYYY-MM-DD_<name>/deck.pptx
 ```
 
-SVG is embedded natively (PowerPoint 2016+/365). A minimal white PNG serves as fallback for older viewers. Only `python-pptx` required — no image converter needed.
+```powershell
+# Windows (PowerShell):
+$to_pptx = (Get-ChildItem $env:USERPROFILE\.claude -Recurse -Filter to_pptx.py |
+    Where-Object FullName -like "*report-slides*" | Select-Object -First 1).FullName
+python $to_pptx --slides docs\slides\reports\YYYY-MM-DD_<name>\ --out docs\slides\reports\YYYY-MM-DD_<name>\deck.pptx
+```
+
+SVG is embedded natively (PowerPoint 2016+/365). A minimal white PNG serves as fallback for older viewers.
+Only `python-pptx` required (`pip install python-pptx`) — no cairosvg, Pillow, or image converter needed.
 
 ---
 

@@ -639,8 +639,8 @@ def to_pptx(svg_dir: str, output_path: str) -> None:
     prs.save(output_path)
     size_kb = os.path.getsize(output_path) // 1024
     print(f"\n✅ PPTX saved: {output_path}  ({size_kb} KB, {len(prs.slides)} slides)")
-    print("\n注意：PPTX 中每張投影片為嵌入圖片，元素不可在 PowerPoint 內單獨編輯。")
-    print("若需編輯單張，請修改對應 SVG 再重新執行 --to-pptx。")
+    print("\nNote: each slide in the PPTX is an embedded image; elements cannot be edited individually in PowerPoint.")
+    print("To edit a single slide, modify the corresponding SVG and re-run with --to-pptx.")
 
 
 def _try_import(name: str) -> bool:

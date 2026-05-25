@@ -15,11 +15,51 @@ All files in `docs/research_log/` (relative to project root). Create it if absen
 Filename: `YYYY-MM-DD_<experiment-slug>.md`
 Index: `docs/research_log/INDEX.md` (auto-generated, never hand-edited)
 
+---
+
 ## Commands
 
 ### add
 
 Create a new log entry.
+
+**Step 0 — Gather git context (run silently before asking questions)**
+
+Find the most recent prior log, then run `git_context.py` to extract recent commit history.
+Use the output to pre-fill the **Changes** section and to capture the `git_head` value.
+
+```bash
+# macOS / Linux / Git Bash:
+GIT_CTX="$(find ~/.claude -path "*/research-log/scripts/git_context.py" | head -1)"
+PRIOR=$(ls -t docs/research_log/*.md 2>/dev/null | grep -v INDEX | head -1)
+if [ -n "$PRIOR" ]; then
+    python "$GIT_CTX" --since-log "$PRIOR"
+else
+    python "$GIT_CTX" --since $(date -d "14 days ago" +%Y-%m-%d 2>/dev/null \
+                                 || date -v-14d +%Y-%m-%d)
+fi
+GIT_HEAD=$(python "$GIT_CTX" --head)
+```
+
+```powershell
+# Windows (PowerShell):
+$GIT_CTX = (Get-ChildItem $env:USERPROFILE\.claude -Recurse -Filter git_context.py |
+    Where-Object FullName -like "*research-log*" | Select-Object -First 1).FullName
+$PRIOR = Get-ChildItem docs\research_log -Filter "*.md" |
+    Where-Object Name -ne "INDEX.md" | Sort-Object LastWriteTime -Desc |
+    Select-Object -First 1 -Exp FullName
+if ($PRIOR) { python $GIT_CTX --since-log $PRIOR }
+else         { python $GIT_CTX --since (Get-Date).AddDays(-14).ToString("yyyy-MM-dd") }
+$GIT_HEAD = python $GIT_CTX --head
+```
+
+If the script prints `(not a git repository — skipping git context)`, continue without git context.
+
+Use the **Suggested Changes bullets** from the output as the default content for the Changes section.
+Show them to the user and let them accept, edit, or ignore.
+Store the **Current HEAD** value for the `git_head` frontmatter field.
+
+---
 
 **Step 1 — Ask mode:**
 Quick (3 questions, good for in-progress runs) or Full (all sections)?
@@ -32,7 +72,7 @@ Quick (3 questions, good for in-progress runs) or Full (all sections)?
 
 **Full questions** (ask section by section; user may skip any):
 1. Experiment name
-2. Changes made (bullet points)
+2. Changes made — show git-suggested bullets as default; user accepts or edits
 3. Setup (checkpoint, dataset, key parameters)
 4. Results (numbers, tables)
 5. Failures / pitfalls
@@ -52,6 +92,7 @@ experiment: <slug>
 tags: []
 follows: <prior-filename-or-empty>
 reason_follows: <one-line reason or empty>
+git_head: <short SHA from git_context.py --head, or empty if not a git repo>
 slide_decks: []
 amended: []
 ---
@@ -101,6 +142,13 @@ If no argument, list the 5 most recent files and ask which to edit:
 ls -t docs/research_log/*.md | grep -v INDEX | head -5
 ```
 
+**Optional — show git changes since this entry was created:**
+```bash
+GIT_CTX="$(find ~/.claude -path "*/research-log/scripts/git_context.py" | head -1)"
+python "$GIT_CTX" --since-log <target-log-file>
+```
+Useful when the user wants to add new results or fill in a Changes section retroactively.
+
 Show current section headings. Ask which sections to update. Rewrite the file with new content. Append to `amended:` in frontmatter:
 ```yaml
 amended:
@@ -127,19 +175,19 @@ Read frontmatter from each file. Write:
 
 _Last updated: YYYY-MM-DD_
 
-| Date | Experiment | Tags | Follows | Slides |
-|------|-----------|------|---------|--------|
-| 2024-11-02 | run_v2 | training, ablation | run_v1 | ✅ reports/2024-11-05 |
-| 2024-10-28 | run_v1 | baseline | — | ❌ |
+| Date | Experiment | Tags | Follows | HEAD | Slides |
+|------|-----------|------|---------|------|--------|
+| 2024-11-02 | run_v2 | training, ablation | run_v1 | a1b2c3d | ✅ reports/2024-11-05 |
+| 2024-10-28 | run_v1 | baseline | — | e4f5g6h | ❌ |
 ```
 
-Rules: newest first; `Slides` = ✅ with deck name if `slide_decks` non-empty, else ❌; `Follows` = experiment slug (not full filename), or `—`.
+Rules: newest first; `HEAD` = `git_head` value or `—`; `Slides` = ✅ with deck name if `slide_decks` non-empty, else ❌; `Follows` = experiment slug (not full filename), or `—`.
 
 ---
 
 ### show [n]
 
-Show the n most recent entries (default 5). For each, print a compact summary: date, experiment, goal excerpt, next steps excerpt, slide status.
+Show the n most recent entries (default 5). For each, print a compact summary: date, experiment, goal excerpt, next steps excerpt, git_head, slide status.
 
 ---
 
@@ -152,6 +200,7 @@ Show the n most recent entries (default 5). For each, print a compact summary: d
 | `tags` | free-form list |
 | `follows` | filename of prior experiment (optional) |
 | `reason_follows` | why this follows from the prior (optional) |
+| `git_head` | short SHA of HEAD commit when this entry was written (optional) |
 | `slide_decks` | paths added by /report-slides (do not edit manually) |
 | `amended` | change records added by amend command |
 
@@ -160,3 +209,5 @@ Show the n most recent entries (default 5). For each, print a compact summary: d
 - If `docs/research_log/` does not exist, create it silently.
 - If a `follows:` target file is not found, warn but continue.
 - `slide_decks` and `amended` are managed by skills only — never ask the user to set them.
+- `git_head` enables reconstructing the exact commit range for any experiment:
+  given two consecutive entries with `git_head` values A and B, run `git log A..B` to see all changes.

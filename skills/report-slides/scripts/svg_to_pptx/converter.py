@@ -80,7 +80,30 @@ class SvgConverter:
                         self._defs[eid] = child
 
     def _resolve_use_elements(self) -> None:
-        pass  # implemented in Task 9
+        from copy import deepcopy
+        for use_elem in list(self.root.iter()):
+            if _local_tag(use_elem) != "use":
+                continue
+            href = use_elem.get("href") or use_elem.get(
+                "{http://www.w3.org/1999/xlink}href", "")
+            if not href.startswith("#"):
+                continue
+            ref_id = href[1:]
+            ref = self._defs.get(ref_id)
+            if ref is None:
+                continue
+            clone = deepcopy(ref)
+            use_x = use_elem.get("x", "0")
+            use_y = use_elem.get("y", "0")
+            if use_x != "0" or use_y != "0":
+                existing = clone.get("transform", "")
+                clone.set("transform",
+                          f"translate({use_x},{use_y}) {existing}".strip())
+            parent = use_elem.getparent()
+            if parent is not None:
+                idx = list(parent).index(use_elem)
+                parent.insert(idx, clone)
+                parent.remove(use_elem)
 
     def _compute_text_attachments(self) -> None:
         shape_bboxes = []

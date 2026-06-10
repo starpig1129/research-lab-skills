@@ -132,3 +132,80 @@ def apply_stroke(shape: Any, style: Dict[str, str]) -> None:
         shape.line.width = Pt(float(re.sub(r"[^0-9.]", "", width_raw) or "1"))
     except ValueError:
         shape.line.width = Pt(1)
+
+
+import math as _math
+
+
+def parse_transform(transform_str: str) -> Tuple[float, float, float, float, float]:
+    """Parse SVG transform → (tx, ty, rotation_deg, scale_x, scale_y)."""
+    tx, ty, rot, sx, sy = 0.0, 0.0, 0.0, 1.0, 1.0
+    if not transform_str:
+        return tx, ty, rot, sx, sy
+    s = transform_str.strip()
+    m = re.match(r'translate\(\s*([-\d.]+)(?:[,\s]+([-\d.]+))?\s*\)', s)
+    if m:
+        tx = float(m.group(1))
+        ty = float(m.group(2) or 0)
+        return tx, ty, rot, sx, sy
+    m = re.match(r'rotate\(\s*([-\d.]+)(?:[,\s]+([-\d.]+)[,\s]+([-\d.]+))?\s*\)', s)
+    if m:
+        rot = float(m.group(1))
+        return tx, ty, rot, sx, sy
+    m = re.match(r'scale\(\s*([-\d.]+)(?:[,\s]+([-\d.]+))?\s*\)', s)
+    if m:
+        sx = float(m.group(1))
+        sy = float(m.group(2) or m.group(1))
+        return tx, ty, rot, sx, sy
+    m = re.match(
+        r'matrix\(\s*([-\d.]+)[,\s]+([-\d.]+)[,\s]+([-\d.]+)[,\s]+'
+        r'([-\d.]+)[,\s]+([-\d.]+)[,\s]+([-\d.]+)\s*\)', s)
+    if m:
+        a, b, c, d, e, f = (float(m.group(i)) for i in range(1, 7))
+        tx = e; ty = f
+        sx = _math.sqrt(a * a + b * b)
+        sy = _math.sqrt(c * c + d * d)
+        rot = _math.degrees(_math.atan2(b, a))
+        return tx, ty, rot, sx, sy
+    return tx, ty, rot, sx, sy
+
+
+def apply_transform_to_pos(x: float, y: float, w: float, h: float,
+                           transform_str: str) -> Tuple[float, float, float, float]:
+    tx, ty, rot, sx, sy = parse_transform(transform_str)
+    return x + tx, y + ty, w * sx, h * sy
+
+
+def apply_gradient_fill(shape: Any, stops: List[Tuple[str, str]],
+                        angle_deg: float = 0.0) -> None:
+    from pptx.oxml.ns import qn
+    A = "http://schemas.openxmlformats.org/drawingml/2006/main"
+    sp = shape._element
+    spPr = sp.find(qn("p:spPr"))
+    if spPr is None:
+        return
+    for child in list(spPr):
+        tag = child.tag.split("}")[-1] if "}" in child.tag else child.tag
+        if tag in ("solidFill", "gradFill", "noFill", "blipFill", "pattFill"):
+            spPr.remove(child)
+    gradFill = etree.SubElement(spPr, f"{{{A}}}gradFill")
+    gsLst = etree.SubElement(gradFill, f"{{{A}}}gsLst")
+    for offset_str, color_str in stops:
+        offset_str = offset_str.strip()
+        if offset_str.endswith("%"):
+            pos = int(round(float(offset_str[:-1]) * 1000))
+        else:
+            try:
+                pos = int(round(float(offset_str) * 100000))
+            except ValueError:
+                pos = 0
+        gs = etree.SubElement(gsLst, f"{{{A}}}gs")
+        gs.set("pos", str(pos))
+        rgb = resolve_color(color_str)
+        if rgb:
+            srgb = etree.SubElement(gs, f"{{{A}}}srgbClr")
+            srgb.set("val", f"{rgb[0]:02X}{rgb[1]:02X}{rgb[2]:02X}")
+    lin = etree.SubElement(gradFill, f"{{{A}}}lin")
+    ang_ooxml = int(round(angle_deg * 60000)) % 21600000
+    lin.set("ang", str(ang_ooxml))
+    lin.set("scaled", "0")

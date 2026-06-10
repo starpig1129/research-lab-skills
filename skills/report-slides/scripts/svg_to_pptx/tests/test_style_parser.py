@@ -89,3 +89,55 @@ def test_compute_style_inline_overrides_inherited():
     elem = etree.fromstring('<rect style="stroke:none"/>')
     result = compute_style(elem, {"stroke": "#000000"})
     assert result["stroke"] == "none"
+
+
+from svg_to_pptx.style_parser import (
+    parse_transform, apply_transform_to_pos, apply_gradient_fill
+)
+from pptx import Presentation
+from pptx.util import Emu
+
+
+def test_parse_transform_translate():
+    tx, ty, rot, sx, sy = parse_transform("translate(100,50)")
+    assert tx == pytest.approx(100.0)
+    assert ty == pytest.approx(50.0)
+    assert rot == pytest.approx(0.0)
+
+
+def test_parse_transform_rotate():
+    tx, ty, rot, sx, sy = parse_transform("rotate(45)")
+    assert rot == pytest.approx(45.0)
+
+
+def test_parse_transform_scale():
+    tx, ty, rot, sx, sy = parse_transform("scale(2,3)")
+    assert sx == pytest.approx(2.0)
+    assert sy == pytest.approx(3.0)
+
+
+def test_parse_transform_matrix():
+    tx, ty, rot, sx, sy = parse_transform("matrix(1,0,0,1,50,30)")
+    assert tx == pytest.approx(50.0)
+    assert ty == pytest.approx(30.0)
+
+
+def test_apply_transform_to_pos():
+    x, y, w, h = apply_transform_to_pos(100, 200, 300, 400, "translate(50,25)")
+    assert x == pytest.approx(150.0)
+    assert y == pytest.approx(225.0)
+    assert w == pytest.approx(300.0)
+
+
+def test_apply_gradient_fill_linear():
+    prs = Presentation()
+    prs.slide_width = Emu(12_192_000)
+    prs.slide_height = Emu(6_858_000)
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    shape = slide.shapes.add_shape(1, Emu(0), Emu(0), Emu(1000), Emu(500))
+    stops = [("0", "#ff0000"), ("100%", "#0000ff")]
+    apply_gradient_fill(shape, stops, angle_deg=0.0)
+    A = "http://schemas.openxmlformats.org/drawingml/2006/main"
+    from pptx.oxml.ns import qn
+    spPr = shape._element.find(qn("p:spPr"))
+    assert spPr.find(f"{{{A}}}gradFill") is not None

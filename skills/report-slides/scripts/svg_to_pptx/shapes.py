@@ -83,8 +83,12 @@ def _add_image(slide: Any, elem: Any, style: Dict, cs: CoordSystem) -> Optional[
 def _write_label(shape: Any, text_elem: Any, parent_style: Dict) -> None:
     tf = shape.text_frame
     tf.word_wrap = True
-    lines = _collect_text_lines(text_elem, parent_style)
-    for i, (text, line_style) in enumerate(lines):
+    # Accept a single text element or a list
+    elems = text_elem if isinstance(text_elem, list) else [text_elem]
+    all_lines = []
+    for te in elems:
+        all_lines.extend(_collect_text_lines(te, parent_style))
+    for i, (text, line_style) in enumerate(all_lines):
         para = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         anchor = line_style.get("text-anchor", parent_style.get("text-anchor", "middle"))
         para.alignment = _ALIGN.get(anchor, PP_ALIGN.CENTER)

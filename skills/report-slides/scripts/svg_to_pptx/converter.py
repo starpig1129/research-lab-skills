@@ -147,8 +147,10 @@ class SvgConverter:
             candidates.sort(key=lambda c: c[0])
             best_shape = candidates[0][1]
             if id(best_shape) not in self._shape_labels:
-                self._shape_labels[id(best_shape)] = text_elem
-                self._text_to_shape[id(text_elem)] = best_shape
+                self._shape_labels[id(best_shape)] = [text_elem]
+            else:
+                self._shape_labels[id(best_shape)].append(text_elem)
+            self._text_to_shape[id(text_elem)] = best_shape
 
     def _dispatch_children(self, slide: Any, parent: Any, inherited: Dict) -> None:
         from .style_parser import compute_style

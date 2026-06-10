@@ -81,9 +81,27 @@ If no log files exist, tell the user to run `/research-log add` first and stop.
 
 ---
 
+### 1b. Academic data source (optional)
+
+When the user passes `--source academic` or selects "academic pipeline" as source:
+
+1. Check for a passport YAML file (default: `docs/passport.yaml`; override with `--passport <path>`)
+2. Run the bridge script to extract stage data:
+   ```bash
+   BRIDGE="$(find ~/.claude -path "*/claude-research-skills/bridge/scripts/passport_to_log.py" 2>/dev/null | head -1)"
+   python "$BRIDGE" --passport docs/passport.yaml
+   ```
+3. Use the extracted stage records as input for slide generation instead of research-log entries
+
+If no passport file exists, fall back to research-log source and notify the user.
+
+---
+
 ### 2. Ask (one message)
 
-1. Which logs to include? (`all` / `recent-N` / by name / date range)
+1. Source? (`research-log` = experiment logs (default) / `academic` = pipeline passport data)
+   If research-log: which logs? (`all` / `recent-N` / by name / date range)
+   If academic: passport file path? (default: `docs/passport.yaml`)
 2. Audience? (advisor / team meeting / conference)
 3. Charts? (`list` = output paths to `chart_list.md` / `embed` = base64 into SVG)
 4. Language? (follow log language / force English / force another language)
@@ -151,7 +169,7 @@ Output directory: `docs/slides/reports/YYYY-MM-DD_<name>/`
 
 #### [A] Python renderer
 
-**Supported types:** `title` `bullet_list` `bar_chart` `table` `metric_cards` `two_column` `timeline` `conclusion`
+**Supported types:** `title` `bullet_list` `bar_chart` `table` `metric_cards` `two_column` `timeline` `conclusion` `score_trajectory` `pipeline_status`
 
 Write `slide_data.json` then run:
 ```bash
@@ -209,7 +227,24 @@ python scripts/generate_slides.py --data <dir>/slide_data.json --out <dir>/ --sl
     { "index": 8, "type": "conclusion",
       "title": "...",
       "conclusions": ["finding 1", "finding 2"],
-      "next_steps":  ["step 1", "step 2"] }
+      "next_steps":  ["step 1", "step 2"] },
+
+    { "index": 9, "type": "score_trajectory",
+      "title": "Review Score Progression",
+      "dimensions": ["Originality", "Methodology", "Clarity", "Citations", "Contribution"],
+      "rounds": [
+        { "label": "Round 1", "scores": [3, 4, 3, 2, 3] },
+        { "label": "Round 2", "scores": [4, 4, 4, 4, 4] }
+      ],
+      "note": "D1-D5 rubric, scale 1-5" },
+
+    { "index": 10, "type": "pipeline_status",
+      "title": "Pipeline Progress",
+      "stages": [
+        { "number": 1, "name": "RESEARCH", "status": "PASS", "date": "2026-06-08" },
+        { "number": 2, "name": "WRITE",    "status": "PASS", "date": "2026-06-10" },
+        { "number": 2.5, "name": "INTEGRITY", "status": "PENDING", "date": null }
+      ]}
   ]
 }
 ```

@@ -7,7 +7,7 @@
 set -e
 
 REPO="https://github.com/starpig1129/claude-research-skills.git"
-SKILLS=("research-log" "report-slides")
+SKILLS=("research-log" "report-slides" "research-mode")
 
 # ── parse args ────────────────────────────────────────────────────────────────
 CMD="install"
@@ -43,7 +43,7 @@ install_skills() {
 
   echo ""
   echo "Installed to: $DEST"
-  echo "Restart Claude Code — /research-log and /report-slides will be available."
+  echo "Restart Claude Code — /research-log, /report-slides, and /mode will be available."
 }
 
 # ── uninstall ─────────────────────────────────────────────────────────────────

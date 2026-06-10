@@ -33,8 +33,7 @@ which skills to prioritize and how session endings are handled.
 - **publish**: Route to `academic-pipeline`. After each stage completes, offer `/mode end`
   to log the stage status. `/ars-*` commands automatically activate publish mode (Phase 3).
 
-**If no mode is active:** apply default routing rules from academic-research-skills
-`.claude/CLAUDE.md` (Routing Discipline v3.9.2) unchanged.
+**If no mode is active:** apply the Academic Research Skills Routing Discipline below.
 
 ---
 
@@ -42,3 +41,68 @@ which skills to prioritize and how session endings are handled.
 
 Skills installed here are available globally after `bash install.sh`.
 To install locally only: `bash install.sh --local`
+
+---
+
+## Academic Research Skills Routing Discipline (v3.9.2)
+
+**Routing precedence:** This section runs BEFORE Routing Rules 1-5. Once this section settles on a destination, Rules 1-5 apply within that destination's skill family.
+
+**Step 0 — Escape hatch check (before any classification):** If the user's first message begins with `[direct-mode]` (case-insensitive byte-0 token, optionally preceded by whitespace/newlines that are stripped on parse), record this fact, strip the prefix and surrounding whitespace from the message, and skip directly to **Step 1 explicit-intent handling** on the stripped content. The literal `[direct-mode]` is NOT passed through to the dispatched agent. If the stripped message itself has no clear skill named, Step 1 falls through to Step 3 clarification (the escape hatch bypasses cross-phase clarification (Step 2), not all routing).
+
+Otherwise, classify the user's input:
+
+1. **Explicit clear intent** — user invokes a specific skill via `/ars-*` slash command, or uses an unambiguous trigger keyword that maps to a single skill (e.g., "lit-review this", "review my paper", "draft an abstract"):
+   → Route directly; no clarification, no orchestrator detour.
+
+2. **Cross-phase materials detected** — user provides artifacts spanning ≥ 2 pipeline phases without naming a specific skill (e.g., pre-written abstract + pre-collected literature; full draft + reviewer comments + bibliography):
+   → **Clarify**. Do NOT auto-route to a single-phase agent. List candidate workflows as a-d options in markdown body (NOT via AskUserQuestion tool). See `shared/references/intent_clarification_protocol.md` for the message template.
+   → Reason: clarification is the safest action when materials don't unambiguously identify intent.
+
+3. **Ambiguous intent, no materials** — user provides no artifacts and no clear request:
+   → Clarify per `shared/references/intent_clarification_protocol.md`.
+
+## Routing Rules
+
+1. **academic-pipeline vs individual skills**: academic-pipeline = full pipeline orchestrator (research → write → integrity → review → revise → final integrity → finalize). If the user only needs a single function (just research, just write, just review), trigger the corresponding skill directly without the pipeline.
+
+2. **deep-research vs academic-paper**: Complementary. deep-research = upstream research engine (investigation + fact-checking), academic-paper = downstream publication engine (paper writing + bilingual abstracts). Recommended flow: deep-research → academic-paper.
+
+3. **deep-research socratic vs full**: socratic = guided Socratic dialogue to help users clarify their research question. full = direct production of research report. When the user's research question is unclear, suggest socratic mode.
+
+4. **academic-paper plan vs full**: plan = chapter-by-chapter guided planning via Socratic dialogue. full = direct paper production. When the user wants to think through their paper structure, suggest plan mode.
+
+5. **academic-paper-reviewer guided vs full**: guided = Socratic review that engages the author in dialogue about issues. full = standard multi-perspective review report. When the user wants to learn from the review, suggest guided mode.
+
+## Key Rules
+
+- All claims must have citations
+- Evidence hierarchy respected (meta-analyses > RCTs > cohort > case reports > expert opinion)
+- Contradictions disclosed with evidence quality comparison
+- AI disclosure in all reports
+- Default output language matches user input (Traditional Chinese or English)
+
+## Full Academic Pipeline
+
+```
+deep-research (socratic/full)
+  → academic-paper (plan/full)
+    → integrity check (Stage 2.5)
+      → academic-paper-reviewer (full/guided)
+        → academic-paper (revision)
+          → academic-paper-reviewer (re-review, max 2 loops)
+            → final integrity check (Stage 4.5)
+              → academic-paper (format-convert → final output)
+                → Process Summary + AI Self-Reflection Report
+```
+
+## Handoff Protocol
+
+### deep-research → academic-paper
+Materials: RQ Brief, Methodology Blueprint, Annotated Bibliography, Synthesis Report, INSIGHT Collection
+
+### academic-paper → academic-paper-reviewer
+Materials: Complete paper text. field_analyst_agent auto-detects domain and configures reviewers.
+
+### academic-paper-reviewer → academic-paper (revision)
+Materials: Editorial Decision Letter, Revision Roadmap, Per-reviewer detailed comments

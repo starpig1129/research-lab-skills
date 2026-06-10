@@ -4,18 +4,28 @@
 #   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh)
 #   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --local
 #   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) uninstall
+#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --ars-only
+#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --lab-only
 set -e
 
 REPO="https://github.com/starpig1129/claude-research-skills.git"
-SKILLS=("research-log" "report-slides" "research-mode")
+
+# Lab skills (experiment journal + presentations + mode routing)
+LAB_SKILLS=("research-log" "report-slides" "research-mode")
+# Academic Research Skills (deep research, paper writing, review, pipeline)
+ARS_SKILLS=("deep-research" "academic-paper" "academic-paper-reviewer" "academic-pipeline")
+# Default: install everything
+SKILLS=("${LAB_SKILLS[@]}" "${ARS_SKILLS[@]}")
 
 # ── parse args ────────────────────────────────────────────────────────────────
 CMD="install"
 GLOBAL=true
 for arg in "$@"; do
   case "$arg" in
-    uninstall) CMD="uninstall" ;;
-    --local)   GLOBAL=false ;;
+    uninstall)   CMD="uninstall" ;;
+    --local)     GLOBAL=false ;;
+    --ars-only)  SKILLS=("${ARS_SKILLS[@]}") ;;
+    --lab-only)  SKILLS=("${LAB_SKILLS[@]}") ;;
   esac
 done
 
@@ -43,7 +53,9 @@ install_skills() {
 
   echo ""
   echo "Installed to: $DEST"
-  echo "Restart Claude Code — /research-log, /report-slides, and /mode will be available."
+  echo "Restart Claude Code to activate the skills."
+  echo "  Lab:      /research-log  /report-slides  /mode"
+  echo "  Academic: /ars-full  /ars-plan  /ars-lit-review  /ars-review  and more"
 }
 
 # ── uninstall ─────────────────────────────────────────────────────────────────

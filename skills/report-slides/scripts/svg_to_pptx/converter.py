@@ -61,6 +61,8 @@ class SvgConverter:
     def convert(self, prs: Presentation, slide_layout: Any) -> Any:
         self._connector_registry = []
         self._shape_registry = []
+        self._shape_labels = {}
+        self._text_to_shape = {}
         slide = prs.slides.add_slide(slide_layout)
         self._resolve_defs()
         self._resolve_use_elements()
@@ -81,7 +83,49 @@ class SvgConverter:
         pass  # implemented in Task 9
 
     def _compute_text_attachments(self) -> None:
-        pass  # implemented in Task 6
+        shape_bboxes = []
+        for elem in self.root.iter():
+            tag = _local_tag(elem)
+            try:
+                if tag == "rect":
+                    x = float(elem.get("x", 0))
+                    y = float(elem.get("y", 0))
+                    w = float(elem.get("width", 0))
+                    h = float(elem.get("height", 0))
+                    shape_bboxes.append((elem, x, y, w, h))
+                elif tag == "circle":
+                    cx = float(elem.get("cx", 0))
+                    cy = float(elem.get("cy", 0))
+                    r = float(elem.get("r", 0))
+                    shape_bboxes.append((elem, cx - r, cy - r, 2 * r, 2 * r))
+                elif tag == "ellipse":
+                    cx = float(elem.get("cx", 0))
+                    cy = float(elem.get("cy", 0))
+                    rx = float(elem.get("rx", 0))
+                    ry = float(elem.get("ry", 0))
+                    shape_bboxes.append((elem, cx - rx, cy - ry, 2 * rx, 2 * ry))
+            except ValueError:
+                pass
+
+        for text_elem in self.root.iter():
+            if _local_tag(text_elem) != "text":
+                continue
+            try:
+                tx = float(text_elem.get("x", 0))
+                ty = float(text_elem.get("y", 0))
+            except ValueError:
+                continue
+            candidates = []
+            for shape_elem, sx, sy, sw, sh in shape_bboxes:
+                if sx <= tx <= sx + sw and sy <= ty <= sy + sh:
+                    candidates.append((sw * sh, shape_elem))
+            if not candidates:
+                continue
+            candidates.sort(key=lambda c: c[0])
+            best_shape = candidates[0][1]
+            if id(best_shape) not in self._shape_labels:
+                self._shape_labels[id(best_shape)] = text_elem
+                self._text_to_shape[id(text_elem)] = best_shape
 
     def _dispatch_children(self, slide: Any, parent: Any, inherited: Dict) -> None:
         from .style_parser import compute_style
@@ -112,7 +156,7 @@ class SvgConverter:
                         cy = float(elem.get("cy", 0))
                         r = float(elem.get("r", 0))
                         bx, by, bw, bh = cx - r, cy - r, 2 * r, 2 * r
-                    else:  # ellipse
+                    else:
                         cx = float(elem.get("cx", 0))
                         cy = float(elem.get("cy", 0))
                         rx = float(elem.get("rx", 0))
@@ -141,7 +185,19 @@ class SvgConverter:
             self._dispatch_children(slide, elem, style)
 
     def _bind_connectors(self, slide: Any) -> None:
-        pass  # implemented in Task 6
+        from .connector import build_anchor_map
+        if not self._connector_registry or not self._shape_registry:
+            return
+        anchor_map = build_anchor_map(self._shape_registry)
+        for conn, conn_elem in self._connector_registry:
+            tag = _local_tag(conn_elem)
+            if tag == "line":
+                try:
+                    begin_pt = (float(conn_elem.get("x1", 0)), float(conn_elem.get("y1", 0)))
+                    end_pt = (float(conn_elem.get("x2", 0)), float(conn_elem.get("y2", 0)))
+                    _try_bind(conn, begin_pt, end_pt, anchor_map)
+                except Exception:
+                    pass
 
 
 def _try_bind(conn: Any, begin_pt: tuple, end_pt: tuple, anchor_map: Dict) -> None:

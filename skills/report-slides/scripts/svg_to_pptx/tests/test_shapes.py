@@ -65,3 +65,36 @@ def test_ellipse_creates_oval():
     style = compute_style(elem, {})
     dispatch_shape(slide, elem, style, CS, None)
     assert len(slide.shapes) == 1
+
+
+from svg_to_pptx.converter import SvgConverter
+import os, tempfile
+from pptx import Presentation
+from pptx.util import Emu
+
+_ATTACHMENT_SVG = """<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <rect x="40" y="80" width="160" height="70" fill="#3b82f6"/>
+  <text x="120" y="115" fill="white" text-anchor="middle" font-size="14">Deep Research</text>
+  <rect x="300" y="80" width="160" height="70" fill="#10b981"/>
+  <text x="380" y="115" fill="white" text-anchor="middle" font-size="14">Academic Paper</text>
+</svg>"""
+
+
+def test_text_attaches_to_enclosing_rect():
+    with tempfile.NamedTemporaryFile(suffix=".svg", mode="w", delete=False) as f:
+        f.write(_ATTACHMENT_SVG)
+        svg_path = f.name
+    try:
+        prs = Presentation()
+        prs.slide_width = Emu(12_192_000)
+        prs.slide_height = Emu(6_858_000)
+        conv = SvgConverter(svg_path)
+        slide = conv.convert(prs, prs.slide_layouts[6])
+        assert len(slide.shapes) == 2
+        texts = [sh.text_frame.paragraphs[0].runs[0].text
+                 for sh in slide.shapes if sh.has_text_frame
+                 and sh.text_frame.paragraphs[0].runs]
+        assert "Deep Research" in texts
+        assert "Academic Paper" in texts
+    finally:
+        os.unlink(svg_path)

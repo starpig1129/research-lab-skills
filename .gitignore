@@ -5,3 +5,11 @@ __pycache__/
 *.png
 node_modules/
 .claude/worktrees/
+
+# ARS local working context
+experiment-agent/
+.context/
+.codex-rounds/
+/checkpoints/
+ROADMAP.md
+.gstack/

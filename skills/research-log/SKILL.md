@@ -89,6 +89,7 @@ Quick (3 questions, good for in-progress runs) or Full (all sections)?
 ---
 date: YYYY-MM-DD
 experiment: <slug>
+mode: <exp|daily|explore|report|publish, or omit if unknown>
 tags: []
 follows: <prior-filename-or-empty>
 reason_follows: <one-line reason or empty>
@@ -128,6 +129,14 @@ amended: []
 Omit any section that was skipped. Quick mode writes: Goal, Analysis, Next Steps.
 
 Rebuild INDEX.md after saving.
+
+### Pre-filled add (called from research-mode)
+
+When `/research-log add` is invoked by `research-mode` with pre-filled data:
+- Skip interactive questions for fields already provided in the pre-filled draft
+- Only ask for fields that are empty or marked `{{PLACEHOLDER}}`
+- The `mode:` field is always set by research-mode; do not ask the user for it
+- After writing the file, update `slide_decks:` in the calling log entry if applicable
 
 Confirm: `✓ Created docs/research_log/YYYY-MM-DD_<slug>.md`
 
@@ -175,13 +184,13 @@ Read frontmatter from each file. Write:
 
 _Last updated: YYYY-MM-DD_
 
-| Date | Experiment | Tags | Follows | HEAD | Slides |
-|------|-----------|------|---------|------|--------|
-| 2024-11-02 | run_v2 | training, ablation | run_v1 | a1b2c3d | ✅ reports/2024-11-05 |
-| 2024-10-28 | run_v1 | baseline | — | e4f5g6h | ❌ |
+| Date | Experiment | Mode | Tags | Follows | HEAD | Slides |
+|------|-----------|------|------|---------|------|--------|
+| 2024-11-02 | run_v2 | exp | training, ablation | run_v1 | a1b2c3d | ✅ reports/2024-11-05 |
+| 2024-10-28 | run_v1 | — | baseline | — | e4f5g6h | ❌ |
 ```
 
-Rules: newest first; `HEAD` = `git_head` value or `—`; `Slides` = ✅ with deck name if `slide_decks` non-empty, else ❌; `Follows` = experiment slug (not full filename), or `—`.
+Rules: newest first; `Mode` = `mode` frontmatter value, or `—` if absent; `HEAD` = `git_head` value or `—`; `Slides` = ✅ with deck name if `slide_decks` non-empty, else ❌; `Follows` = experiment slug (not full filename), or `—`.
 
 ---
 

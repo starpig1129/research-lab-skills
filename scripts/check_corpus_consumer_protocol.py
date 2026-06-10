@@ -18,7 +18,7 @@ from typing import Callable
 # to swap repo state. Path(__file__) would hard-code the real repo.
 REPO_ROOT = Path.cwd()
 MANIFEST_PATH = REPO_ROOT / "scripts" / "corpus_consumer_manifest.json"
-REF_DOC_PATH = REPO_ROOT / "academic-pipeline" / "references" / "literature_corpus_consumers.md"
+REF_DOC_PATH = REPO_ROOT / "skills" / "academic-pipeline" / "references" / "literature_corpus_consumers.md"
 HANDOFF_SCHEMAS = REPO_ROOT / "shared" / "handoff_schemas.md"
 
 STUB_MARKER = "<!-- LINT_STUB: skip_cross_check -->"

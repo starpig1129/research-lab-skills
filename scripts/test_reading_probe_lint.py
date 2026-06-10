@@ -25,12 +25,12 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-MENTOR_AGENT = REPO_ROOT / "deep-research" / "agents" / "socratic_mentor_agent.md"
-SOCRATIC_PROTOCOL = REPO_ROOT / "deep-research" / "references" / "socratic_mode_protocol.md"
-DEEP_RESEARCH_SKILL = REPO_ROOT / "deep-research" / "SKILL.md"
+MENTOR_AGENT = REPO_ROOT / "skills" / "deep-research" / "agents" / "socratic_mentor_agent.md"
+SOCRATIC_PROTOCOL = REPO_ROOT / "skills" / "deep-research" / "references" / "socratic_mode_protocol.md"
+DEEP_RESEARCH_SKILL = REPO_ROOT / "skills" / "deep-research" / "SKILL.md"
 README_EN = REPO_ROOT / "README.md"
 README_ZH = REPO_ROOT / "README.zh-TW.md"
-PIPELINE_PROCESS_SUMMARY = REPO_ROOT / "academic-pipeline" / "references" / "process_summary_protocol.md"
+PIPELINE_PROCESS_SUMMARY = REPO_ROOT / "skills" / "academic-pipeline" / "references" / "process_summary_protocol.md"
 COLLABORATION_RUBRIC = REPO_ROOT / "shared" / "collaboration_depth_rubric.md"
 COMPLIANCE_SCHEMA = REPO_ROOT / "shared" / "schemas" / "compliance_report.schema.json"
 

@@ -23,7 +23,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LINT = REPO_ROOT / "scripts" / "check_v3_6_8_cite_provenance_pipeline.py"
-TARGET = REPO_ROOT / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
+TARGET = REPO_ROOT / "skills" / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
 
 FINALIZER_HEADING = "## Cite-Time Provenance Finalizer (v3.7.1)"
 

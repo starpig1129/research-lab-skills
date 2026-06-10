@@ -32,7 +32,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 REF_DIR = REPO_ROOT / "shared" / "references"
 TPL_DIR = REPO_ROOT / "shared" / "templates"
-AGENT_DIR = REPO_ROOT / "deep-research" / "agents"
+AGENT_DIR = REPO_ROOT / "skills" / "deep-research" / "agents"
 
 SYNTHESIS_AGENT = AGENT_DIR / "synthesis_agent.md"
 ARCHITECT_AGENT = AGENT_DIR / "research_architect_agent.md"
@@ -1139,8 +1139,8 @@ def _inv2_check_file(rel_path: str) -> tuple[bool, list[str]]:
 # appears in the spec, the manifest checker, and test fixtures, and
 # scanning those would self-fail.
 INV3_SCAN_DIRS = [
-    REPO_ROOT / "deep-research" / "agents",
-    REPO_ROOT / "academic-pipeline" / "agents",
+    REPO_ROOT / "skills" / "deep-research" / "agents",
+    REPO_ROOT / "skills" / "academic-pipeline" / "agents",
 ]
 
 

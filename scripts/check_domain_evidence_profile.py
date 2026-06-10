@@ -14,10 +14,10 @@ from typing import Callable
 
 # Path.cwd() (not __file__) so fixture tests can subprocess.run(cwd=fixture_repo).
 REPO_ROOT = Path.cwd()
-INTAKE = REPO_ROOT / "academic-paper" / "agents" / "intake_agent.md"
-PROFILES = REPO_ROOT / "academic-paper" / "references" / "domain_evidence_profiles.md"
-CONSUMER = REPO_ROOT / "academic-paper" / "agents" / "literature_strategist_agent.md"
-SQH = REPO_ROOT / "deep-research" / "references" / "source_quality_hierarchy.md"
+INTAKE = REPO_ROOT / "skills" / "academic-paper" / "agents" / "intake_agent.md"
+PROFILES = REPO_ROOT / "skills" / "academic-paper" / "references" / "domain_evidence_profiles.md"
+CONSUMER = REPO_ROOT / "skills" / "academic-paper" / "agents" / "literature_strategist_agent.md"
+SQH = REPO_ROOT / "skills" / "deep-research" / "references" / "source_quality_hierarchy.md"
 
 SHIP_ENUM = ("general_social_science", "cs_ml", "humanities_interpretive", "unknown_user_defined")
 RESERVED = ("clinical", "wet_lab", "materials_physics", "legal_case_based", "education")

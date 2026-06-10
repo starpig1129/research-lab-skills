@@ -40,7 +40,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FINALIZER_MODULE = REPO_ROOT / "scripts" / "claim_audit_finalizer.py"
-FORMATTER_AGENT = REPO_ROOT / "academic-paper" / "agents" / "formatter_agent.md"
+FORMATTER_AGENT = REPO_ROOT / "skills" / "academic-paper" / "agents" / "formatter_agent.md"
 
 _HEADING_AFTER_REFUSE = re.compile(r"(?m)^#{1,2}[ \t]+")
 

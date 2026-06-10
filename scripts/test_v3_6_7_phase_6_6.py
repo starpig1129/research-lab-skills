@@ -34,7 +34,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ORCHESTRATOR_PROMPT = (
-    REPO_ROOT / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
+    REPO_ROOT / "skills" / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
 )
 
 # Pre-Step-6 baseline line count of pipeline_orchestrator_agent.md, recorded

@@ -36,7 +36,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ORCHESTRATOR = (
-    REPO_ROOT / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
+    REPO_ROOT / "skills" / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
 )
 
 FINALIZER_HEADING = "## Cite-Time Provenance Finalizer (v3.7.1)"

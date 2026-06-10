@@ -36,7 +36,7 @@ V3_6_8_MANIFEST = REPO_ROOT / "scripts" / "v3_6_8_inversion_manifest.json"
 # v3.6.7-protected agent files. We pick synthesis_agent.md as the canonical
 # mutation target throughout; the lint hashes all three so mutating any one
 # proves the gate works against the full manifest.
-TARGET_AGENT = REPO_ROOT / "deep-research" / "agents" / "synthesis_agent.md"
+TARGET_AGENT = REPO_ROOT / "skills" / "deep-research" / "agents" / "synthesis_agent.md"
 PROTECTION_MARKER = "## PATTERN PROTECTION (v3.6.7)"
 
 

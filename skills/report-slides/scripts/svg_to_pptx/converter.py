@@ -55,11 +55,11 @@ class SvgConverter:
         self._shape_labels: Dict[int, Any] = {}
         self._text_to_shape: Dict[int, Any] = {}
         self._defs: Dict[str, Any] = {}
-        self._connector_registry_list: List = []
+        self._connector_registry: List = []
         self._shape_registry: List = []
 
     def convert(self, prs: Presentation, slide_layout: Any) -> Any:
-        self._connector_registry_list = []
+        self._connector_registry = []
         self._shape_registry = []
         slide = prs.slides.add_slide(slide_layout)
         self._resolve_defs()
@@ -128,7 +128,7 @@ class SvgConverter:
         elif tag in ("line", "polyline", "polygon"):
             from .connector import dispatch_connector
             conns = dispatch_connector(slide, elem, style, self.cs)
-            self._connector_registry_list.extend(
+            self._connector_registry.extend(
                 [(conn, elem) for conn in conns]
             )
         elif tag == "path":

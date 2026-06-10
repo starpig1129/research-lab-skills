@@ -4,3 +4,4 @@ __pycache__/
 *.pptx
 *.png
 node_modules/
+.claude/worktrees/

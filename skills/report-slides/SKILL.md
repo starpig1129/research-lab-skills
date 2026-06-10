@@ -312,22 +312,27 @@ Add the deck path to `slide_decks:` in each included log file's frontmatter. Reb
 
 After slides are generated:
 
+**Native shapes (recommended) — fully editable in PowerPoint:**
 ```bash
 # macOS / Linux / Git Bash:
-python "$(find ~/.claude -path "*/report-slides/scripts/to_pptx.py" | head -1)" \
+cd "$(find ~/.claude -path "*/report-slides/scripts" -type d | head -1)"
+python3 -m svg_to_pptx \
     --slides docs/slides/reports/YYYY-MM-DD_<name>/ \
     --out    docs/slides/reports/YYYY-MM-DD_<name>/deck.pptx
 ```
 
-```powershell
-# Windows (PowerShell):
-$to_pptx = (Get-ChildItem $env:USERPROFILE\.claude -Recurse -Filter to_pptx.py |
-    Where-Object FullName -like "*report-slides*" | Select-Object -First 1).FullName
-python $to_pptx --slides docs\slides\reports\YYYY-MM-DD_<name>\ --out docs\slides\reports\YYYY-MM-DD_<name>\deck.pptx
+Native mode converts every SVG element to editable shapes: rectangles, ovals, text boxes, connectors, and paths (including Bézier curves). Text labels inside shapes are embedded directly — double-click a shape in PowerPoint to edit its text. Connectors re-route when shapes are moved.
+
+**SVG embed (backward-compatible, viewable but shapes are not individually editable):**
+```bash
+python3 -m svg_to_pptx --slides output/ --out deck.pptx --mode embed
+# or equivalently:
+python "" \
+    --slides docs/slides/reports/YYYY-MM-DD_<name>/ \
+    --out    docs/slides/reports/YYYY-MM-DD_<name>/deck.pptx
 ```
 
-SVG is embedded natively (PowerPoint 2016+/365). A minimal white PNG serves as fallback for older viewers.
-Only `python-pptx` required (`pip install python-pptx`) — no cairosvg, Pillow, or image converter needed.
+Only `python-pptx` and `lxml` required — no cairosvg, Pillow, or image converter needed.
 
 ---
 

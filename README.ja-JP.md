@@ -1,21 +1,43 @@
-# Claude Code 向け Academic Research Skills
+# research-lab-skills
 
-[![Version](https://img.shields.io/badge/version-v3.11.1-blue)](https://github.com/Imbad0202/academic-research-skills/releases/tag/v3.11.1)
+[![Version](https://img.shields.io/badge/version-v3.11.1-blue)](https://github.com/starpig1129/research-lab-skills/releases/tag/v3.11.1)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
-[![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
+[![GitHub](https://img.shields.io/badge/GitHub-starpig1129-black?logo=github)](https://github.com/starpig1129/research-lab-skills)
 
 [English](README.md) | [简体中文版](README.zh-CN.md) | [繁體中文版](README.zh-TW.md)
 
-学術研究のための Claude Code スキル統合スイート。研究から論文公開までの全工程をカバーします。
+研究室の日常ログから論文発表まで、研究フローを一貫してサポートする Claude Code スキル統合スイートです。
 
-**30秒でインストール**（Claude Code CLI / VS Code / JetBrains、v3.7.0+）:
+| スキル | コマンド | 機能 |
+|--------|----------|------|
+| `research-log` | `/research-log` | 実験ジャーナル（追加・修正・索引） |
+| `report-slides` | `/report-slides` | ジャーナルから SVG + PPTX 進捗スライドを自動生成 |
+| `research-mode` | `/mode` | セッションモードルーティング（exp / daily / explore / report / publish） |
+| `deep-research` | `/ars-full`, `/ars-lit-review`, … | 13エージェント研究チーム（Socratic / PRISMA / ファクトチェック） |
+| `academic-paper` | `/ars-plan`, `/ars-outline`, … | 12エージェント論文執筆、引用検証付き |
+| `academic-paper-reviewer` | `/ars-review`, `/ars-re-review` | 多視点ピアレビュー（EIC + レビュアー×3 + DA） |
+| `academic-pipeline` | `/ars-pipeline` | 10ステージ完全パイプラインオーケストレーター |
 
-```text
-/plugin marketplace add Imbad0202/academic-research-skills
-/plugin install academic-research-skills
+**7つのスキルを一括インストール：**
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh)
 ```
 
-その後、`/ars-plan` を試してソクラテス式対話で論文構成を整理するか、前提条件と従来のシンボリックリンク方式については [クイックインストール](#クイックインストール) を参照してください。
+インストール後に Claude Code を再起動してください。  
+Lab スキル：`/research-log`、`/report-slides`、`/mode`  
+学術スキル：`/ars-plan`、`/ars-full`、`/ars-lit-review`、`/ars-review` など
+
+**Plugin インストール（Claude Code v3.7.0+）：**
+
+```text
+/plugin marketplace add starpig1129/research-lab-skills
+/plugin install research-lab-skills
+```
+
+詳細なインストール手順（project-local、グローバル、claude.ai Project）は [docs/SETUP.md](docs/SETUP.md) を参照してください。
+
+---
 
 > **AI はあなたの副操縦士であり、操縦士ではありません。** このツールはあなたの代わりに論文を書きません。参考文献の探索、引用のフォーマット、データ検証、論理的整合性チェックといった泥臭い作業を引き受けることで、本当に頭を使う必要のある部分 — 問いの定義、手法の選択、データの意味の解釈、「私はこう主張する」に続く文を書くこと — にあなたが集中できるようにします。
 >
@@ -52,8 +74,8 @@ v3.3 は [**PaperOrchestra**](https://arxiv.org/abs/2604.05018)（Song, Song, Pf
 **プラグインインストール（v3.7.0+、推奨）:**
 
 ```text
-/plugin marketplace add Imbad0202/academic-research-skills
-/plugin install academic-research-skills
+/plugin marketplace add starpig1129/research-lab-skills
+/plugin install research-lab-skills
 ```
 
 **動作確認:** `/ars-plan` を実行して取り組んでいる論文について説明してください — ARS がソクラテス式対話を開始し、章構成をマップします。代わりに単発テストを行うには、`/ars-lit-review "your topic"` を試してください。
@@ -394,7 +416,7 @@ https://github.com/Imbad0202/academic-research-skills
 
 ### v3.7.0 (2026-05-05) — Claude Code プラグインパッケージング
 
-> プラグインパッケージングアップグレード: ARS は `/plugin marketplace add Imbad0202/academic-research-skills` + `/plugin install academic-research-skills` 経由で Claude Code CLI / VS Code / JetBrains 上に 1 行でインストール可能に。従来の `git clone + ~/.claude/skills/ へのシンボリックリンク` フローも引き続き動作 — 両トラックともファーストクラス。
+> プラグインパッケージングアップグレード: ARS は `/plugin marketplace add starpig1129/research-lab-skills` + `/plugin install research-lab-skills` 経由で Claude Code CLI / VS Code / JetBrains 上に 1 行でインストール可能に。従来の `git clone + ~/.claude/skills/ へのシンボリックリンク` フローも引き続き動作 — 両トラックともファーストクラス。
 
 - **プラグインマニフェスト + marketplace メタデータ**（Phase 1、PR #68）。`.claude-plugin/plugin.json` がスイートを宣言（`skills/` ディレクトリから相対シンボリックリンク経由で 4 スキルが自動検出）。`.claude-plugin/marketplace.json` がプラグインを登録し、単一の GitHub ホスト型エンドポイントが marketplace リストとプラグインソースの両方を提供。README + `README.zh-TW.md` + `docs/SETUP.md` がデュアルトラックインストール手順を保持。
 - **10 スラッシュコマンド**（`commands/ars-*.md`、Phase 2.1、PR #69）が `MODE_REGISTRY.md` エントリーを `/ars-<mode>` トリガーにマッピング。モデルルーティングは各コマンドの frontmatter にピン留め — `full` と `revision-coach` には `opus`（アーキテクチャ / レビュー解釈の深さ）、他の 8 には `sonnet`。プロジェクトポリシーに従い Haiku なし。

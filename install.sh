@@ -8,7 +8,7 @@
 #   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --lab-only
 set -e
 
-REPO="https://github.com/starpig1129/claude-research-skills.git"
+REPO="https://github.com/starpig1129/research-lab-skills.git"
 
 # Lab skills (experiment journal + presentations + mode routing)
 LAB_SKILLS=("research-log" "report-slides" "research-mode")

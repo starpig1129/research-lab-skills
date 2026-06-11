@@ -1,21 +1,41 @@
-# Academic Research Skills for Claude Code
+# research-lab-skills
 
-[![Version](https://img.shields.io/badge/version-v3.11.1-blue)](https://github.com/Imbad0202/academic-research-skills/releases/tag/v3.11.1)
+[![Version](https://img.shields.io/badge/version-v3.11.1-blue)](https://github.com/starpig1129/research-lab-skills/releases/tag/v3.11.1)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
-[![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
+[![GitHub](https://img.shields.io/badge/GitHub-starpig1129-black?logo=github)](https://github.com/starpig1129/research-lab-skills)
 
 [English](README.md) | [简体中文版](README.zh-CN.md) | [日本語版](README.ja-JP.md)
 
-一套完整的學術研究 Claude Code 技能包，涵蓋從研究到論文出版的全流程。
+一套完整的 Claude Code 研究技能包，涵蓋從實驗室日誌、進度簡報到學術論文發表的全流程。
 
-**30 秒安裝**（Claude Code CLI / VS Code / JetBrains，v3.7.0+）：
+| 技能 | 指令 | 功能 |
+|------|------|------|
+| `research-log` | `/research-log` | 結構化實驗日誌（新增、修訂、索引） |
+| `report-slides` | `/report-slides` | 從日誌自動生成 SVG + PPTX 進度簡報 |
+| `research-mode` | `/mode` | 工作階段模式路由（exp / daily / explore / report / publish） |
+| `deep-research` | `/ars-full`, `/ars-lit-review`, … | 13 個 Agent 研究團隊，Socratic / PRISMA / fact-check |
+| `academic-paper` | `/ars-plan`, `/ars-outline`, … | 12 個 Agent 論文撰寫，含引用驗證 |
+| `academic-paper-reviewer` | `/ars-review`, `/ars-re-review` | 多視角同儕審查（主編 + 3 位審查者 + DA） |
+| `academic-pipeline` | `/ars-pipeline` | 完整 10 階段 pipeline 協調器 |
 
-```text
-/plugin marketplace add Imbad0202/academic-research-skills
-/plugin install academic-research-skills
+**一行安裝全部 7 個技能：**
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh)
 ```
 
-裝完跑 `/ars-plan`，ARS 會用蘇格拉底對話幫你規劃章節結構。需要前置條件或傳統 symlink 安裝請看 [快速安裝](#快速安裝)。
+裝完重啟 Claude Code。Lab 技能：`/research-log`、`/report-slides`、`/mode`。學術技能：`/ars-plan`、`/ars-full`、`/ars-lit-review`、`/ars-review` 等。
+
+**Plugin 安裝（Claude Code v3.7.0+）：**
+
+```text
+/plugin marketplace add starpig1129/research-lab-skills
+/plugin install research-lab-skills
+```
+
+詳細安裝說明（project-local、全域、claude.ai Project）見 [docs/SETUP.zh-TW.md](docs/SETUP.zh-TW.md)。
+
+---
 
 > **AI 是你的副駕駛，不是機長。** 這工具不會幫你寫論文。它處理苦工 — 搜文獻、排格式、驗數據、查邏輯一致性 — 讓你專注在真正需要你腦子的事：定義問題、選方法、詮釋數據的意義、寫出「我認為」後面那句話。
 >
@@ -52,8 +72,8 @@ v3.3 的靈感來自 [**PaperOrchestra**](https://arxiv.org/abs/2604.05018)（So
 **Plugin 安裝（v3.7.0+，推薦）：**
 
 ```text
-/plugin marketplace add Imbad0202/academic-research-skills
-/plugin install academic-research-skills
+/plugin marketplace add starpig1129/research-lab-skills
+/plugin install research-lab-skills
 ```
 
 **驗證可用：** 跑 `/ars-plan` 並描述你正在寫的論文，ARS 會用蘇格拉底對話幫你規劃章節結構。想要單次測試的話改跑 `/ars-lit-review "你的主題"`。
@@ -371,7 +391,7 @@ https://github.com/Imbad0202/academic-research-skills
 
 ### v3.7.0（2026-05-05）— Claude Code Plugin 打包
 
-> Plugin 打包升級：ARS 現可在 Claude Code CLI / VS Code / JetBrains 一行裝（`/plugin marketplace add Imbad0202/academic-research-skills` + `/plugin install academic-research-skills`）。原本的 `git clone + symlink 到 ~/.claude/skills/` 安裝流程不變、繼續支援；雙軌都是一級公民。
+> Plugin 打包升級：ARS 現可在 Claude Code CLI / VS Code / JetBrains 一行裝（`/plugin marketplace add starpig1129/research-lab-skills` + `/plugin install research-lab-skills`）。原本的 `git clone + symlink 到 ~/.claude/skills/` 安裝流程不變、繼續支援；雙軌都是一級公民。
 
 - **Plugin manifest 與 marketplace metadata**（Phase 1，PR #68）：`.claude-plugin/plugin.json` 宣告整個 suite（4 個 skill 透過 `skills/` 目錄相對 symlink 自動探索）；`.claude-plugin/marketplace.json` 註冊 plugin，使單一 GitHub-hosted endpoint 同時提供 marketplace listing 與 plugin 來源。README、`README.zh-TW.md`、`docs/SETUP.md` 都加入雙軌安裝指引。
 - **10 個 slash command** 在 `commands/ars-*.md`（Phase 2.1，PR #69）將 `MODE_REGISTRY.md` 的條目對映到 `/ars-<mode>` 觸發。每個 command frontmatter 釘住模型路由：`opus` 給 `full` 與 `revision-coach`（架構與審稿解讀深度），`sonnet` 給其他 8 個。任何情境不用 Haiku。

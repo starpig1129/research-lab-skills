@@ -9,7 +9,7 @@ This repository consolidates two independently-developed projects.
 **Scope:** `skills/research-log/`, `skills/report-slides/`, `skills/research-mode/`
 
 Copyright (c) 2026 ZI-YUE,CHAO (starpig1129)
-Originally published at: https://github.com/starpig1129/claude-research-skills
+Originally published at: https://github.com/starpig1129/research-lab-skills
 
 Licensed under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). See LICENSE for terms.
 

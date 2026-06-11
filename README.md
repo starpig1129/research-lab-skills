@@ -24,31 +24,31 @@ A unified suite of Claude Code skills for research teams — from daily experime
 ### Global install — all skills (recommended)
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh)
 ```
 
 ### Project-local install
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --local
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --local
 ```
 
 ### Install only academic research skills
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --ars-only
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --ars-only
 ```
 
 ### Install only lab skills (research-log, report-slides, research-mode)
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --lab-only
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --lab-only
 ```
 
 ### Uninstall
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) uninstall
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) uninstall
 ```
 
 Restart Claude Code after install.

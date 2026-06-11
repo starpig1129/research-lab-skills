@@ -1,5 +1,5 @@
 {
-  "name": "claude-research-skills",
+  "name": "research-lab-skills",
   "version": "3.11.1",
   "description": "Unified suite of Claude Code skills for academic research: experiment logging, presentations, deep research, paper writing, peer review, and full pipeline orchestration.",
   "bin": {

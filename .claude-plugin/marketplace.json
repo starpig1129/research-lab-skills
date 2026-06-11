@@ -5,18 +5,31 @@
     "email": "james911129@gmail.com"
   },
   "metadata": {
-    "description": "Research experiment logging and SVG/PPTX slide generation skills for Claude Code",
-    "version": "1.0.0"
+    "description": "Unified suite of Claude Code skills for academic research — experiment logging, slides, deep research, paper writing, peer review, and full pipeline orchestration.",
+    "version": "3.11.1"
   },
   "plugins": [
     {
-      "name": "research-tools",
-      "description": "Log experiments with /research-log and generate progress presentations with /report-slides",
+      "name": "lab-tools",
+      "description": "Experiment journal (/research-log), progress presentations (/report-slides), and session mode routing (/mode)",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/research-log",
-        "./skills/report-slides"
+        "./skills/report-slides",
+        "./skills/research-mode"
+      ]
+    },
+    {
+      "name": "academic-research-skills",
+      "description": "13-agent deep research, 12-agent paper writing, multi-perspective peer review, and full 10-stage pipeline orchestrator",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/deep-research",
+        "./skills/academic-paper",
+        "./skills/academic-paper-reviewer",
+        "./skills/academic-pipeline"
       ]
     }
   ]

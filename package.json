@@ -1,7 +1,7 @@
 {
   "name": "claude-research-skills",
-  "version": "1.0.0",
-  "description": "Research log and presentation slide skills for Claude Code and other AI coding assistants",
+  "version": "3.11.1",
+  "description": "Unified suite of Claude Code skills for academic research: experiment logging, presentations, deep research, paper writing, peer review, and full pipeline orchestration.",
   "bin": {
     "crs": "./bin/crs.js"
   },
@@ -13,9 +13,10 @@
     "node": ">=16"
   },
   "keywords": [
-    "claude", "claude-code", "ai-skills", "research-log", "slides", "presentation"
+    "claude", "claude-code", "ai-skills", "research-log", "slides", "presentation",
+    "academic-research", "paper-writing", "peer-review", "deep-research", "academic-pipeline"
   ],
-  "license": "MIT",
+  "license": "CC-BY-NC-4.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/starpig1129/claude-research-skills.git"

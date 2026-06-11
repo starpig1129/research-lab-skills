@@ -8,19 +8,16 @@ Get from zero to your first AI-assisted research in 3 steps.
 # Install Claude Code
 curl -fsSL https://claude.ai/install.sh | bash
 
-# Clone this repo somewhere stable
-git clone https://github.com/Imbad0202/academic-research-skills.git ~/academic-research-skills
-
-# Install each of the four skills into your project's .claude/skills/
-cd /path/to/your/project
-mkdir -p .claude/skills
-ln -s ~/academic-research-skills/deep-research .claude/skills/deep-research
-ln -s ~/academic-research-skills/academic-paper .claude/skills/academic-paper
-ln -s ~/academic-research-skills/academic-paper-reviewer .claude/skills/academic-paper-reviewer
-ln -s ~/academic-research-skills/academic-pipeline .claude/skills/academic-pipeline
+# Install all 7 skills globally (recommended)
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh)
 ```
 
-Each skill must sit at `.claude/skills/<skill-name>/SKILL.md` for Claude Code to discover it. See [docs/SETUP.md](docs/SETUP.md) for the copy-based alternative, global `~/.claude/skills/` install, and the other installation methods (Claude Code plugin, Cowork via zip upload, claude.ai). Note that Cowork and claude.ai do not read `~/.claude/skills/` — they install skills through their own settings upload, not this path.
+Restart Claude Code after install. For project-local install or to install only a subset of skills, see [docs/SETUP.md](docs/SETUP.md).
+
+- **Lab skills**: `/research-log`, `/report-slides`, `/mode`
+- **Academic skills**: `/ars-plan`, `/ars-full`, `/ars-lit-review`, `/ars-review`, and more
+
+Each skill sits at `~/.claude/skills/<skill-name>/SKILL.md` for Claude Code to discover it. See [docs/SETUP.md](docs/SETUP.md) for project-local install, global install, claude.ai Project upload, and other methods.
 
 ## Step 2: Launch
 

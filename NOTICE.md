@@ -4,14 +4,14 @@
 
 This repository consolidates two independently-developed projects.
 
-### Lab Skills (MIT)
+### Lab Skills (CC BY-NC 4.0)
 
 **Scope:** `skills/research-log/`, `skills/report-slides/`, `skills/research-mode/`
 
-Copyright (c) 2026 ZiYue1129 (starpig1129)
+Copyright (c) 2026 ZI-YUE,CHAO (starpig1129)
 Originally published at: https://github.com/starpig1129/claude-research-skills
 
-Licensed under the MIT License. See LICENSE for terms.
+Licensed under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). See LICENSE for terms.
 
 ---
 

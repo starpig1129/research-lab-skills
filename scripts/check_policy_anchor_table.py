@@ -270,7 +270,8 @@ def main(argv: list[str] | None = None) -> int:
     violations = lint_text(text)
     # Derive repo root from the anchor table path so tests using temp
     # subtree mirrors also exercise the canonical-source existence check.
-    derived_repo_root = target.resolve().parent.parent.parent
+    # Skills live under root/skills/<skill>/references/ (4 levels deep).
+    derived_repo_root = target.resolve().parent.parent.parent.parent
     dedup_violations = verify_nature_dedup_with_venue(
         target, venue_path, anchor_text=text, repo_root=derived_repo_root
     )

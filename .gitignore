@@ -14,3 +14,6 @@ experiment-agent/
 /checkpoints/
 ROADMAP.md
 .gstack/
+
+# user-local installed skills copy
+.claude/skills/

@@ -5,6 +5,41 @@ from pathlib import Path
 
 from .converter import convert_file
 
+_MODE_HELP = """
+SVG → PPTX conversion mode:
+
+  [1] native  ← recommended
+      每個 SVG 元素轉為獨立的 PPTX 原生物件（文字框、矩形、連接線⋯）。
+      可在 PowerPoint 中個別點選、修改文字、調整顏色與位置。
+      適合需要後續微調的簡報。
+      Each SVG element becomes an individually editable shape.
+      Best when you need to fine-tune content after export.
+
+  [2] embed
+      整張 SVG 以圖片物件嵌入，視覺還原度最高。
+      在 PowerPoint 中可對圖片按右鍵 → 轉換為圖案，展開後即可個別編輯，
+      但展開結果物件較零碎（等同於 PPT 內建 SVG 轉換行為）。
+      Each SVG is inserted as a single image — pixel-perfect.
+      In PowerPoint, right-click → "Convert to Shapes" to ungroup and edit,
+      though the result contains many small objects.
+
+"""
+
+
+def _prompt_mode() -> str:
+    print(_MODE_HELP, end="")
+    while True:
+        try:
+            choice = input("Choose [1/2] (Enter = 1 native): ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print()
+            return "native"
+        if choice in ("", "1", "native"):
+            return "native"
+        if choice in ("2", "embed"):
+            return "embed"
+        print("  Please enter 1 or 2.")
+
 
 def main() -> None:
     ap = argparse.ArgumentParser(
@@ -13,8 +48,9 @@ def main() -> None:
     ap.add_argument("--slides", required=True,
                     help="Directory containing slide*.svg files")
     ap.add_argument("--out", required=True, help="Output .pptx file path")
-    ap.add_argument("--mode", choices=["native", "embed"], default="native",
-                    help="native: editable shapes (default); embed: SVG blip (old behavior)")
+    ap.add_argument("--mode", choices=["native", "embed"], default=None,
+                    help="native: editable shapes; embed: SVG blip. "
+                         "Omit to be prompted with a description of each mode.")
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
 
@@ -24,7 +60,9 @@ def main() -> None:
         print(f"No slide*.svg files found in {slide_dir}", file=sys.stderr)
         sys.exit(1)
 
-    if args.mode == "embed":
+    mode = args.mode if args.mode is not None else _prompt_mode()
+
+    if mode == "embed":
         sys.path.insert(0, str(Path(__file__).parent.parent))
         from to_pptx import pack_slides
         pack_slides(svg_files, Path(args.out))

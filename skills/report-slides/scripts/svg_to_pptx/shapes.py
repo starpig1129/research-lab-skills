@@ -99,17 +99,20 @@ def _write_label(shape: Any, text_elem: Any, parent_style: Dict) -> None:
 
 def _collect_text_lines(text_elem: Any, parent_style: Dict):
     lines = []
+    # Compute the text element's own style first so tspan children inherit correctly
+    # (not from the enclosing shape's style, which is the parent_style here)
+    text_style = compute_style(text_elem, parent_style)
     direct_text = (text_elem.text or "").strip()
     if direct_text:
-        lines.append((direct_text, parent_style))
+        lines.append((direct_text, text_style))
     for tspan in text_elem:
         if _local_tag(tspan) == "tspan":
-            ts = compute_style(tspan, parent_style)
+            ts = compute_style(tspan, text_style)
             t = (tspan.text or "").strip()
             if t:
                 lines.append((t, ts))
     if not lines:
-        lines.append(("", parent_style))
+        lines.append(("", text_style))
     return lines
 
 
@@ -122,7 +125,15 @@ def _apply_font(run: Any, style: Dict, parent_style: Dict) -> None:
     weight = style.get("font-weight", parent_style.get("font-weight", "normal"))
     if weight in ("bold", "700", "800", "900"):
         run.font.bold = True
+    fstyle = style.get("font-style", parent_style.get("font-style", "normal"))
+    if fstyle == "italic":
+        run.font.italic = True
     color_val = style.get("fill", parent_style.get("fill", "#000000"))
     rgb = resolve_color(color_val)
     if rgb:
         run.font.color.rgb = rgb
+    ff = style.get("font-family", parent_style.get("font-family", ""))
+    if ff:
+        first = re.split(r"[,\s]+", ff.strip())[0].strip("'\"")
+        if first:
+            run.font.name = first

@@ -67,7 +67,7 @@ CSS_COLORS: Dict[str, str] = {
 
 _STYLE_ATTRS = (
     "fill", "stroke", "stroke-width", "stroke-dasharray", "opacity",
-    "font-size", "font-weight", "font-family", "text-anchor", "transform",
+    "font-size", "font-weight", "font-style", "font-family", "text-anchor", "transform",
     "fill-opacity", "stroke-opacity",
 )
 

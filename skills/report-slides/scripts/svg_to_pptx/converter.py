@@ -39,6 +39,8 @@ class CoordSystem:
 
 def _local_tag(elem: Any) -> str:
     tag = elem.tag
+    if not isinstance(tag, str):
+        return ""
     return tag.split("}")[-1] if "}" in tag else tag
 
 
@@ -52,22 +54,23 @@ class SvgConverter:
         self.root = tree.getroot()
         vb = self.root.get("viewBox", "0 0 1200 675")
         self.cs = CoordSystem.from_viewbox(vb)
-        self._shape_labels: Dict[int, Any] = {}
-        self._text_to_shape: Dict[int, Any] = {}
         self._defs: Dict[str, Any] = {}
         self._connector_registry: List = []
         self._shape_registry: List = []
+        self._pending_texts: List = []
 
     def convert(self, prs: Presentation, slide_layout: Any) -> Any:
         self._connector_registry = []
         self._shape_registry = []
-        self._shape_labels = {}
-        self._text_to_shape = {}
+        self._pending_texts = []
         slide = prs.slides.add_slide(slide_layout)
         self._resolve_defs()
         self._resolve_use_elements()
-        self._compute_text_attachments()
         self._dispatch_children(slide, self.root, {})
+        # Add all text boxes after shapes so they appear on top
+        from .text_converter import add_textbox
+        for text_elem, text_style in self._pending_texts:
+            add_textbox(slide, text_elem, text_style, self.cs)
         self._bind_connectors(slide)
         return slide
 
@@ -105,53 +108,6 @@ class SvgConverter:
                 parent.insert(idx, clone)
                 parent.remove(use_elem)
 
-    def _compute_text_attachments(self) -> None:
-        shape_bboxes = []
-        for elem in self.root.iter():
-            tag = _local_tag(elem)
-            try:
-                if tag == "rect":
-                    x = float(elem.get("x", 0))
-                    y = float(elem.get("y", 0))
-                    w = float(elem.get("width", 0))
-                    h = float(elem.get("height", 0))
-                    shape_bboxes.append((elem, x, y, w, h))
-                elif tag == "circle":
-                    cx = float(elem.get("cx", 0))
-                    cy = float(elem.get("cy", 0))
-                    r = float(elem.get("r", 0))
-                    shape_bboxes.append((elem, cx - r, cy - r, 2 * r, 2 * r))
-                elif tag == "ellipse":
-                    cx = float(elem.get("cx", 0))
-                    cy = float(elem.get("cy", 0))
-                    rx = float(elem.get("rx", 0))
-                    ry = float(elem.get("ry", 0))
-                    shape_bboxes.append((elem, cx - rx, cy - ry, 2 * rx, 2 * ry))
-            except ValueError:
-                pass
-
-        for text_elem in self.root.iter():
-            if _local_tag(text_elem) != "text":
-                continue
-            try:
-                tx = float(text_elem.get("x", 0))
-                ty = float(text_elem.get("y", 0))
-            except ValueError:
-                continue
-            candidates = []
-            for shape_elem, sx, sy, sw, sh in shape_bboxes:
-                if sx <= tx <= sx + sw and sy <= ty <= sy + sh:
-                    candidates.append((sw * sh, shape_elem))
-            if not candidates:
-                continue
-            candidates.sort(key=lambda c: c[0])
-            best_shape = candidates[0][1]
-            if id(best_shape) not in self._shape_labels:
-                self._shape_labels[id(best_shape)] = [text_elem]
-            else:
-                self._shape_labels[id(best_shape)].append(text_elem)
-            self._text_to_shape[id(text_elem)] = best_shape
-
     def _dispatch_children(self, slide: Any, parent: Any, inherited: Dict) -> None:
         from .style_parser import compute_style
         for elem in parent:
@@ -167,8 +123,7 @@ class SvgConverter:
         tag = _local_tag(elem)
         if tag in ("rect", "circle", "ellipse", "image"):
             from .shapes import dispatch_shape
-            shape = dispatch_shape(slide, elem, style, self.cs,
-                                   self._shape_labels.get(id(elem)))
+            shape = dispatch_shape(slide, elem, style, self.cs, None)
             if shape is not None and tag in ("rect", "circle", "ellipse"):
                 try:
                     if tag == "rect":
@@ -191,9 +146,7 @@ class SvgConverter:
                 except Exception:
                     pass
         elif tag == "text":
-            if id(elem) not in self._text_to_shape:
-                from .text_converter import add_textbox
-                add_textbox(slide, elem, style, self.cs)
+            self._pending_texts.append((elem, style))
         elif tag in ("line", "polyline", "polygon"):
             from .connector import dispatch_connector
             conns = dispatch_connector(slide, elem, style, self.cs)

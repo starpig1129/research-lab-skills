@@ -60,8 +60,8 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ENTRY_SCHEMA = REPO_ROOT / "shared/contracts/passport/literature_corpus_entry.schema.json"
 DEFAULT_TP_SCHEMA = REPO_ROOT / "shared/contracts/passport/terminal_policies.schema.json"
-DEFAULT_FORMATTER = REPO_ROOT / "academic-paper/agents/formatter_agent.md"
-DEFAULT_ORCHESTRATOR = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+DEFAULT_FORMATTER = REPO_ROOT / "skills/academic-paper/agents/formatter_agent.md"
+DEFAULT_ORCHESTRATOR = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
 
 # The three lookup index names that MUST NOT be a venue_type_source (laundering
 # guard, R2-P1). Matched on WORD BOUNDARIES (not bare substrings) so a legitimate

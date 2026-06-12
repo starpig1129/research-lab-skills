@@ -148,7 +148,7 @@ class LintScriptTest(unittest.TestCase):
             shutil.copytree(REPO_ROOT, tmp_root, ignore=shutil.ignore_patterns(
                 ".git", "node_modules", "__pycache__", "*.pyc", "venv*", ".venv"
             ))
-            tmp_formatter = tmp_root / "academic-paper" / "agents" / "formatter_agent.md"
+            tmp_formatter = tmp_root / "skills" / "academic-paper" / "agents" / "formatter_agent.md"
             text = tmp_formatter.read_text()
             mutated = text.replace(
                 "`[HIGH-WARN-NEGATIVE-CONSTRAINT-VIOLATION`",
@@ -189,7 +189,7 @@ class LintScriptTest(unittest.TestCase):
             shutil.copytree(REPO_ROOT, tmp_root, ignore=shutil.ignore_patterns(
                 ".git", "node_modules", "__pycache__", "*.pyc", "venv*", ".venv"
             ))
-            tmp_formatter = tmp_root / "academic-paper" / "agents" / "formatter_agent.md"
+            tmp_formatter = tmp_root / "skills" / "academic-paper" / "agents" / "formatter_agent.md"
             text = tmp_formatter.read_text()
             # Replace the closed literal in the formatter REFUSE rule with a
             # superstring that PRESERVES the original as a prefix. A naive

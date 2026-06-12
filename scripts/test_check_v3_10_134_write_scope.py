@@ -112,7 +112,7 @@ class MutationTest(unittest.TestCase):
 
     def test_I5_stale_roster_entry_fails(self):
         # A roster entry pointing at a non-existent file is a stale entry.
-        lint.BUCKET_A_AGENT_FILES = self._real_a + ["deep-research/agents/ghost_agent.md"]
+        lint.BUCKET_A_AGENT_FILES = self._real_a + ["skills/deep-research/agents/ghost_agent.md"]
         errs = lint.run_checks()
         self.assertTrue(any("I5" in e for e in errs),
                         f"expected an I5 stale-entry error; got {errs}")
@@ -161,7 +161,7 @@ class I5DepthAndSymlinkTest(unittest.TestCase):
     def test_root_agents_symlink_aggregate_not_flagged(self):
         # plugin-root agents/ holds a SYMLINK to a real per-skill agent file. I5 must resolve
         # it to the rostered target and NOT report it as undeclared.
-        real = self._write_agent("deep-research/agents/x_agent.md", "x_agent")
+        real = self._write_agent("skills/deep-research/agents/x_agent.md", "x_agent")
         agg = self.root / "agents"
         agg.mkdir()
         try:
@@ -170,7 +170,7 @@ class I5DepthAndSymlinkTest(unittest.TestCase):
             self.skipTest("symlinks unavailable on this platform")
         # roster sizes are checked by I1; bypass that by patching the size expectation is not
         # possible, so just assert no I5 error specifically.
-        self._stub_loaders_to(["deep-research/agents/x_agent.md"], [], ["x_agent"])
+        self._stub_loaders_to(["skills/deep-research/agents/x_agent.md"], [], ["x_agent"])
         errs = lint.run_checks()
         self.assertFalse(any("I5" in e for e in errs),
                          f"root agents/ symlink must NOT be I5-undeclared; got {errs}")
@@ -178,9 +178,9 @@ class I5DepthAndSymlinkTest(unittest.TestCase):
     def test_nested_agents_dir_undeclared_is_caught(self):
         # A genuinely new standalone agent file nested two levels deep, absent from the
         # roster, MUST be flagged — the one-level glob would have silently missed it.
-        self._write_agent("deep-research/agents/x_agent.md", "x_agent")
+        self._write_agent("skills/deep-research/agents/x_agent.md", "x_agent")
         self._write_agent("skill/sub/agents/sneaky_agent.md", "sneaky_agent")  # nested, undeclared
-        self._stub_loaders_to(["deep-research/agents/x_agent.md"], [], ["x_agent"])
+        self._stub_loaders_to(["skills/deep-research/agents/x_agent.md"], [], ["x_agent"])
         errs = lint.run_checks()
         i5 = [e for e in errs if "I5" in e]
         self.assertTrue(i5, f"nested undeclared agent must trigger I5; got {errs}")

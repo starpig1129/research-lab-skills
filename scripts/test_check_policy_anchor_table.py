@@ -232,8 +232,8 @@ class CheckPolicyAnchorTableNatureSourceOfTruthTest(unittest.TestCase):
         )
 
     def test_nature_dedup_integration_on_real_files(self) -> None:
-        anchor_path = REPO_ROOT / "academic-paper/references/policy_anchor_table.md"
-        venue_path = REPO_ROOT / "academic-paper/references/venue_disclosure_policies.md"
+        anchor_path = REPO_ROOT / "skills/academic-paper/references/policy_anchor_table.md"
+        venue_path = REPO_ROOT / "skills/academic-paper/references/venue_disclosure_policies.md"
         violations = cpat.verify_nature_dedup_with_venue(anchor_path, venue_path)
         self.assertEqual(violations, [], msg=f"dedup integration failed: {violations}")
 
@@ -254,20 +254,20 @@ class CheckPolicyAnchorTableNatureSourceOfTruthTest(unittest.TestCase):
         import shutil, tempfile
         with tempfile.TemporaryDirectory() as td:
             tdir = Path(td)
-            anchor = REPO_ROOT / "academic-paper/references/policy_anchor_table.md"
-            venue = REPO_ROOT / "academic-paper/references/venue_disclosure_policies.md"
+            anchor = REPO_ROOT / "skills/academic-paper/references/policy_anchor_table.md"
+            venue = REPO_ROOT / "skills/academic-paper/references/venue_disclosure_policies.md"
             # Build a working subtree mirror without the canonical Nature source
             # to confirm main() surfaces the dedup violation.
-            (tdir / "academic-paper/references").mkdir(parents=True)
+            (tdir / "skills/academic-paper/references").mkdir(parents=True)
             (tdir / "shared/policy_data").mkdir(parents=True)
-            shutil.copy(anchor, tdir / "academic-paper/references/policy_anchor_table.md")
-            shutil.copy(venue, tdir / "academic-paper/references/venue_disclosure_policies.md")
+            shutil.copy(anchor, tdir / "skills/academic-paper/references/policy_anchor_table.md")
+            shutil.copy(venue, tdir / "skills/academic-paper/references/venue_disclosure_policies.md")
             # Deliberately do NOT copy shared/policy_data/nature_policy.md
             exit_code = cpat.main(
                 argv=[
-                    str(tdir / "academic-paper/references/policy_anchor_table.md"),
+                    str(tdir / "skills/academic-paper/references/policy_anchor_table.md"),
                     "--venue-policies",
-                    str(tdir / "academic-paper/references/venue_disclosure_policies.md"),
+                    str(tdir / "skills/academic-paper/references/venue_disclosure_policies.md"),
                 ]
             )
             self.assertEqual(

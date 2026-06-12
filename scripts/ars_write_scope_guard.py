@@ -81,10 +81,10 @@ INFRA_PROTECTED_GLOBS = [
     "check_v3_10_134_write_scope.py",
     # Agent definition files: the agent_type==name binding lives in their frontmatter;
     # renaming an agent out of the manifest would fail the guard open.
-    "deep-research/agents/*.md",
-    "academic-paper/agents/*.md",
-    "academic-paper-reviewer/agents/*.md",
-    "academic-pipeline/agents/*.md",
+    "skills/deep-research/agents/*.md",
+    "skills/academic-paper/agents/*.md",
+    "skills/academic-paper-reviewer/agents/*.md",
+    "skills/academic-pipeline/agents/*.md",
     "shared/agents/*.md",
     ".claude/CLAUDE.md",
     "CLAUDE.md",

@@ -252,12 +252,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "path",
         nargs="?",
-        default="academic-paper/references/policy_anchor_table.md",
+        default="skills/academic-paper/references/policy_anchor_table.md",
         help="path to policy_anchor_table.md (default: %(default)s)",
     )
     parser.add_argument(
         "--venue-policies",
-        default="academic-paper/references/venue_disclosure_policies.md",
+        default="skills/academic-paper/references/venue_disclosure_policies.md",
         help="path to venue_disclosure_policies.md for the Nature dedup guard",
     )
     args = parser.parse_args(argv)

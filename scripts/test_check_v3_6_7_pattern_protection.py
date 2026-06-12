@@ -98,7 +98,7 @@ class R2MutationTests(_MutationTestBase):
     def test_c1_inverted_must_not_preserve_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "Compression must preserve protected hedging phrases",
             "Compression must not preserve protected hedging phrases",
         )
@@ -112,7 +112,7 @@ class R2MutationTests(_MutationTestBase):
         # fails the C3 + INV-1 regex pair.
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             " Output metadata must not claim audit-passed state.",
             "",
         )
@@ -126,7 +126,7 @@ class R3MutationTests(_MutationTestBase):
     def test_r3_001_trailing_must_not_be_enforced_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "Output metadata must not claim audit-passed state.",
             "Output metadata must not claim audit-passed state; this must not be enforced.",
         )
@@ -135,7 +135,7 @@ class R3MutationTests(_MutationTestBase):
     def test_r3_002_a2_pending_verification_optional_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             'wrap claims in explicit hedge ("pending verification of X" / "inferred from upstream Y").',
             "pending verification language is optional; claims may be written as facts.",
         )
@@ -144,7 +144,7 @@ class R3MutationTests(_MutationTestBase):
     def test_r3_002_c2_may_use_year_range_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             'Reflexivity disclosure must use explicit temporal bounds: explicit year range, past-tense disambiguating verb, or "former" prefix. Deictic temporal phrases ("during this period" / "at the time") are forbidden.',
             'Reflexivity disclosure may use an explicit year range, but deictic temporal phrases ("during this period" / "at the time") are allowed when shorter.',
         )
@@ -153,7 +153,7 @@ class R3MutationTests(_MutationTestBase):
     def test_r3_003_no_subsetting_except_when_concise_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "No subsetting, no over-setting, no scope cross-contamination.",
             "No subsetting except when concise, no over-setting, no scope cross-contamination.",
         )
@@ -166,7 +166,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_001_a2_may_wrap_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             'For any source flagged "pending verification" upstream: wrap claims in explicit hedge',
             'For any source flagged "pending verification" upstream: may wrap claims in explicit hedge',
         )
@@ -175,7 +175,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_001_a3_may_include_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "For each substantive claim: include a one-line anchor justification.",
             "For each substantive claim: may include a one-line anchor justification.",
         )
@@ -184,7 +184,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_001_a1_recommended_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "pre-list the source's effect inventory and run a cross-section consistency self-check before output.",
             "pre-list the source's effect inventory and cross-section consistency self-check are recommended before output.",
         )
@@ -193,7 +193,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_002_a4_may_be_quoted_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "surrounding context paraphrased and unquoted.",
             "surrounding context may be quoted.",
         )
@@ -202,7 +202,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_002_a5_drop_conditional_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             'use conditional language ("if document X argues Y, this chapter could dialogue by Z") or explicit gap acknowledgment. Declarative claims about un-provided documents are forbidden.',
             "Declarative claims about un-provided documents are forbidden.",
         )
@@ -211,7 +211,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_002_b4_allow_chapter_vocab_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "Item phrasing must be neutral/balanced. Chapter argument vocabulary is forbidden in instrument items.",
             "Item phrasing may use chapter argument vocabulary in instrument items.",
         )
@@ -220,7 +220,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_002_b5_allow_overset_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "No subsetting, no over-setting, no scope cross-contamination.",
             "No subsetting. Over-setting and scope cross-contamination are allowed.",
         )
@@ -229,7 +229,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_002_c1_drop_buffer_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "Word budget uses whitespace-split convention (`body.split()`), not hyphenated-as-1. Reserve 3–5% buffer below hard cap.",
             "Word budget uses whitespace-split convention (`body.split()`), not hyphenated-as-1.",
         )
@@ -238,7 +238,7 @@ class R4MutationTests(_MutationTestBase):
     def test_r4_002_c2_drop_past_tense_form_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             'Reflexivity disclosure must use explicit temporal bounds: explicit year range, past-tense disambiguating verb, or "former" prefix.',
             "Reflexivity disclosure must use explicit temporal bounds: explicit year range.",
         )
@@ -251,7 +251,7 @@ class R5MutationTests(_MutationTestBase):
     def test_r5_001_a2_should_wrap_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             'For any source flagged "pending verification" upstream: wrap claims in explicit hedge',
             'For any source flagged "pending verification" upstream: should wrap claims in explicit hedge',
         )
@@ -260,7 +260,7 @@ class R5MutationTests(_MutationTestBase):
     def test_r5_001_a3_should_include_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "For each substantive claim: include a one-line anchor justification.",
             "For each substantive claim: should include a one-line anchor justification.",
         )
@@ -269,7 +269,7 @@ class R5MutationTests(_MutationTestBase):
     def test_r5_001_a4_can_be_quoted_tail_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "surrounding context paraphrased and unquoted.",
             "surrounding context paraphrased and unquoted, but can be quoted for flow.",
         )
@@ -278,7 +278,7 @@ class R5MutationTests(_MutationTestBase):
     def test_r5_001_b5_overset_permitted_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "No subsetting, no over-setting, no scope cross-contamination.",
             "No subsetting, no scope cross-contamination; over-setting is permitted when concise.",
         )
@@ -287,7 +287,7 @@ class R5MutationTests(_MutationTestBase):
     def test_r5_001_b5_should_declare_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "Any list-of-options item must declare its primary-source list and enumerate fully.",
             "Any list-of-options item should declare its primary-source list and enumerate fully.",
         )
@@ -296,7 +296,7 @@ class R5MutationTests(_MutationTestBase):
     def test_r5_001_c1_should_preserve_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "Compression must preserve protected hedging phrases identified by upstream calibration as budget-protected (the dispatch context carries the list).",
             "Compression should preserve protected hedging phrases identified by upstream calibration as budget-protected (the dispatch context carries the list).",
         )
@@ -309,7 +309,7 @@ class R6MutationTests(_MutationTestBase):
     def test_r6_001_c1_will_not_preserve_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "Compression must preserve protected hedging phrases",
             "Compression will not preserve protected hedging phrases",
         )
@@ -318,7 +318,7 @@ class R6MutationTests(_MutationTestBase):
     def test_r6_001_c1_would_preserve_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "Compression must preserve protected hedging phrases",
             "Compression would preserve protected hedging phrases",
         )
@@ -327,7 +327,7 @@ class R6MutationTests(_MutationTestBase):
     def test_r6_001_a2_ought_to_wrap_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             'For any source flagged "pending verification" upstream: wrap claims in explicit hedge',
             'For any source flagged "pending verification" upstream: ought to wrap claims in explicit hedge',
         )
@@ -336,7 +336,7 @@ class R6MutationTests(_MutationTestBase):
     def test_r6_001_a3_ideally_include_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "For each substantive claim: include a one-line anchor justification.",
             "For each substantive claim: ideally include a one-line anchor justification.",
         )
@@ -345,7 +345,7 @@ class R6MutationTests(_MutationTestBase):
     def test_r6_001_b5_preferably_enumerate_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "Any list-of-options item must declare its primary-source list and enumerate fully.",
             "Any list-of-options item must declare its primary-source list and preferably enumerate fully.",
         )
@@ -354,7 +354,7 @@ class R6MutationTests(_MutationTestBase):
     def test_r6_001_a3_we_recommend_that_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "For each substantive claim: include a one-line anchor justification.",
             "We recommend that each substantive claim include a one-line anchor justification.",
         )
@@ -375,7 +375,7 @@ class INV1MutationTests(_MutationTestBase):
     def test_inv1_synthesis_canonical_line_deleted_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "\n" + self.CANONICAL_BULLET,
             "",
         )
@@ -384,7 +384,7 @@ class INV1MutationTests(_MutationTestBase):
     def test_inv1_architect_canonical_line_deleted_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "\n" + self.CANONICAL_BULLET,
             "",
         )
@@ -393,7 +393,7 @@ class INV1MutationTests(_MutationTestBase):
     def test_inv1_compiler_canonical_line_deleted_fails(self) -> None:
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "\n" + self.CANONICAL_BULLET,
             "",
         )
@@ -404,7 +404,7 @@ class INV1MutationTests(_MutationTestBase):
         # without breaking the per-file C-style positive regex.
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             self.CANONICAL_BULLET,
             self.CANONICAL_BULLET + "\n" + self.CANONICAL_BULLET,
         )
@@ -432,7 +432,7 @@ class INV2MutationTests(_MutationTestBase):
     def test_inv2_a_orchestrator_audit_fails(self) -> None:
         # Pattern (a): \bthe orchestrator\b.*\baudit\b
         self._inject_violation(
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "The orchestrator runs codex audit afterward.",
         )
         self.assert_mutation_fails()
@@ -440,7 +440,7 @@ class INV2MutationTests(_MutationTestBase):
     def test_inv2_b_cross_model_audit_template_fails(self) -> None:
         # Pattern (b): \bcross-model audit (?:follows|covers)\b.*codex_audit_multifile_template
         self._inject_violation(
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "Cross-model audit covers these via dimension §3.5 of "
             "`shared/templates/codex_audit_multifile_template.md`.",
         )
@@ -449,7 +449,7 @@ class INV2MutationTests(_MutationTestBase):
     def test_inv2_c_audit_will_be_run_fails(self) -> None:
         # Pattern (c): \baudit (?:afterwards?|will be run|is dispatched)\b
         self._inject_violation(
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "An audit will be run on the deliverable.",
         )
         self.assert_mutation_fails()
@@ -457,7 +457,7 @@ class INV2MutationTests(_MutationTestBase):
     def test_inv2_d_downstream_audit_fails(self) -> None:
         # Pattern (d): \bdownstream audit\b
         self._inject_violation(
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "A downstream audit covers narrative claims.",
         )
         self.assert_mutation_fails()
@@ -465,7 +465,7 @@ class INV2MutationTests(_MutationTestBase):
     def test_inv2_d_this_output_will_be_audited_fails(self) -> None:
         # Pattern (d) second alternative: \bthis output (?:is|will be) audited\b
         self._inject_violation(
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             "This output will be audited by codex downstream.",
         )
         self.assert_mutation_fails()
@@ -484,7 +484,7 @@ class INV3MutationTests(_MutationTestBase):
         # the v3.6.7 inversion manifest). The §6 sweep is v3.6.7-only;
         # widening to a fourth file is the §9 L2 deferred question and
         # MUST fail lint as a guard against accidental sweep widening.
-        non_manifest_path = self._repo_dir / "deep-research/agents/bibliography_agent.md"
+        non_manifest_path = self._repo_dir / "skills/deep-research/agents/bibliography_agent.md"
         # Sanity-check the file exists and isn't already in the manifest.
         self.assertTrue(non_manifest_path.exists())
         original = non_manifest_path.read_text(encoding="utf-8")
@@ -514,7 +514,7 @@ class INV3MutationTests(_MutationTestBase):
         manifest_path = self._repo_dir / "scripts/v3_6_7_inversion_manifest.json"
         import json
         data = json.loads(manifest_path.read_text(encoding="utf-8"))
-        data["files"].append("deep-research/agents/bibliography_agent.md")
+        data["files"].append("skills/deep-research/agents/bibliography_agent.md")
         manifest_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
         self.assert_mutation_fails()
 
@@ -539,7 +539,7 @@ class CodexR1MutationTests(_MutationTestBase):
         )
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             self.CANONICAL_BULLET,
             wrapped_violation + "\n" + self.CANONICAL_BULLET,
         )
@@ -556,7 +556,7 @@ class CodexR1MutationTests(_MutationTestBase):
         # catches `if feasible` via _ALWAYS_NEGATION_PATTERNS).
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "Output metadata must not claim audit-passed state.",
             "Output metadata must not claim audit-passed state if feasible.",
         )
@@ -573,7 +573,7 @@ class CodexR1MutationTests(_MutationTestBase):
         # drift); widening triggers L2 resolution per spec §6.3 line
         # 1807, which requires landing a v3.6.8+ manifest, not editing
         # the v3.6.7 one. Construct the attack and assert lint fails.
-        bibliography = self._repo_dir / "deep-research/agents/bibliography_agent.md"
+        bibliography = self._repo_dir / "skills/deep-research/agents/bibliography_agent.md"
         original = bibliography.read_text(encoding="utf-8")
         bibliography.write_text(
             original
@@ -585,7 +585,7 @@ class CodexR1MutationTests(_MutationTestBase):
         manifest_path = self._repo_dir / "scripts/v3_6_7_inversion_manifest.json"
         import json
         data = json.loads(manifest_path.read_text(encoding="utf-8"))
-        data["files"].append("deep-research/agents/bibliography_agent.md")
+        data["files"].append("skills/deep-research/agents/bibliography_agent.md")
         manifest_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
         self.assert_mutation_fails()
 
@@ -616,7 +616,7 @@ class CodexR2MutationTests(_MutationTestBase):
         # exact-match contract rejects it.
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             self.CANONICAL_BULLET,
             "- When feasible, DO NOT simulate any audit step. DO NOT "
             "claim to have run codex/external review. Output metadata "
@@ -633,7 +633,7 @@ class CodexR2MutationTests(_MutationTestBase):
         # break baseline lint.
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "DO NOT claim to have run codex/external review.",
             "DO NOT claim to have run\n  codex/external review.",
         )
@@ -660,7 +660,7 @@ class CodexR2MutationTests(_MutationTestBase):
         )
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             self.CANONICAL_BULLET,
             benign_bullet + "\n" + self.CANONICAL_BULLET,
         )
@@ -678,7 +678,7 @@ class CodexR2MutationTests(_MutationTestBase):
         violation = "- The orchestrator runs codex audit afterward on the deliverable."
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             self.CANONICAL_BULLET,
             violation + "\n" + self.CANONICAL_BULLET,
         )
@@ -707,7 +707,7 @@ class CodexR3MutationTests(_MutationTestBase):
         # violation.
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "documented in `docs/design/2026-04-29-ars-v3.6.7-downstream-agent-pattern-protection-spec.md` §3.1 (A1–A5).",
             "documented in `docs/design/2026-04-29-ars-v3.6.7-downstream-agent-pattern-protection-spec.md` §3.1 (A1–A5). "
             "Cross-model audit follows `shared/templates/codex_audit_multifile_template.md` audit dimensions §3.1, §3.2, §3.3, §3.4.",
@@ -734,7 +734,7 @@ class CodexR4MutationTests(_MutationTestBase):
         # assert lint catches it.
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             "Output metadata must not claim audit-passed state.\n",
             "Output metadata must not claim audit-passed state.\n"
             "\nThe orchestrator runs codex audit afterward.\n",
@@ -758,7 +758,7 @@ class CodexR5MutationTests(_MutationTestBase):
         # the C3 Check regex. Mutation should leave lint passing.
         _mutate(
             self._repo_dir,
-            "deep-research/agents/report_compiler_agent.md",
+            "skills/deep-research/agents/report_compiler_agent.md",
             "DO NOT claim to have run codex/external review.",
             "DO NOT claim to have run\n  codex/external review.",
         )
@@ -796,7 +796,7 @@ class CodexR6MutationTests(_MutationTestBase):
         )
         _mutate(
             self._repo_dir,
-            "deep-research/agents/synthesis_agent.md",
+            "skills/deep-research/agents/synthesis_agent.md",
             self.CANONICAL_BULLET,
             self.CANONICAL_BULLET + "\n" + weakened,
         )
@@ -813,7 +813,7 @@ class CodexR6MutationTests(_MutationTestBase):
         )
         _mutate(
             self._repo_dir,
-            "deep-research/agents/research_architect_agent.md",
+            "skills/deep-research/agents/research_architect_agent.md",
             self.CANONICAL_BULLET,
             self.CANONICAL_BULLET + "\n" + weakened,
         )
@@ -836,7 +836,7 @@ class CodexR7R9MutationTests(_MutationTestBase):
         # Only the exact canonical sentence (whitespace-normalized
         # equal to CANONICAL_CLAUSE_1_TEXT) widens the scope. Variants
         # are a v3.6.8+ concern if/when L2 is reopened.
-        bibliography = self._repo_dir / "deep-research/agents/bibliography_agent.md"
+        bibliography = self._repo_dir / "skills/deep-research/agents/bibliography_agent.md"
         original = bibliography.read_text(encoding="utf-8")
         weakened = (
             "\n\n- When feasible, DO NOT simulate any audit step. DO NOT "
@@ -873,7 +873,7 @@ class CodexR8MutationTests(_MutationTestBase):
         # `audit-passed state`, or `codex/external review`). Inject
         # the generic bullet into bibliography_agent and assert lint
         # passes (no false positive).
-        bibliography = self._repo_dir / "deep-research/agents/bibliography_agent.md"
+        bibliography = self._repo_dir / "skills/deep-research/agents/bibliography_agent.md"
         original = bibliography.read_text(encoding="utf-8")
         bibliography.write_text(
             original + "\n\n- Do not simulate data or sources.\n",
@@ -897,7 +897,7 @@ class CodexR8MutationTests(_MutationTestBase):
         # prose paragraphs against `CANONICAL_CLAUSE_1_TEXT` exactly.
         # Inject the canonical sentence as a prose paragraph in
         # bibliography_agent and assert lint fails.
-        bibliography = self._repo_dir / "deep-research/agents/bibliography_agent.md"
+        bibliography = self._repo_dir / "skills/deep-research/agents/bibliography_agent.md"
         original = bibliography.read_text(encoding="utf-8")
         canon_prose = (
             "\n\nDO NOT simulate any audit step. DO NOT claim to have "
@@ -922,7 +922,7 @@ class CodexR9MutationTests(_MutationTestBase):
         # heuristic flagged this as Clause 1-like even though the
         # bullet has no prohibition semantics. R9 closure scopes INV-3
         # to exact canonical sentence only.
-        bibliography = self._repo_dir / "deep-research/agents/bibliography_agent.md"
+        bibliography = self._repo_dir / "skills/deep-research/agents/bibliography_agent.md"
         original = bibliography.read_text(encoding="utf-8")
         bibliography.write_text(
             original + "\n\n- Review each audit step before finalizing.\n",
@@ -944,7 +944,7 @@ class CodexR9MutationTests(_MutationTestBase):
         # filter skipped the whole thing. R9 closure switches to
         # line-level heading-strip + whitespace-collapse so heading
         # adjacency does not bypass the prose scan.
-        bibliography = self._repo_dir / "deep-research/agents/bibliography_agent.md"
+        bibliography = self._repo_dir / "skills/deep-research/agents/bibliography_agent.md"
         original = bibliography.read_text(encoding="utf-8")
         injection = (
             "\n\n## PATTERN PROTECTION (v3.6.7)\n"

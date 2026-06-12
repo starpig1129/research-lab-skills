@@ -21,11 +21,11 @@ from scripts.check_firm_rules_sync import CIM_SECTION_HEADER, _extract_section
 REPO_ROOT = Path(__file__).resolve().parents[1]
 LINT = REPO_ROOT / "scripts" / "check_firm_rules_sync.py"
 
-SYNTHESIS = "deep-research/agents/synthesis_agent.md"
-COMPILER = "deep-research/agents/report_compiler_agent.md"
-WRITER = "academic-paper/agents/draft_writer_agent.md"
+SYNTHESIS = "skills/deep-research/agents/synthesis_agent.md"
+COMPILER = "skills/deep-research/agents/report_compiler_agent.md"
+WRITER = "skills/academic-paper/agents/draft_writer_agent.md"
 SCHEMA = "shared/contracts/passport/claim_intent_manifest.schema.json"
-FORMATTER = "academic-paper/agents/formatter_agent.md"
+FORMATTER = "skills/academic-paper/agents/formatter_agent.md"
 FIRM_RULES = "shared/references/firm_rules.md"
 
 
@@ -38,10 +38,10 @@ def tree(tmp_path: Path) -> Path:
     """A copy of just the files the lint reads, under a temp root."""
     rels = [
         SYNTHESIS, COMPILER, WRITER, SCHEMA, FORMATTER, FIRM_RULES,
-        "deep-research/references/crossref_api_protocol.md",
-        "deep-research/references/openalex_api_protocol.md",
-        "academic-pipeline/agents/pipeline_orchestrator_agent.md",
-        "deep-research/agents/bibliography_agent.md",
+        "skills/deep-research/references/crossref_api_protocol.md",
+        "skills/deep-research/references/openalex_api_protocol.md",
+        "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md",
+        "skills/deep-research/agents/bibliography_agent.md",
     ]
     for rel in rels:
         src = REPO_ROOT / rel
@@ -196,7 +196,7 @@ def test_contradiction_phrase_in_r_l3_2_a_sentence_fails(tree: Path) -> None:
     """Injecting an unqualified non-blocking claim into the R-L3-2-A reference
     sentence must fail — a strict policy can now block."""
     _mutate(
-        tree, "deep-research/references/crossref_api_protocol.md",
+        tree, "skills/deep-research/references/crossref_api_protocol.md",
         "handled per R-L3-2-A (advisory by default",
         "advisory only, handled per R-L3-2-A (",
     )
@@ -227,7 +227,7 @@ def test_contradiction_phrase_after_semicolon_still_caught(tree: Path) -> None:
     semicolon must still be caught — the guard must NOT split on ';' (which would
     put the phrase in a different chunk and miss it)."""
     _mutate(
-        tree, "deep-research/references/crossref_api_protocol.md",
+        tree, "skills/deep-research/references/crossref_api_protocol.md",
         "handled per R-L3-2-A (advisory by default",
         "handled per R-L3-2-A; contamination signals never block emission (",
     )
@@ -240,7 +240,7 @@ def test_contradiction_phrase_outside_r_l3_2_a_sentence_passes(tree: Path) -> No
     """Adding a 'never blocks' clause in a sentence that does NOT name R-L3-2-A
     must pass — the guard scopes to the R-L3-2-A reference, not the file."""
     _mutate(
-        tree, "deep-research/references/crossref_api_protocol.md",
+        tree, "skills/deep-research/references/crossref_api_protocol.md",
         "Mirrors the structure of",
         "This lookup never blocks anything by itself. Mirrors the structure of",
     )

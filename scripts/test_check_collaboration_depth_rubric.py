@@ -82,11 +82,11 @@ def _valid_skill_md_text() -> str:
 def _make_repo(root: Path) -> None:
     (root / "shared").mkdir(parents=True)
     (root / "shared" / "collaboration_depth_rubric.md").write_text(_valid_rubric_text())
-    agents = root / "academic-pipeline" / "agents"
+    agents = root / "skills" / "academic-pipeline" / "agents"
     agents.mkdir(parents=True)
     (agents / "collaboration_depth_agent.md").write_text(_valid_agent_text())
     (agents / "pipeline_orchestrator_agent.md").write_text(_valid_orchestrator_text())
-    (root / "academic-pipeline" / "SKILL.md").write_text(_valid_skill_md_text())
+    (root / "skills" / "academic-pipeline" / "SKILL.md").write_text(_valid_skill_md_text())
 
 
 class TestCollaborationDepthRubric(unittest.TestCase):
@@ -140,7 +140,7 @@ class TestCollaborationDepthRubric(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _make_repo(root)
-            agent = root / "academic-pipeline" / "agents" / "collaboration_depth_agent.md"
+            agent = root / "skills" / "academic-pipeline" / "agents" / "collaboration_depth_agent.md"
             agent.write_text(_valid_agent_text().replace("shared/collaboration_depth_rubric.md", "nope.md"))
             r = _run(root)
             self.assertEqual(r.returncode, 1)
@@ -156,7 +156,7 @@ class TestCollaborationDepthRubric(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _make_repo(root)
-            agent = root / "academic-pipeline" / "agents" / "collaboration_depth_agent.md"
+            agent = root / "skills" / "academic-pipeline" / "agents" / "collaboration_depth_agent.md"
             drifted = _valid_agent_text().replace(
                 "rubric_ref: shared/collaboration_depth_rubric.md",
                 "rubric_ref: nope.md",
@@ -172,7 +172,7 @@ class TestCollaborationDepthRubric(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _make_repo(root)
-            agent = root / "academic-pipeline" / "agents" / "collaboration_depth_agent.md"
+            agent = root / "skills" / "academic-pipeline" / "agents" / "collaboration_depth_agent.md"
             agent.write_text(_valid_agent_text().replace("blocking: false", "blocking: true"))
             r = _run(root)
             self.assertEqual(r.returncode, 1)
@@ -182,7 +182,7 @@ class TestCollaborationDepthRubric(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _make_repo(root)
-            orch = root / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
+            orch = root / "skills" / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
             orch.write_text("# pipeline_orchestrator_agent\n\nNo observer mentioned.\n")
             r = _run(root)
             self.assertEqual(r.returncode, 1)
@@ -192,7 +192,7 @@ class TestCollaborationDepthRubric(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _make_repo(root)
-            orch = root / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
+            orch = root / "skills" / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
             orch.write_text(
                 "At FULL checkpoint, dispatch collaboration_depth_agent.\n"
             )
@@ -211,7 +211,7 @@ class TestCollaborationDepthRubric(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _make_repo(root)
-            orch = root / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
+            orch = root / "skills" / "academic-pipeline" / "agents" / "pipeline_orchestrator_agent.md"
             # Mentions the agent, checkpoints, and stage 6 — but no dispatch
             # verb anywhere near the agent name. Must fail.
             orch.write_text(
@@ -228,7 +228,7 @@ class TestCollaborationDepthRubric(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _make_repo(root)
-            skill = root / "academic-pipeline" / "SKILL.md"
+            skill = root / "skills" / "academic-pipeline" / "SKILL.md"
             skill.write_text("# academic-pipeline\n\nWe use collaboration_depth_agent.\n")
             r = _run(root)
             self.assertEqual(r.returncode, 1)

@@ -192,7 +192,7 @@ def check_finalizer_subsection(verbose: bool = True) -> int:
     if block is None:
         print(
             "[ARS-V3.7.1 STEP-3B LINT ERROR: "
-            "academic-pipeline/agents/pipeline_orchestrator_agent.md is "
+            "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md is "
             f"missing the canonical H2 heading '{FINALIZER_HEADING}'. "
             "Step 3b spec line 449 requires this subsection.]"
         )

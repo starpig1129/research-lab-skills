@@ -24,7 +24,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_PATH = REPO_ROOT / "shared/contracts/passport/literature_corpus_entry.schema.json"
-DEFAULT_TARGET = REPO_ROOT / "academic-pipeline/references/adapters/overview.md"
+DEFAULT_TARGET = REPO_ROOT / "skills/academic-pipeline/references/adapters/overview.md"
 
 MARKERS = {
     "LITERATURE_CORPUS_REQUIRED": "required",

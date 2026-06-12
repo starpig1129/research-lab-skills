@@ -138,7 +138,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "path",
         nargs="?",
-        default="academic-paper/references/policy_anchor_disclosure_protocol.md",
+        default="skills/academic-paper/references/policy_anchor_disclosure_protocol.md",
         help="path to policy_anchor_disclosure_protocol.md (default: %(default)s)",
     )
     args = parser.parse_args(argv)

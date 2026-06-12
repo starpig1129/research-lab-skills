@@ -21,8 +21,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 CHECKER = REPO_ROOT / "scripts" / "check_instruction_data_boundary.py"
 
 AUTHORITATIVE_REL = "shared/ground_truth_isolation_pattern.md"
-AGENT_REL = "deep-research/agents/source_verification_agent.md"
-AGENT2_REL = "deep-research/agents/bibliography_agent.md"
+AGENT_REL = "skills/deep-research/agents/source_verification_agent.md"
+AGENT2_REL = "skills/deep-research/agents/bibliography_agent.md"
 
 OPEN_MARKER = "<!-- canonical:instruction-data-boundary -->"
 CLOSE_MARKER = "<!-- /canonical:instruction-data-boundary -->"

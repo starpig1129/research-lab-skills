@@ -38,8 +38,8 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_FORMATTER = REPO_ROOT / "academic-paper/agents/formatter_agent.md"
-DEFAULT_ORCHESTRATOR = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+DEFAULT_FORMATTER = REPO_ROOT / "skills/academic-paper/agents/formatter_agent.md"
+DEFAULT_ORCHESTRATOR = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
 
 V3_9_0_SECTION_HEADER = "## Cite-Time Provenance Finalizer — v3.9.0 extension"
 

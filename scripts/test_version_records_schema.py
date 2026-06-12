@@ -189,9 +189,9 @@ def test_literature_corpus_entry_contract_remains_unmodified_for_version_familie
 
 
 def test_kong_258_agent_and_formatter_markers_present():
-    timeline_agent = (REPO_ROOT / "deep-research/agents/timeline_extraction_agent.md").read_text()
-    draft_writer = (REPO_ROOT / "academic-paper/agents/draft_writer_agent.md").read_text()
-    formatter = (REPO_ROOT / "academic-paper/agents/formatter_agent.md").read_text()
+    timeline_agent = (REPO_ROOT / "skills/deep-research/agents/timeline_extraction_agent.md").read_text()
+    draft_writer = (REPO_ROOT / "skills/academic-paper/agents/draft_writer_agent.md").read_text()
+    formatter = (REPO_ROOT / "skills/academic-paper/agents/formatter_agent.md").read_text()
 
     assert "## Academic Citation Version Discovery (Kong #258)" in timeline_agent
     assert "phase2_investigation/version_records.yaml" in timeline_agent
@@ -203,7 +203,7 @@ def test_kong_258_agent_and_formatter_markers_present():
 
 def test_kong_258_design_doc_documents_127_boundary_and_example_exists():
     design = (REPO_ROOT / "docs/design/2026-05-28-kong-258-version-family-reconciliation.md").read_text()
-    example = REPO_ROOT / "academic-paper/examples/version_family_reconciliation_example.md"
+    example = REPO_ROOT / "skills/academic-paper/examples/version_family_reconciliation_example.md"
     assert "#127 Boundary" in design
     assert "literature_corpus_entry.schema.json" in design
     assert "remains unchanged" in design

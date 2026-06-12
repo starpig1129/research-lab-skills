@@ -40,7 +40,7 @@ def fixture_repo(tmp_path: Path) -> Path:
     manifest = {
         "supported_consumers": [
             {
-                "agent_path": "deep-research/agents/bibliography_agent.md",
+                "agent_path": "skills/deep-research/agents/bibliography_agent.md",
                 "agent_basename": "bibliography_agent",
                 "skill": "deep-research",
                 "since_version": "v3.6.5",
@@ -53,7 +53,7 @@ def fixture_repo(tmp_path: Path) -> Path:
     )
 
     # --- reference doc with full bibliography block + stub strategist block
-    ref_dir = tmp_path / "academic-pipeline" / "references"
+    ref_dir = tmp_path / "skills" / "academic-pipeline" / "references"
     ref_dir.mkdir(parents=True)
     (ref_dir / "literature_corpus_consumers.md").write_text(
         textwrap.dedent(
@@ -89,7 +89,7 @@ def fixture_repo(tmp_path: Path) -> Path:
     )
 
     # --- bibliography_agent.md with all required prose markers
-    agent_dir = tmp_path / "deep-research" / "agents"
+    agent_dir = tmp_path / "skills" / "deep-research" / "agents"
     agent_dir.mkdir(parents=True)
     (agent_dir / "bibliography_agent.md").write_text(
         textwrap.dedent(
@@ -98,7 +98,7 @@ def fixture_repo(tmp_path: Path) -> Path:
             name: bibliography_agent
             ---
 
-            See `academic-pipeline/references/literature_corpus_consumers.md`.
+            See `skills/academic-pipeline/references/literature_corpus_consumers.md`.
 
             ### Step 0: presence detection
             ### Step 1: pre-screen
@@ -161,7 +161,7 @@ def test_l1_passes_when_reference_doc_exists(fixture_repo: Path) -> None:
 def test_l1_fails_when_reference_doc_missing(fixture_repo: Path) -> None:
     (
         fixture_repo
-        / "academic-pipeline"
+        / "skills" / "academic-pipeline"
         / "references"
         / "literature_corpus_consumers.md"
     ).unlink()
@@ -178,7 +178,7 @@ def test_l2_passes_with_both_consumer_blocks_stub_marked(fixture_repo: Path) -> 
 def test_l2_fails_when_stub_marker_missing(fixture_repo: Path) -> None:
     ref = (
         fixture_repo
-        / "academic-pipeline"
+        / "skills" / "academic-pipeline"
         / "references"
         / "literature_corpus_consumers.md"
     )
@@ -198,9 +198,9 @@ def test_l3_passes_when_backpointer_present(fixture_repo: Path) -> None:
 
 
 def test_l3_fails_when_backpointer_missing(fixture_repo: Path) -> None:
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text().replace(
-        "academic-pipeline/references/literature_corpus_consumers.md", ""
+        "skills/academic-pipeline/references/literature_corpus_consumers.md", ""
     )
     agent.write_text(text)
     result = run_lint(fixture_repo)
@@ -217,7 +217,7 @@ def test_l4_passes_when_pre_screened_template_present(fixture_repo: Path) -> Non
 
 
 def test_l4_fails_when_pre_screened_template_missing(fixture_repo: Path) -> None:
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text().replace("PRE-SCREENED FROM USER CORPUS:", "")
     agent.write_text(text)
     result = run_lint(fixture_repo)
@@ -234,7 +234,7 @@ def test_l5_passes_with_all_four_iron_rule_titles(fixture_repo: Path) -> None:
 
 
 def test_l5_fails_when_iron_rule_title_missing(fixture_repo: Path) -> None:
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text().replace(
         "Iron Rule 4 — Graceful fallback on parse failure", "Iron Rule 4 — TBD"
     )
@@ -253,7 +253,7 @@ def test_l6_passes_with_all_steps_and_cases(fixture_repo: Path) -> None:
 
 
 def test_l6_fails_when_case_marker_missing(fixture_repo: Path) -> None:
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text().replace("case B': ...", "")
     agent.write_text(text)
     result = run_lint(fixture_repo)
@@ -267,7 +267,7 @@ def test_l6_distinguishes_case_b_from_case_b_prime(fixture_repo: Path) -> None:
     Substring matching would let `case B'` cover for the missing
     `case B`, falsely passing L6. The boundary regex must catch this.
     """
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text().replace("case B: ...\n", "")
     agent.write_text(text)
     result = run_lint(fixture_repo)
@@ -288,7 +288,7 @@ def test_l7_passes_with_all_nine_line_markers(fixture_repo: Path) -> None:
 
 
 def test_l7_fails_when_skipped_marker_missing(fixture_repo: Path) -> None:
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text().replace(
         "Skipped (criteria cannot be applied):", "Removed:"
     )
@@ -305,7 +305,7 @@ def test_l7_fails_when_citation_keys_marker_missing(fixture_repo: Path) -> None:
     the reproducibility surface no longer says which corpus entries
     were screened. L7 catches this.
     """
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text()
     # Drop both citation_keys variants from inside the fenced template.
     # Keep the trailing truncation-rule prose mention.
@@ -338,7 +338,7 @@ def test_l7_fails_when_f4_inline_anchors_missing(fixture_repo: Path) -> None:
     Regression: drop the F4 inline anchors from the template body and
     assert L7 fails.
     """
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text()
     new_text = text.replace("# per F4a, per F4b, per F4c documented inline\n", "", 1)
     new_text = new_text.replace("# per F4d, per F4e, per F4f documented inline\n", "", 1)
@@ -356,7 +356,7 @@ def test_l7_fails_when_zero_hit_anchor_missing(fixture_repo: Path) -> None:
     Without it, a future PR could drop the zero-hit reproducibility
     surface from the template and CI would still pass.
     """
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text()
     new_text = text.replace(
         "- Zero-hit note (emit per F3 only when Included: 0):", "- Removed:"
@@ -382,7 +382,7 @@ def test_l7_marker_check_is_scoped_to_fenced_template(fixture_repo: Path) -> Non
     keep them mentioned in the surrounding prose; the lint must still
     fail L7.
     """
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text()
     # Drop citation_keys lines from inside the fenced template.
     new_text = text.replace(
@@ -409,7 +409,7 @@ def test_l7_marker_check_is_scoped_to_fenced_template(fixture_repo: Path) -> Non
 
 def test_l7_fails_when_truncation_prose_missing(fixture_repo: Path) -> None:
     """Spec §5.2 L7: PRE-SCREENED template must include 'truncation rule' prose."""
-    agent = fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+    agent = fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     text = agent.read_text()
     # Remove the truncation prose. Use a lowercase replace to catch both casings.
     new_text = text.replace("Truncation rule:", "Removed:")
@@ -447,7 +447,7 @@ def test_l8_passes_pr_b_with_caveat_retired_and_backpointer(fixture_repo: Path) 
     )
     manifest["supported_consumers"].append(
         {
-            "agent_path": "academic-paper/agents/literature_strategist_agent.md",
+            "agent_path": "skills/academic-paper/agents/literature_strategist_agent.md",
             "agent_basename": "literature_strategist_agent",
             "skill": "academic-paper",
             "since_version": "v3.6.5",
@@ -459,7 +459,7 @@ def test_l8_passes_pr_b_with_caveat_retired_and_backpointer(fixture_repo: Path) 
     )
 
     # Promote stub block to full content (remove LINT_STUB marker + Status line)
-    ref = fixture_repo / "academic-pipeline" / "references" / "literature_corpus_consumers.md"
+    ref = fixture_repo / "skills" / "academic-pipeline" / "references" / "literature_corpus_consumers.md"
     text = ref.read_text()
     text = text.replace("<!-- LINT_STUB: skip_cross_check -->", "")
     text = text.replace(
@@ -469,10 +469,10 @@ def test_l8_passes_pr_b_with_caveat_retired_and_backpointer(fixture_repo: Path) 
     ref.write_text(text)
 
     # Create the second consumer agent file by cloning bibliography_agent.md content
-    strat_dir = fixture_repo / "academic-paper" / "agents"
+    strat_dir = fixture_repo / "skills" / "academic-paper" / "agents"
     strat_dir.mkdir(parents=True)
     biblio_text = (
-        fixture_repo / "deep-research" / "agents" / "bibliography_agent.md"
+        fixture_repo / "skills" / "deep-research" / "agents" / "bibliography_agent.md"
     ).read_text()
     (strat_dir / "literature_strategist_agent.md").write_text(
         biblio_text.replace(
@@ -485,7 +485,7 @@ def test_l8_passes_pr_b_with_caveat_retired_and_backpointer(fixture_repo: Path) 
     text2 = schemas.read_text()
     text2 = text2.replace(
         "Consumer-side integration deferred to v3.6.5+",
-        "See `academic-pipeline/references/literature_corpus_consumers.md`",
+        "See `skills/academic-pipeline/references/literature_corpus_consumers.md`",
     )
     schemas.write_text(text2)
 
@@ -498,7 +498,7 @@ def test_l8_fails_invalid_third_state_strategist_only(fixture_repo: Path) -> Non
     manifest = {
         "supported_consumers": [
             {
-                "agent_path": "academic-paper/agents/literature_strategist_agent.md",
+                "agent_path": "skills/academic-paper/agents/literature_strategist_agent.md",
                 "agent_basename": "literature_strategist_agent",
                 "skill": "academic-paper",
                 "since_version": "v3.6.5",
@@ -555,7 +555,7 @@ def test_l8_fails_when_path_diverges_from_canonical(fixture_repo: Path) -> None:
     manifest = {
         "supported_consumers": [
             {
-                "agent_path": "deep-research/agents/MOVED_bibliography_agent.md",
+                "agent_path": "skills/deep-research/agents/MOVED_bibliography_agent.md",
                 "agent_basename": "bibliography_agent",
                 "skill": "deep-research",
                 "since_version": "v3.6.5",
@@ -606,7 +606,7 @@ def test_l9_passes_when_bad_good_pair_present(fixture_repo: Path) -> None:
 
 
 def test_l9_fails_when_good_marker_missing(fixture_repo: Path) -> None:
-    ref = fixture_repo / "academic-pipeline" / "references" / "literature_corpus_consumers.md"
+    ref = fixture_repo / "skills" / "academic-pipeline" / "references" / "literature_corpus_consumers.md"
     text = ref.read_text().replace("<!-- GOOD -->", "")
     ref.write_text(text)
     result = run_lint(fixture_repo)

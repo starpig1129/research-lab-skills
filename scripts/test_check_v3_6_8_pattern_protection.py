@@ -610,9 +610,9 @@ def test_sha256_helper_matches_hashlib() -> None:
 TWO_LAYER_BLOCK_MARKER = "## Two-Layer Citation Emission (v3.7.1)"
 
 STEP3A_AGENT_PATHS = [
-    "deep-research/agents/synthesis_agent.md",
-    "academic-paper/agents/draft_writer_agent.md",
-    "deep-research/agents/report_compiler_agent.md",
+    "skills/deep-research/agents/synthesis_agent.md",
+    "skills/academic-paper/agents/draft_writer_agent.md",
+    "skills/deep-research/agents/report_compiler_agent.md",
 ]
 
 
@@ -664,7 +664,7 @@ def test_step3a_invariant_i_two_layer_form_required() -> None:
 
     Removing the `<!--ref:` token from the block must make the lint fail.
     """
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         # Replace every `<!--ref:` literal inside the block scope with a
@@ -720,7 +720,7 @@ def test_step3a_invariant_ii_finalizer_mention_forbidden() -> None:
     line) must make the lint fail (strict partial-inversion: agent must
     not know about the resolver layer).
     """
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         _inject_into_block_body(
             target,
@@ -736,7 +736,7 @@ def test_step3a_invariant_ii_finalizer_mention_forbidden() -> None:
 
 def test_step3a_invariant_ii_orchestrator_mention_forbidden() -> None:
     """Invariant (ii): block body must NOT mention 'orchestrator'."""
-    target = _agent_path("academic-paper/agents/draft_writer_agent.md")
+    target = _agent_path("skills/academic-paper/agents/draft_writer_agent.md")
     with _Snapshot(target):
         _inject_into_block_body(
             target,
@@ -749,7 +749,7 @@ def test_step3a_invariant_ii_orchestrator_mention_forbidden() -> None:
 
 def test_step3a_invariant_ii_stage_gate_mention_forbidden() -> None:
     """Invariant (ii): block body must NOT mention 'stage gate'."""
-    target = _agent_path("deep-research/agents/report_compiler_agent.md")
+    target = _agent_path("skills/deep-research/agents/report_compiler_agent.md")
     with _Snapshot(target):
         _inject_into_block_body(
             target,
@@ -762,7 +762,7 @@ def test_step3a_invariant_ii_stage_gate_mention_forbidden() -> None:
 
 def test_step3a_invariant_iii_frontmatter_read_instruction_forbidden() -> None:
     """Invariant (iii): block must NOT instruct the agent to read frontmatter."""
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         block_pos = text.find(TWO_LAYER_BLOCK_MARKER)
@@ -789,7 +789,7 @@ def test_step3a_block_missing_from_manifest_agent_fails() -> None:
     Mutates synthesis_agent by replacing the block heading with a non-marker
     heading; lint must report block absence for that file.
     """
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         assert TWO_LAYER_BLOCK_MARKER in text
@@ -818,7 +818,7 @@ def test_step3a_invariant_iii_unrelated_negation_does_not_bless_read_instruction
     Mutation: insert a sentence like "Never guess; read the entry frontmatter
     to find the slug" — a sloppy negation that would have slipped past R0.
     """
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         block_pos = text.find(TWO_LAYER_BLOCK_MARKER)
@@ -843,7 +843,7 @@ def test_step3a_invariant_iii_unrelated_negation_does_not_bless_read_instruction
 
 def test_step3a_invariant_iii_front_matter_two_word_variant_caught() -> None:
     """R1 P1-3 closure: `front matter` (two-word) variant must be caught."""
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         block_pos = text.find(TWO_LAYER_BLOCK_MARKER)
@@ -861,7 +861,7 @@ def test_step3a_invariant_iii_front_matter_two_word_variant_caught() -> None:
 
 def test_step3a_invariant_iii_front_dash_matter_variant_caught() -> None:
     """R1 P1-3 closure: `front-matter` (hyphenated) variant must be caught."""
-    target = _agent_path("academic-paper/agents/draft_writer_agent.md")
+    target = _agent_path("skills/academic-paper/agents/draft_writer_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         block_pos = text.find(TWO_LAYER_BLOCK_MARKER)
@@ -878,7 +878,7 @@ def test_step3a_invariant_iii_front_dash_matter_variant_caught() -> None:
 
 def test_step3a_invariant_iii_wrapped_read_instruction_caught() -> None:
     """R1 P1-3 closure: `read the entry\\nfrontmatter` (line-wrapped) must be caught."""
-    target = _agent_path("deep-research/agents/report_compiler_agent.md")
+    target = _agent_path("skills/deep-research/agents/report_compiler_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         block_pos = text.find(TWO_LAYER_BLOCK_MARKER)
@@ -912,7 +912,7 @@ def test_step3a_invariant_iii_canonical_negation_still_passes() -> None:
 def test_step3a_duplicate_block_rejected() -> None:
     """R1 P2 closure: a manifest agent file with two canonical Two-Layer
     block headings must FAIL the lint."""
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         # Append a second canonical heading at EOF.
@@ -938,7 +938,7 @@ def test_step3a_invariant_iii_bullet_boundary_is_clause_terminator() -> None:
     entry frontmatter` slipped past because `NEVER` sat in the 30-char
     left window.
     """
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         block_pos = text.find(TWO_LAYER_BLOCK_MARKER)
@@ -967,7 +967,7 @@ def test_step3a_invariant_ii_finalizer_agent_substring_caught() -> None:
     identifier-aware boundaries `(?<![A-Za-z0-9])` / `(?![A-Za-z0-9])`
     which DO treat `_` as a word boundary, catching this attack surface.
     """
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         block_pos = text.find(TWO_LAYER_BLOCK_MARKER)
@@ -989,7 +989,7 @@ def test_step3a_invariant_ii_finalizer_agent_substring_caught() -> None:
 
 def test_step3a_invariant_ii_terminal_gate_agent_substring_caught() -> None:
     """R2 P1-B closure: `cite_provenance_terminal_gate_agent` must be caught."""
-    target = _agent_path("academic-paper/agents/draft_writer_agent.md")
+    target = _agent_path("skills/academic-paper/agents/draft_writer_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         block_pos = text.find(TWO_LAYER_BLOCK_MARKER)
@@ -1013,7 +1013,7 @@ def test_step3a_h3_same_title_duplicate_rejected() -> None:
     stops at H3 headings (the H3 same-title sat outside the canonical block
     scan range and could carry contradictory instructions).
     """
-    target = _agent_path("deep-research/agents/report_compiler_agent.md")
+    target = _agent_path("skills/deep-research/agents/report_compiler_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         # Append an H3 same-title heading at EOF.
@@ -1034,7 +1034,7 @@ def test_step3a_h3_same_title_duplicate_rejected() -> None:
 
 def test_step3a_invariant_ii_plural_finalizers_caught() -> None:
     """R3 P1-B closure: `finalizers` (plural) must be caught."""
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         _inject_into_block_body(
             target,
@@ -1047,7 +1047,7 @@ def test_step3a_invariant_ii_plural_finalizers_caught() -> None:
 
 def test_step3a_invariant_ii_plural_orchestrators_caught() -> None:
     """R3 P1-B closure: `orchestrators` (plural) must be caught."""
-    target = _agent_path("academic-paper/agents/draft_writer_agent.md")
+    target = _agent_path("skills/academic-paper/agents/draft_writer_agent.md")
     with _Snapshot(target):
         _inject_into_block_body(
             target,
@@ -1059,7 +1059,7 @@ def test_step3a_invariant_ii_plural_orchestrators_caught() -> None:
 
 def test_step3a_invariant_ii_plural_resolvers_caught() -> None:
     """R3 P1-B closure: `resolvers` (plural) must be caught."""
-    target = _agent_path("deep-research/agents/report_compiler_agent.md")
+    target = _agent_path("skills/deep-research/agents/report_compiler_agent.md")
     with _Snapshot(target):
         _inject_into_block_body(
             target,
@@ -1077,7 +1077,7 @@ def test_step3a_invariant_iii_function_call_read_frontmatter_caught() -> None:
     identifier-aware boundaries so `_` IS a boundary; the function name
     is now caught.
     """
-    target = _agent_path("deep-research/agents/synthesis_agent.md")
+    target = _agent_path("skills/deep-research/agents/synthesis_agent.md")
     with _Snapshot(target):
         _inject_into_block_body(
             target,
@@ -1107,7 +1107,7 @@ def test_step3a_heading_drift_with_trailing_text_rejected() -> None:
     R3 introduces a drift detector that catches headings whose title
     BEGINS with the canonical title but has trailing non-whitespace.
     """
-    target = _agent_path("academic-paper/agents/draft_writer_agent.md")
+    target = _agent_path("skills/academic-paper/agents/draft_writer_agent.md")
     with _Snapshot(target):
         text = target.read_text(encoding="utf-8")
         drift_block = (

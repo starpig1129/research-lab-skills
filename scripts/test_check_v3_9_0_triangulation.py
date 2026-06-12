@@ -27,7 +27,7 @@ def test_lint_passes_on_clean_repo():
 
 def test_lint_detects_missing_allowlist_entry(tmp_path):
     """Remove CONTAMINATED-TRIANGULATION-UNMATCHED from formatter — lint fails."""
-    formatter = REPO_ROOT / "academic-paper/agents/formatter_agent.md"
+    formatter = REPO_ROOT / "skills/academic-paper/agents/formatter_agent.md"
     content = formatter.read_text()
     broken_content = content.replace(
         "`CONTAMINATED-TRIANGULATION-UNMATCHED`, ",
@@ -42,7 +42,7 @@ def test_lint_detects_missing_allowlist_entry(tmp_path):
 
 def test_lint_detects_extra_allowlist_entry(tmp_path):
     """Add a non-spec CONTAMINATED-* token to formatter — lint fails."""
-    formatter = REPO_ROOT / "academic-paper/agents/formatter_agent.md"
+    formatter = REPO_ROOT / "skills/academic-paper/agents/formatter_agent.md"
     content = formatter.read_text()
     broken_content = content.replace(
         "`CONTAMINATED-PREPRINT`,",
@@ -57,7 +57,7 @@ def test_lint_detects_extra_allowlist_entry(tmp_path):
 
 def test_lint_detects_refusal_list_contamination(tmp_path):
     """If CONTAMINATED-* appears in refusal rules, lint fails (R-L3-2-E guard)."""
-    formatter = REPO_ROOT / "academic-paper/agents/formatter_agent.md"
+    formatter = REPO_ROOT / "skills/academic-paper/agents/formatter_agent.md"
     content = formatter.read_text()
     # Inject a fake refusal rule containing CONTAMINATED-TRIANGULATION-UNMATCHED.
     # Use the unique first-refusal-rule text as anchor so we land inside
@@ -95,7 +95,7 @@ def test_rule1_all_markers_present_in_real_repo():
 
 def test_rule1_missing_marker_fails(tmp_path):
     """Rule 1: remove CONTAMINATED-PARTIAL-UNMATCH from orchestrator subsection — lint fails."""
-    orch = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
     content = orch.read_text()
     broken = content.replace("`CONTAMINATED-PARTIAL-UNMATCH`", "`CONTAMINATED-XXX-PARTIAL`")
     p = tmp_path / "orch.md"
@@ -117,7 +117,7 @@ def test_rule2_preprint_order_correct_in_real_repo():
 
 def test_rule2_preprint_order_violated_fails(tmp_path):
     """Rule 2: inject CONTAMINATED-COVERAGE-NOISE+PREPRINT into orchestrator — lint fails."""
-    orch = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
     content = orch.read_text()
     broken = content.replace(
         "## Cite-Time Provenance Finalizer — v3.9.0 extension",
@@ -143,7 +143,7 @@ def test_rule3_legacy_compat_preserved_in_real_repo():
 
 def test_rule3_legacy_compat_violated_fails(tmp_path):
     """Rule 3: change the legacy row's suffix to COVERAGE-NOISE — lint fails."""
-    orch = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
     content = orch.read_text()
     broken = content.replace(
         "| `semantic_scholar_unmatched` | `CONTAMINATED-UNMATCHED` (v3.7.3 legacy)",
@@ -159,7 +159,7 @@ def test_rule3_legacy_compat_violated_fails(tmp_path):
 
 def test_rule3_preprint_legacy_drift_fails(tmp_path):
     """Rule 3: drift preprint legacy row's suffix to CONTAMINATED-PREPRINT+COVERAGE-NOISE — lint fails."""
-    orch = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
     content = orch.read_text()
     broken = content.replace(
         "`CONTAMINATED-PREPRINT+UNMATCHED` (v3.7.3 legacy)",
@@ -175,7 +175,7 @@ def test_rule3_preprint_legacy_drift_fails(tmp_path):
 
 def test_rule3_missing_legacy_rows_fails(tmp_path):
     """Rule 3: delete BOTH legacy S2 rows from the table — lint must fail."""
-    orch = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
     content = orch.read_text()
     # Delete the bare legacy row.
     broken = content.replace(
@@ -211,7 +211,7 @@ def test_rule4_no_block_tokens_in_real_repo():
 
 def test_rule4_high_block_injection_fails(tmp_path):
     """Rule 4: inject `CONTAMINATED-HIGH-BLOCK` into v3.9.0 subsection — lint fails."""
-    orch = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
     content = orch.read_text()
     broken = content.replace(
         "## Cite-Time Provenance Finalizer — v3.9.0 extension",
@@ -234,7 +234,7 @@ def test_rule4_high_block_injection_fails(tmp_path):
 def test_delta1_missing_arxiv_allowlist_token_fails(tmp_path):
     """Drop CONTAMINATED-ARXIV-UNMATCHED from the formatter allowlist — set-equality
     (rule 5) must fail (the Delta-1 token is load-bearing, not incidentally present)."""
-    formatter = REPO_ROOT / "academic-paper/agents/formatter_agent.md"
+    formatter = REPO_ROOT / "skills/academic-paper/agents/formatter_agent.md"
     content = formatter.read_text()
     # Remove the bare ARXIV token from the allowlist sentence (keep the PREPRINT+ARXIV
     # composite so the failure is specifically the bare-token drop).
@@ -256,7 +256,7 @@ def test_delta1_missing_quadrangulation_matrix_row_fails(tmp_path):
     same token survives in surrounding prose. (A blanket str.replace of every
     occurrence would mask this — it strips the prose too, so a subsection-wide token
     scan would fail for the wrong reason rather than because the row is gone.)"""
-    orch = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
     content = orch.read_text()
     # Mistoken the suffix in the k=4 k_max=4 (non-preprint) table row only.
     matrix_cell = "| 4 | 4 | — | `CONTAMINATED-QUADRANGULATION-UNMATCHED`"
@@ -278,7 +278,7 @@ def test_delta1_token_in_prose_only_still_passes_is_not_contract(tmp_path):
     intact must still PASS — the prose is documentation, not the contract. This is
     the negative twin of the row-oracle test: it proves rule 1 keys off the matrix
     row, not subsection-wide presence (so prose edits don't cause false failures)."""
-    orch = REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
     content = orch.read_text()
     # The arxiv carve-out bullet starts with the bolded token; neutralise the bolded
     # prose mention without touching its `| 1 | 1 |` matrix row.
@@ -298,7 +298,7 @@ def test_delta1_arxiv_is_kmax1_carveout_documented():
     documented verbatim in the orchestrator subsection so a future edit cannot
     silently widen it (the resolved reading of the ambiguous 'single-index' phrase:
     single-index means k_max=1, not merely k=1). This pins the prompt contract."""
-    orch = (REPO_ROOT / "academic-pipeline/agents/pipeline_orchestrator_agent.md"
+    orch = (REPO_ROOT / "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md"
             ).read_text()
     # The disambiguating sentence must be present.
     assert "single-index" in orch and "k_max=1" in orch

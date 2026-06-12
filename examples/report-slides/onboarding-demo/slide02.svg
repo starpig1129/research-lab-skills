@@ -1,0 +1,44 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <!-- Top bar -->
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+
+  <!-- Slide title -->
+  <text x="60" y="70" font-size="32" font-weight="700" fill="#1e3a5f">The Problem — and the Solution</text>
+  <rect x="60" y="82" width="1080" height="1.5" fill="#e2e8f0"/>
+
+  <!-- LEFT column: WITHOUT -->
+  <rect x="60" y="105" width="500" height="510" rx="8" fill="#fff8f8" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="310" y="148" text-anchor="middle" font-size="20" font-weight="700" fill="#dc2626">Without Structure</text>
+  <rect x="80" y="158" width="460" height="1" fill="#fecaca"/>
+
+  <!-- Pain points -->
+  <text x="100" y="200" font-size="16" fill="#374151">✗  Scattered notes in random files and folders</text>
+  <text x="100" y="238" font-size="16" fill="#374151">✗  No link between experiments and git commits</text>
+  <text x="100" y="276" font-size="16" fill="#374151">✗  Can't recall what changed between runs</text>
+  <text x="100" y="314" font-size="16" fill="#374151">✗  Hard to share progress with advisors</text>
+  <text x="100" y="352" font-size="16" fill="#374151">✗  Rebuilding context from scratch every time</text>
+  <text x="100" y="390" font-size="16" fill="#374151">✗  No way to generate slides from logs</text>
+  <text x="100" y="428" font-size="16" fill="#374151">✗  Insights lost when teammates change</text>
+
+  <!-- RIGHT column: WITH -->
+  <rect x="640" y="105" width="500" height="510" rx="8" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="1.5"/>
+  <text x="890" y="148" text-anchor="middle" font-size="20" font-weight="700" fill="#059669">With research-lab-skills</text>
+  <rect x="660" y="158" width="460" height="1" fill="#a7f3d0"/>
+
+  <!-- Benefits -->
+  <text x="680" y="200" font-size="16" fill="#374151">✓  One command creates a structured .md entry</text>
+  <text x="680" y="238" font-size="16" fill="#374151">✓  Git HEAD auto-captured at every log write</text>
+  <text x="680" y="276" font-size="16" fill="#374151">✓  Experiment chain via follows: frontmatter</text>
+  <text x="680" y="314" font-size="16" fill="#374151">✓  INDEX.md rebuilt automatically — always fresh</text>
+  <text x="680" y="352" font-size="16" fill="#374151">✓  /report-slides turns logs into a slide deck</text>
+  <text x="680" y="390" font-size="16" fill="#374151">✓  PPTX export with native editable shapes</text>
+  <text x="680" y="428" font-size="16" fill="#374151">✓  Works in Claude Code, Copilot CLI, Gemini CLI</text>
+
+  <!-- Center arrow -->
+  <text x="590" y="375" text-anchor="middle" font-size="36" fill="#1e3a5f">→</text>
+
+  <!-- Footer -->
+  <text x="600" y="655" text-anchor="middle" font-size="13" fill="#64748b">research-lab-skills · 2026-06-12</text>
+</svg>

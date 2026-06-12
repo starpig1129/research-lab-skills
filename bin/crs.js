@@ -9,7 +9,10 @@ const os   = require('os');
 
 const VERSION    = require('../package.json').version;
 const PKG_SKILLS = path.join(__dirname, '..', 'skills');
-const SKILLS     = ['research-log', 'report-slides'];
+
+const LAB_SKILLS = ['research-log', 'report-slides', 'research-mode'];
+const ARS_SKILLS = ['deep-research', 'academic-paper', 'academic-paper-reviewer', 'academic-pipeline'];
+const ALL_SKILLS = [...LAB_SKILLS, ...ARS_SKILLS];
 
 // AI target → skills root path
 const AI_PATHS = {
@@ -37,9 +40,13 @@ function die(msg)  { process.stderr.write('Error: ' + msg + '\n'); process.exit(
 
 function parseArgs(args) {
   const flags = {
-    global: args.includes('--global'),
-    ai:     'claude',
+    global:  args.includes('--global'),
+    labOnly: args.includes('--lab-only'),
+    arsOnly: args.includes('--ars-only'),
+    ai:      'claude',
   };
+  if (flags.labOnly && flags.arsOnly) die('--lab-only and --ars-only cannot be combined.');
+
   const aiFlag = args.find(a => a.startsWith('--ai=') || a === '--ai');
   if (aiFlag) {
     const val = aiFlag.includes('=')
@@ -50,9 +57,14 @@ function parseArgs(args) {
   return flags;
 }
 
+function selectSkills(flags) {
+  if (flags.labOnly) return LAB_SKILLS;
+  if (flags.arsOnly) return ARS_SKILLS;
+  return ALL_SKILLS;
+}
+
 function resolveTarget(flags) {
   if (!flags.global) {
-    // project-local
     const localBase = flags.ai === 'claude'
       ? path.join(process.cwd(), '.claude', 'skills')
       : path.join(process.cwd(), `.${flags.ai}`, 'skills');
@@ -68,13 +80,15 @@ function resolveTarget(flags) {
 
 function cmdInit(args) {
   const flags  = parseArgs(args);
+  const skills = selectSkills(flags);
   const target = resolveTarget(flags);
+  const scope  = flags.labOnly ? 'lab' : flags.arsOnly ? 'ars' : 'all';
 
-  log(`Installing claude-research-skills v${VERSION}`);
+  log(`Installing research-lab-skills v${VERSION} (${scope})`);
   log(`Target (${flags.global ? 'global' : 'project'}): ${target}`);
   log('');
 
-  for (const skill of SKILLS) {
+  for (const skill of skills) {
     const src  = path.join(PKG_SKILLS, skill);
     const dest = path.join(target, skill);
     if (!fs.existsSync(src)) { warn(`Skill source not found: ${src} (skipped)`); continue; }
@@ -83,21 +97,19 @@ function cmdInit(args) {
   }
 
   log('');
-  log('Done. Restart Claude Code — /research-log and /report-slides will be available.');
-
-  if (flags.ai === 'claude') {
-    log('');
-    log('First time in a project? Run:');
-    log(`  bash "$(find ~/.claude -path "*/report-slides/scripts/setup.sh" | head -1)"`);
-  }
+  log(`Installed ${skills.length} skill(s) to: ${target}`);
+  log('Restart Claude Code to activate.');
+  if (!flags.arsOnly)  log('  Lab:      /research-log  /report-slides  /mode');
+  if (!flags.labOnly)  log('  Academic: /ars-full  /ars-plan  /ars-lit-review  /ars-review  and more');
 }
 
 function cmdUninstall(args) {
   const flags  = parseArgs(args);
+  const skills = selectSkills(flags);
   const target = resolveTarget(flags);
 
   log(`Uninstalling from: ${target}`);
-  for (const skill of SKILLS) {
+  for (const skill of skills) {
     const dest = path.join(target, skill);
     if (fs.existsSync(dest)) {
       fs.rmSync(dest, { recursive: true, force: true });
@@ -116,35 +128,35 @@ function cmdUpdate(args) {
 }
 
 function cmdVersions() {
-  log(`claude-research-skills v${VERSION}`);
-  log('To update: npm update -g claude-research-skills');
+  log(`research-lab-skills v${VERSION}`);
+  log('To update: npm update -g research-lab-skills');
 }
 
 function cmdHelp() {
   log(`
-claude-research-skills (crs) v${VERSION}
+research-lab-skills (crs) v${VERSION}
 
-Skills for AI coding assistants:
-  /research-log  — structured experiment journal
-  /report-slides — generate SVG + PPTX slide decks from journal entries
+7 Claude Code skills for research teams:
+  Lab:      /research-log  /report-slides  /mode
+  Academic: /ars-full  /ars-plan  /ars-lit-review  /ars-review  and more
 
 Usage:
-  crs init                     Install to .claude/skills/ (project-local)
-  crs init --global            Install to ~/.claude/skills/ (all projects)
-  crs init --ai cursor         Install for Cursor (project-local)
-  crs init --ai claude --global  Install globally for Claude Code
+  crs init                        Install all 7 skills (project-local)
+  crs init --global               Install all 7 skills globally
+  crs init --lab-only             Install only lab skills (research-log, report-slides, research-mode)
+  crs init --ars-only             Install only ARS skills (deep-research, academic-paper, ...)
+  crs init --ai cursor            Install for Cursor (project-local)
+  crs init --ai claude --global   Install globally for Claude Code
 
-  crs update [--global]        Reinstall from this package version
-  crs uninstall [--global]     Remove installed skills
+  crs update [--global] [--lab-only|--ars-only]    Reinstall from this package version
+  crs uninstall [--global] [--lab-only|--ars-only]  Remove installed skills
 
-  crs versions                 Show installed version
-  crs help                     Show this help
+  crs versions                    Show installed version
+  crs help                        Show this help
 
 Supported AI targets: ${Object.keys(AI_PATHS).join(', ')}
 
 After install, restart your AI assistant.
-Project setup (copies helper scripts):
-  bash "$(find ~/.claude -path "*/report-slides/scripts/setup.sh" | head -1)"
 `.trim());
 }
 

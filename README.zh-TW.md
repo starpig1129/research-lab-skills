@@ -1,6 +1,6 @@
 # research-lab-skills
 
-[![Version](https://img.shields.io/badge/version-v3.11.1-blue)](https://github.com/starpig1129/research-lab-skills/releases/tag/v3.11.1)
+[![Version](https://img.shields.io/badge/version-v1.0.0-blue)](https://github.com/starpig1129/research-lab-skills/releases/tag/v1.0.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![GitHub](https://img.shields.io/badge/GitHub-starpig1129-black?logo=github)](https://github.com/starpig1129/research-lab-skills)
 

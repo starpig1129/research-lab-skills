@@ -75,7 +75,6 @@ def check_claude_md() -> None:
     rel_path = ".claude/CLAUDE.md"
     expect_contains(rel_path, "integrity check (Stage 2.5)")
     expect_contains(rel_path, "final integrity check (Stage 4.5)")
-    expect_contains(rel_path, "**Suite version**: 3.11.1")
     for forbidden in (
         "6th independent reviewer",
         "Peer review gains 6th independent reviewer",
@@ -208,176 +207,53 @@ def check_readme_sections() -> None:
     rel_path = "README.md"
     text = read(rel_path)
 
-    expect_contains(rel_path, "version-v3.11.1-blue")
-    expect_contains(rel_path, "releases/tag/v3.11.1")
-    expect_contains(rel_path, "### v3.11.1 (2026-06-06)")
-    expect_contains(rel_path, "### v3.11.0 (2026-06-04)")
-    expect_contains(rel_path, "### v3.10.0 (2026-06-01)")
-    expect_contains(rel_path, "### v3.9.4.2 (2026-05-19)")
-    expect_contains(rel_path, "### v3.9.4.1 (2026-05-19)")
-    expect_contains(rel_path, "### v3.9.4 (2026-05-18)")
-    expect_contains(rel_path, "### v3.9.1 (2026-05-18)")
-    expect_contains(rel_path, "### v3.9.0 (2026-05-17)")
-    expect_contains(rel_path, "### v3.8.0 (2026-05-16)")
-    expect_contains(rel_path, "### v3.7.0 (2026-05-05)")
-    expect_contains(rel_path, "### v3.6.8 (2026-05-03)")
-    expect_contains(rel_path, "### v3.6.7 (2026-04-30)")
-    expect_contains(rel_path, "### v3.6.5 (2026-04-27)")
-    expect_contains(rel_path, "### v3.6.4 (2026-04-25)")
-    expect_contains(rel_path, "### v3.6.3 (2026-04-23)")
-    expect_contains(rel_path, "### v3.6.2 (2026-04-23)")
-    expect_contains(rel_path, "### v3.5.1 (2026-04-22)")
-    expect_contains(rel_path, "### v3.5.0 (2026-04-21)")
-    expect_contains(rel_path, "### v3.4.0 (2026-04-20)")
-    expect_contains(rel_path, "### v3.3.6 (2026-04-15)")
-    expect_contains(rel_path, "### v3.3.5 (2026-04-15)")
-    expect_contains(rel_path, "### v3.3.4 (2026-04-15)")
-    expect_contains(rel_path, "### v3.3.3 (2026-04-15)")
-    expect_contains(rel_path, "### v3.3.2 (2026-04-15)")
-    for heading in (
-        "#### Deep Research (7 modes)",
-        "#### Academic Paper (10 modes)",
-        "#### Academic Paper Reviewer (6 modes)",
-        "### Deep Research (v2.9.4)",
-        "### Academic Paper (v3.2.0)",
-        "### Academic Paper Reviewer (v1.10.0)",
-        "### Academic Pipeline (v3.11.1)",
-    ):
-        if heading not in text:
-            fail(f"{rel_path}: missing heading {heading!r}")
+    expect_contains(rel_path, "version-v1.0.0-blue")
+    expect_contains(rel_path, "releases/tag/v1.0.0")
 
-    paper_usage = extract_section(
-        text, "#### Academic Paper (10 modes)", "#### Academic Paper Reviewer (6 modes)"
-    )
-    for expected in ("outline-only mode", "abstract-only mode", "disclosure mode"):
-        if expected not in paper_usage:
-            fail(f"{rel_path}: Academic Paper usage section missing {expected!r}")
-    for forbidden in ("bilingual-abstract mode", "writing-polish mode", "full-auto mode"):
-        if forbidden in paper_usage:
-            fail(f"{rel_path}: Academic Paper usage section still contains {forbidden!r}")
+    if "## Academic Research Skills" not in text:
+        fail(f"{rel_path}: missing heading '## Academic Research Skills'")
 
-    deep_usage = extract_section(
-        text, "#### Deep Research (7 modes)", "#### Academic Paper (10 modes)"
-    )
-    if "review mode" not in deep_usage:
-        fail(f"{rel_path}: Deep Research usage section missing 'review mode'")
-    if "paper-review" in deep_usage:
-        fail(f"{rel_path}: Deep Research usage section still contains 'paper-review'")
-
-    reviewer_usage = extract_section(
-        text, "#### Academic Paper Reviewer (6 modes)", "#### Academic Pipeline (Orchestrator)"
-    )
-    if "calibration mode" not in reviewer_usage:
-        fail(f"{rel_path}: reviewer usage section missing 'calibration mode'")
+    # Pipeline integrity gates must remain visible in the full-pipeline diagram.
+    expect_contains(rel_path, "integrity check (Stage 2.5)")
+    expect_contains(rel_path, "final integrity check (Stage 4.5)")
+    expect_contains(rel_path, "calibration mode")
 
     for forbidden in (
         "6th independent reviewer",
         "Peer review gains 6th independent reviewer",
     ):
         expect_absent(rel_path, forbidden)
-    # DOCX contract lines moved to docs/SETUP.md in v3.3.6; checked there instead.
-    expect_contains(rel_path, "DOCX (via Pandoc when available)")
     check_relative_markdown_links(rel_path)
 
 
 def check_readme_ja_sections() -> None:
-    """Symmetric coverage of README.ja-JP.md added in PR #161 (closes #170).
-
-    Pre-#170 the lint silently skipped this file. ja-JP uses ASCII parentheses
-    for release blocks (matching the English README), full-width parentheses
-    for mode and skill-detail headings, and "モード" instead of "mode".
-    """
     rel_path = "README.ja-JP.md"
     text = read(rel_path)
 
-    expect_contains(rel_path, "version-v3.11.1-blue")
-    expect_contains(rel_path, "releases/tag/v3.11.1")
-    expect_contains(rel_path, "### v3.11.1 (2026-06-06)")
-    expect_contains(rel_path, "### v3.11.0 (2026-06-04)")
-    expect_contains(rel_path, "### v3.10.0 (2026-06-01)")
-    expect_contains(rel_path, "### v3.9.4.2 (2026-05-19)")
-    expect_contains(rel_path, "### v3.9.4.1 (2026-05-19)")
-    expect_contains(rel_path, "### v3.9.4 (2026-05-18)")
-    expect_contains(rel_path, "### v3.9.1 (2026-05-18)")
-    expect_contains(rel_path, "### v3.9.0 (2026-05-17)")
-    expect_contains(rel_path, "### v3.8.0 (2026-05-16)")
-    expect_contains(rel_path, "### v3.7.0 (2026-05-05)")
-    expect_contains(rel_path, "### v3.6.8 (2026-05-03)")
-    expect_contains(rel_path, "### v3.6.7 (2026-04-30)")
-    expect_contains(rel_path, "### v3.6.5 (2026-04-27)")
-    expect_contains(rel_path, "### v3.6.4 (2026-04-25)")
-    expect_contains(rel_path, "### v3.6.3 (2026-04-23)")
-    expect_contains(rel_path, "### v3.6.2 (2026-04-23)")
-    expect_contains(rel_path, "### v3.5.1 (2026-04-22)")
-    expect_contains(rel_path, "### v3.5.0 (2026-04-21)")
-    expect_contains(rel_path, "### v3.4.0 (2026-04-20)")
-    expect_contains(rel_path, "### v3.3.6 (2026-04-15)")
-    expect_contains(rel_path, "### v3.3.5 (2026-04-15)")
-    expect_contains(rel_path, "### v3.3.4 (2026-04-15)")
-    expect_contains(rel_path, "### v3.3.3 (2026-04-15)")
-    expect_contains(rel_path, "### v3.3.2 (2026-04-15)")
-    for heading in (
-        "#### Deep Research（7 モード）",
-        "#### Academic Paper（10 モード）",
-        "#### Academic Paper Reviewer（6 モード）",
-        "#### Academic Pipeline（オーケストレーター）",
-        "### Deep Research（v2.9.4）",
-        "### Academic Paper（v3.2.0）",
-        "### Academic Paper Reviewer（v1.10.0）",
-        "### Academic Pipeline（v3.11.1）",
-    ):
-        if heading not in text:
-            fail(f"{rel_path}: missing heading {heading!r}")
+    expect_contains(rel_path, "version-v1.0.0-blue")
+    expect_contains(rel_path, "releases/tag/v1.0.0")
+
+    if "## 学術研究スキル（ARS）" not in text:
+        fail(f"{rel_path}: missing heading '## 学術研究スキル（ARS）'")
+
+    expect_contains(rel_path, "整合性ゲート")
 
     for forbidden in (
         "6th independent reviewer",
         "Peer review gains 6th independent reviewer",
     ):
         expect_absent(rel_path, forbidden)
-
-    # Mode-section content guards (e.g. `outline-only モード` inside the
-    # Academic Paper usage block) are deliberately not enforced here; the
-    # zh-TW checker uses `extract_section` for that and #171's schema-driven
-    # refactor will fold the three locales together. Adding the extract_section
-    # mirror now would be discarded by that refactor.
-    expect_contains(rel_path, "DOCX（利用可能な場合 Pandoc 経由）")
     check_relative_markdown_links(rel_path)
 
 
 ZH_README_CONFIGS = (
     {
         "rel_path": "README.zh-TW.md",
-        "headings": (
-            "#### Deep Research（深度研究，7 種模式）",
-            "#### Academic Paper（學術論文撰寫，10 種模式）",
-            "#### Academic Paper Reviewer（論文審查，6 種模式）",
-            "### Deep Research (v2.9.4)",
-            "### Academic Paper (v3.2.0)",
-            "### Academic Paper Reviewer (v1.10.0)",
-            "### Academic Pipeline (v3.11.1)",
-        ),
-        "paper_start": "#### Academic Paper（學術論文撰寫，10 種模式）",
-        "reviewer_start": "#### Academic Paper Reviewer（論文審查，6 種模式）",
-        "pipeline_start": "#### Academic Pipeline（全流程調度器）",
-        "deep_start": "#### Deep Research（深度研究，7 種模式）",
-        "docx_line": "DOCX（Pandoc 可用時）",
+        "ars_heading": "## 學術研究技能（ARS）",
     },
     {
         "rel_path": "README.zh-CN.md",
-        "headings": (
-            "#### Deep Research（深度研究，7 种模式）",
-            "#### Academic Paper（学术论文撰写，10 种模式）",
-            "#### Academic Paper Reviewer（论文审查，6 种模式）",
-            "### Deep Research (v2.9.4)",
-            "### Academic Paper (v3.2.0)",
-            "### Academic Paper Reviewer (v1.10.0)",
-            "### Academic Pipeline (v3.11.1)",
-        ),
-        "paper_start": "#### Academic Paper（学术论文撰写，10 种模式）",
-        "reviewer_start": "#### Academic Paper Reviewer（论文审查，6 种模式）",
-        "pipeline_start": "#### Academic Pipeline（全流程调度器）",
-        "deep_start": "#### Deep Research（深度研究，7 种模式）",
-        "docx_line": "DOCX（Pandoc 可用时）",
+        "ars_heading": "## 学术研究技能（ARS）",
     },
 )
 
@@ -387,73 +263,20 @@ def check_readme_zh_sections() -> None:
         rel_path = config["rel_path"]
         text = read(rel_path)
 
-        expect_contains(rel_path, "version-v3.11.1-blue")
-        expect_contains(rel_path, "releases/tag/v3.11.1")
-        expect_contains(rel_path, "### v3.11.1（2026-06-06）")
-        expect_contains(rel_path, "### v3.11.0（2026-06-04）")
-        expect_contains(rel_path, "### v3.10.0（2026-06-01）")
-        expect_contains(rel_path, "### v3.9.4.2（2026-05-19）")
-        expect_contains(rel_path, "### v3.9.4.1（2026-05-19）")
-        expect_contains(rel_path, "### v3.9.4（2026-05-18）")
-        expect_contains(rel_path, "### v3.9.1（2026-05-18）")
-        expect_contains(rel_path, "### v3.9.0（2026-05-17）")
-        expect_contains(rel_path, "### v3.8.0（2026-05-16）")
-        expect_contains(rel_path, "### v3.7.0（2026-05-05）")
-        expect_contains(rel_path, "### v3.6.8（2026-05-03）")
-        expect_contains(rel_path, "### v3.6.7（2026-04-30）")
-        expect_contains(rel_path, "### v3.6.5（2026-04-27）")
-        expect_contains(rel_path, "### v3.6.4（2026-04-25）")
-        expect_contains(rel_path, "### v3.6.3（2026-04-23）")
-        expect_contains(rel_path, "### v3.6.2（2026-04-23）")
-        expect_contains(rel_path, "### v3.5.1（2026-04-22）")
-        expect_contains(rel_path, "### v3.5.0（2026-04-21）")
-        expect_contains(rel_path, "### v3.4.0（2026-04-20）")
-        expect_contains(rel_path, "### v3.3.6 (2026-04-15)")
-        expect_contains(rel_path, "### v3.3.5 (2026-04-15)")
-        expect_contains(rel_path, "### v3.3.4 (2026-04-15)")
-        expect_contains(rel_path, "### v3.3.3 (2026-04-15)")
-        expect_contains(rel_path, "### v3.3.2 (2026-04-15)")
-        for heading in config["headings"]:
-            if heading not in text:
-                fail(f"{rel_path}: missing heading {heading!r}")
+        expect_contains(rel_path, "version-v1.0.0-blue")
+        expect_contains(rel_path, "releases/tag/v1.0.0")
 
-        paper_usage = extract_section(
-            text,
-            config["paper_start"],
-            config["reviewer_start"],
-        )
-        for expected in ("outline-only mode", "abstract-only mode", "disclosure mode"):
-            if expected not in paper_usage:
-                fail(f"{rel_path}: Academic Paper usage section missing {expected!r}")
-        for forbidden in ("bilingual-abstract mode", "writing-polish mode", "full-auto mode"):
-            if forbidden in paper_usage:
-                fail(f"{rel_path}: Academic Paper usage section still contains {forbidden!r}")
+        if config["ars_heading"] not in text:
+            fail(f"{rel_path}: missing heading {config['ars_heading']!r}")
 
-        deep_usage = extract_section(
-            text,
-            config["deep_start"],
-            config["paper_start"],
-        )
-        if "review mode" not in deep_usage:
-            fail(f"{rel_path}: Deep Research usage section missing 'review mode'")
-        if "paper-review" in deep_usage:
-            fail(f"{rel_path}: Deep Research usage section still contains 'paper-review'")
-
-        reviewer_usage = extract_section(
-            text,
-            config["reviewer_start"],
-            config["pipeline_start"],
-        )
-        if "calibration mode" not in reviewer_usage:
-            fail(f"{rel_path}: reviewer usage section missing 'calibration mode'")
+        # Pipeline integrity gate must remain visible.
+        expect_contains(rel_path, "Stage 2.5")
 
         for forbidden in (
             "6th independent reviewer",
             "Peer review gains 6th independent reviewer",
         ):
             expect_absent(rel_path, forbidden)
-        # DOCX contract lines moved to setup docs in v3.3.6; checked there instead.
-        expect_contains(rel_path, config["docx_line"])
         check_relative_markdown_links(rel_path)
 
 
@@ -531,7 +354,9 @@ def main() -> int:
     check_claude_md()
     check_reviewer_version_block()
     check_pipeline_docs()
-    check_architecture_component_version()
+    # check_architecture_component_version() skipped: in the merged repo,
+    # academic-pipeline retains its own ARS version (3.11.1) independent of
+    # the suite version (1.0.0), so invariant-4 does not apply here.
     check_readme_sections()
     check_readme_zh_sections()
     check_readme_ja_sections()

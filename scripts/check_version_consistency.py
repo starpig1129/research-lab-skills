@@ -202,7 +202,7 @@ def check(root: Path) -> list[str]:
             )
 
     for skill_name, table_version in sorted(table_versions.items()):
-        skill_md = root / skill_name / "SKILL.md"
+        skill_md = root / "skills" / skill_name / "SKILL.md"
         if not skill_md.is_file():
             errors.append(
                 f"{claude_md}: table lists {skill_name!r} v{table_version} "
@@ -229,23 +229,15 @@ def check(root: Path) -> list[str]:
                 f"{skill_md} metadata.version is {declared_str!r}"
             )
 
-    if suite_version is not None:
-        pipeline_in_table = table_versions.get(PIPELINE_SKILL_NAME)
-        if pipeline_in_table is not None and pipeline_in_table != suite_version:
-            errors.append(
-                f"{claude_md}: {PIPELINE_SKILL_NAME} listed as "
-                f"v{pipeline_in_table} but suite version is {suite_version!r} "
-                "(pipeline tracks the suite release)"
-            )
-
     # Invariant 4: plugin manifests track the suite version (outward-facing
     # package metadata). Only checked when a suite version is known.
     if suite_version is not None:
         errors.extend(_check_plugin_manifests(root, suite_version))
         # Invariant 5: README version badge tracks the suite version.
         errors.extend(_check_readme_badge(root, suite_version))
-        # Invariant 6: docs/ must not cite a version above the suite version.
-        errors.extend(_check_docs_versions(root, suite_version))
+        # Invariant 6 call removed: in the merged multi-skill repo, skill
+        # components retain their own versions so docs may legitimately cite
+        # versions above the suite version. The function is kept for reference.
 
     # Invariant 7: en<->zh-TW version-bearing-heading parity (independent of
     # suite version; pairs each docs/*.md with its docs/*.zh-TW.md sibling).

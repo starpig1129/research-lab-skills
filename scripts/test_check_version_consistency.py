@@ -17,7 +17,7 @@ def _run(root: Path) -> subprocess.CompletedProcess:
 
 
 def _write_skill(root: Path, name: str, version: str) -> None:
-    skill_dir = root / name
+    skill_dir = root / "skills" / name
     skill_dir.mkdir(parents=True, exist_ok=True)
     (skill_dir / "SKILL.md").write_text(
         textwrap.dedent(
@@ -260,13 +260,17 @@ class TestVersionConsistency(unittest.TestCase):
             self.assertIn("3.7.0", result.stdout)
 
     def test_pipeline_version_vs_suite_drift_fails(self) -> None:
-        """academic-pipeline version in table must equal suite version."""
+        """Invariant 3 removed: pipeline version is allowed to differ from suite version.
+
+        In the merged multi-skill repo the 4 ARS skill components retain their
+        own independent versions, so academic-pipeline no longer tracks the suite
+        release. A table row and SKILL.md that agree with each other but differ
+        from the suite version must now pass (returncode 0).
+        """
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _write_aligned_fixture(root)
             # Drop pipeline to 3.4.0 in both table and SKILL.md, keep suite at 3.5.0.
-            # This isolates invariant 3 (pipeline tracks suite) from invariant 1
-            # (SKILL.md == table).
             _write_skill(root, "academic-pipeline", "3.4.0")
             _write_claude_md(
                 root,
@@ -279,14 +283,13 @@ class TestVersionConsistency(unittest.TestCase):
                 ],
             )
             result = _run(root)
-            self.assertEqual(result.returncode, 1)
-            self.assertIn("academic-pipeline", result.stdout)
+            self.assertEqual(result.returncode, 0)
 
     def test_skill_missing_frontmatter_fails(self) -> None:
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _write_aligned_fixture(root)
-            (root / "deep-research" / "SKILL.md").write_text(
+            (root / "skills" / "deep-research" / "SKILL.md").write_text(
                 "# deep-research\n\nNo frontmatter here.\n",
                 encoding="utf-8",
             )
@@ -299,7 +302,7 @@ class TestVersionConsistency(unittest.TestCase):
             root = Path(tmp)
             _write_aligned_fixture(root)
             import shutil
-            shutil.rmtree(root / "academic-paper-reviewer")
+            shutil.rmtree(root / "skills" / "academic-paper-reviewer")
             result = _run(root)
             self.assertEqual(result.returncode, 1)
             self.assertIn("academic-paper-reviewer", result.stdout)
@@ -564,7 +567,12 @@ class TestVersionConsistency(unittest.TestCase):
 
     # ── Invariant 6: docs/ must not cite a version above the suite version ──
     def test_docs_future_version_fails(self) -> None:
-        """docs/ references v9.9.9 (above suite 3.5.0) — must fail."""
+        """Invariant 6 call removed: docs/ citing v9.9.9 (above suite 3.5.0) no longer fails.
+
+        _check_docs_versions is no longer invoked in the merged multi-skill repo
+        because skill components retain independent versions. The fixture must
+        now pass (returncode 0).
+        """
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             _write_aligned_fixture(root)
@@ -572,11 +580,10 @@ class TestVersionConsistency(unittest.TestCase):
                 root,
                 en_h2=["Token usage", "Corpus ingestion (v3.4.0+)"],
                 zh_h2=["Token 用量", "語料庫導入 (v3.4.0+)"],
-                extra_version_strings=["9.9.9"],  # future / nonexistent
+                extra_version_strings=["9.9.9"],  # above suite — now allowed
             )
             result = _run(root)
-            self.assertEqual(result.returncode, 1, msg=f"stdout={result.stdout!r}")
-            self.assertIn("9.9.9", result.stdout)
+            self.assertEqual(result.returncode, 0, msg=f"stdout={result.stdout!r}")
 
     def test_docs_at_suite_version_passes_inv6(self) -> None:
         """A docs version string EQUAL to the suite version is allowed (<=)."""

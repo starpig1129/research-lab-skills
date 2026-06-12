@@ -247,7 +247,7 @@ This advisory never blocks lit-review output, never downgrades included sources,
 
 ## Reading `literature_corpus[]` from Material Passport (v3.6.5+)
 
-**Backpointer**: see [`academic-pipeline/references/literature_corpus_consumers.md`](../../academic-pipeline/references/literature_corpus_consumers.md) for the full consumer protocol, BAD/GOOD examples, and shared template.
+**Backpointer**: see [`skills/academic-pipeline/references/literature_corpus_consumers.md`](../../skills/academic-pipeline/references/literature_corpus_consumers.md) for the full consumer protocol, BAD/GOOD examples, and shared template.
 
 When the input Material Passport carries a non-empty `literature_corpus[]`, this agent enters the **corpus-first, search-fills-gap** flow. The flow has five steps and four Iron Rules; the PRE-SCREENED block makes corpus utilisation reproducible. The merged `final_included` set feeds the Annotated Bibliography, Literature Matrix, Research Gap Identification, and Recommended Sources by Paper Section sections above without altering their formats.
 

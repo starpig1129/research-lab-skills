@@ -40,7 +40,7 @@ import yaml
 REPO = Path(__file__).resolve().parent.parent
 SEED = REPO / "evals/calibration/commitment_ledger_seed.yaml"
 SCHEMA = REPO / "shared/handoff_schemas.md"
-RE_REVIEW = REPO / "academic-paper-reviewer/references/re_review_mode_protocol.md"
+RE_REVIEW = REPO / "skills/academic-paper-reviewer/references/re_review_mode_protocol.md"
 
 EXTRACTION_FIELDS = ("commitment_text", "commitment_type", "required_evidence_type")
 STATUS_ENUM = {"fulfilled", "partial", "not-fulfilled", "explicitly-rejected-with-rationale"}

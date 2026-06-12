@@ -202,9 +202,9 @@ class WriteScopeGuardTest(unittest.TestCase):
     def test_infra_agent_frontmatter_denied(self):
         # Agent definition files carry the agent_type==name binding; writing them would
         # let an agent rename itself out of the manifest and fail the guard open.
-        os.makedirs(os.path.join(self.ws, "deep-research/agents"), exist_ok=True)
+        os.makedirs(os.path.join(self.ws, "skills/deep-research/agents"), exist_ok=True)
         p = payload("Edit",
-                    {"file_path": os.path.join(self.ws, "deep-research/agents/bibliography_agent.md"),
+                    {"file_path": os.path.join(self.ws, "skills/deep-research/agents/bibliography_agent.md"),
                      "old_string": "a", "new_string": "b"},
                     cwd=self.ws, agent_type="broad_test_agent")
         self.assertEqual(self.decide(p)["decision"], "deny")
@@ -308,7 +308,7 @@ class GlobMatchBoundaryTest(unittest.TestCase):
         ("scripts/ars_write_scope_guard.py", ["**/ars_write_scope_guard.py"]),  # subdir
         ("a/b/c/ars_write_scope_guard.py", ["**/ars_write_scope_guard.py"]),    # deep subdir
         ("ars_write_scope_guard.py", ["ars_write_scope_guard.py"]),             # root via bare
-        ("deep-research/agents/bibliography_agent.md", ["deep-research/agents/*.md"]),
+        ("skills/deep-research/agents/bibliography_agent.md", ["skills/deep-research/agents/*.md"]),
     ]
     NEGATIVE = [
         ("phase3_analysis/x.md", ["phase2_*/**"]),                # wrong phase number

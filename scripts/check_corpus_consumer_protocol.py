@@ -24,7 +24,7 @@ HANDOFF_SCHEMAS = REPO_ROOT / "shared" / "handoff_schemas.md"
 STUB_MARKER = "<!-- LINT_STUB: skip_cross_check -->"
 STUB_STATUS_LINE = "**Status:** Stub — implementation in PR-B (v3.6.5)"
 DEFERRED_CAVEAT = "Consumer-side integration deferred to v3.6.5+"
-REF_DOC_BACKPOINTER = "academic-pipeline/references/literature_corpus_consumers.md"
+REF_DOC_BACKPOINTER = "skills/academic-pipeline/references/literature_corpus_consumers.md"
 
 # Canonical (agent_basename, agent_path) tuples per release state. L8
 # compares the full tuple set, not just basenames, so a future manifest
@@ -33,10 +33,10 @@ REF_DOC_BACKPOINTER = "academic-pipeline/references/literature_corpus_consumers.
 # language is "supported_consumers[] MUST exactly match" — we honour
 # that on (basename, path), with extra defence against duplicate
 # basename entries.
-_BIBLIO_ENTRY = ("bibliography_agent", "deep-research/agents/bibliography_agent.md")
+_BIBLIO_ENTRY = ("bibliography_agent", "skills/deep-research/agents/bibliography_agent.md")
 _STRAT_ENTRY = (
     "literature_strategist_agent",
-    "academic-paper/agents/literature_strategist_agent.md",
+    "skills/academic-paper/agents/literature_strategist_agent.md",
 )
 PR_A_TUPLES = frozenset({_BIBLIO_ENTRY})
 PR_B_TUPLES = frozenset({_BIBLIO_ENTRY, _STRAT_ENTRY})

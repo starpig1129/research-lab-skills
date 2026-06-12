@@ -47,8 +47,8 @@ AUTHORITATIVE_REL = "shared/ground_truth_isolation_pattern.md"
 
 # Agents that must inline the principle verbatim + carry a backpoint.
 HOTSPOT_AGENTS = (
-    "deep-research/agents/source_verification_agent.md",
-    "deep-research/agents/bibliography_agent.md",
+    "skills/deep-research/agents/source_verification_agent.md",
+    "skills/deep-research/agents/bibliography_agent.md",
 )
 
 MARKER = "instruction-data-boundary"

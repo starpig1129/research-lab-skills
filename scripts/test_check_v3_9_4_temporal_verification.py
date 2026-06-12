@@ -427,7 +427,7 @@ def test_lint_bibliography_agent_modified_fails(tmp_path, monkeypatch):
 
 
 def test_timeline_extraction_agent_has_phase_boundary_block():
-    agent_path = REPO_ROOT / "deep-research/agents/timeline_extraction_agent.md"
+    agent_path = REPO_ROOT / "skills/deep-research/agents/timeline_extraction_agent.md"
     assert agent_path.exists(), "timeline_extraction_agent.md not created"
     content = agent_path.read_text()
     # 4 load-bearing keywords from canonical v3.9.4 boundary block
@@ -440,7 +440,7 @@ def test_timeline_extraction_agent_has_phase_boundary_block():
 
 
 def test_timeline_extraction_agent_lists_sidecar_deliverables():
-    agent_path = REPO_ROOT / "deep-research/agents/timeline_extraction_agent.md"
+    agent_path = REPO_ROOT / "skills/deep-research/agents/timeline_extraction_agent.md"
     content = agent_path.read_text()
     assert "timeline.yaml" in content
     assert "citation_provenance.yaml" in content
@@ -456,7 +456,7 @@ M3_KEY_PHRASES = [
 
 
 def test_m3_iron_rule_present_in_report_compiler():
-    path = REPO_ROOT / "deep-research/agents/report_compiler_agent.md"
+    path = REPO_ROOT / "skills/deep-research/agents/report_compiler_agent.md"
     content = path.read_text()
     assert M3_IRON_RULE_MARKER in content
     for phrase in M3_KEY_PHRASES:
@@ -464,7 +464,7 @@ def test_m3_iron_rule_present_in_report_compiler():
 
 
 def test_m3_iron_rule_present_in_draft_writer():
-    path = REPO_ROOT / "academic-paper/agents/draft_writer_agent.md"
+    path = REPO_ROOT / "skills/academic-paper/agents/draft_writer_agent.md"
     content = path.read_text()
     assert M3_IRON_RULE_MARKER in content
     for phrase in M3_KEY_PHRASES:

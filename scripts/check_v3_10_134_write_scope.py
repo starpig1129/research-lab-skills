@@ -48,51 +48,51 @@ MANIFEST_PATH = REPO_ROOT / "scripts" / "ars_phase_scope_manifest.json"
 # the symmetry of the two lints. If v3.9.x adds/removes a Bucket A agent, BOTH lists move.
 BUCKET_A_AGENT_FILES = [
     # deep-research/agents/ (10)
-    "deep-research/agents/research_question_agent.md",
-    "deep-research/agents/research_architect_agent.md",
-    "deep-research/agents/bibliography_agent.md",
-    "deep-research/agents/source_verification_agent.md",
-    "deep-research/agents/synthesis_agent.md",
-    "deep-research/agents/timeline_extraction_agent.md",
-    "deep-research/agents/editor_in_chief_agent.md",
-    "deep-research/agents/ethics_review_agent.md",
-    "deep-research/agents/risk_of_bias_agent.md",
-    "deep-research/agents/meta_analysis_agent.md",
+    "skills/deep-research/agents/research_question_agent.md",
+    "skills/deep-research/agents/research_architect_agent.md",
+    "skills/deep-research/agents/bibliography_agent.md",
+    "skills/deep-research/agents/source_verification_agent.md",
+    "skills/deep-research/agents/synthesis_agent.md",
+    "skills/deep-research/agents/timeline_extraction_agent.md",
+    "skills/deep-research/agents/editor_in_chief_agent.md",
+    "skills/deep-research/agents/ethics_review_agent.md",
+    "skills/deep-research/agents/risk_of_bias_agent.md",
+    "skills/deep-research/agents/meta_analysis_agent.md",
     # academic-paper/agents/ (7)
-    "academic-paper/agents/literature_strategist_agent.md",
-    "academic-paper/agents/structure_architect_agent.md",
-    "academic-paper/agents/draft_writer_agent.md",
-    "academic-paper/agents/citation_compliance_agent.md",
-    "academic-paper/agents/abstract_bilingual_agent.md",
-    "academic-paper/agents/peer_reviewer_agent.md",
-    "academic-paper/agents/formatter_agent.md",
+    "skills/academic-paper/agents/literature_strategist_agent.md",
+    "skills/academic-paper/agents/structure_architect_agent.md",
+    "skills/academic-paper/agents/draft_writer_agent.md",
+    "skills/academic-paper/agents/citation_compliance_agent.md",
+    "skills/academic-paper/agents/abstract_bilingual_agent.md",
+    "skills/academic-paper/agents/peer_reviewer_agent.md",
+    "skills/academic-paper/agents/formatter_agent.md",
     # academic-paper-reviewer/agents/ (6)
-    "academic-paper-reviewer/agents/eic_agent.md",
-    "academic-paper-reviewer/agents/methodology_reviewer_agent.md",
-    "academic-paper-reviewer/agents/domain_reviewer_agent.md",
-    "academic-paper-reviewer/agents/perspective_reviewer_agent.md",
-    "academic-paper-reviewer/agents/devils_advocate_reviewer_agent.md",
-    "academic-paper-reviewer/agents/editorial_synthesizer_agent.md",
+    "skills/academic-paper-reviewer/agents/eic_agent.md",
+    "skills/academic-paper-reviewer/agents/methodology_reviewer_agent.md",
+    "skills/academic-paper-reviewer/agents/domain_reviewer_agent.md",
+    "skills/academic-paper-reviewer/agents/perspective_reviewer_agent.md",
+    "skills/academic-paper-reviewer/agents/devils_advocate_reviewer_agent.md",
+    "skills/academic-paper-reviewer/agents/editorial_synthesizer_agent.md",
 ]
 
 # The 16 Bucket B/C/D agents that MUST NOT appear in the manifest.
 BUCKET_BCD_AGENT_FILES = [
-    "deep-research/agents/devils_advocate_agent.md",
-    "deep-research/agents/report_compiler_agent.md",
-    "academic-paper/agents/argument_builder_agent.md",
-    "academic-paper/agents/visualization_agent.md",
-    "deep-research/agents/socratic_mentor_agent.md",
-    "academic-paper/agents/socratic_mentor_agent.md",
-    "deep-research/agents/monitoring_agent.md",
-    "academic-paper/agents/revision_coach_agent.md",
-    "academic-pipeline/agents/integrity_verification_agent.md",
-    "academic-pipeline/agents/collaboration_depth_agent.md",
-    "academic-pipeline/agents/claim_ref_alignment_audit_agent.md",
+    "skills/deep-research/agents/devils_advocate_agent.md",
+    "skills/deep-research/agents/report_compiler_agent.md",
+    "skills/academic-paper/agents/argument_builder_agent.md",
+    "skills/academic-paper/agents/visualization_agent.md",
+    "skills/deep-research/agents/socratic_mentor_agent.md",
+    "skills/academic-paper/agents/socratic_mentor_agent.md",
+    "skills/deep-research/agents/monitoring_agent.md",
+    "skills/academic-paper/agents/revision_coach_agent.md",
+    "skills/academic-pipeline/agents/integrity_verification_agent.md",
+    "skills/academic-pipeline/agents/collaboration_depth_agent.md",
+    "skills/academic-pipeline/agents/claim_ref_alignment_audit_agent.md",
     "shared/agents/compliance_agent.md",
-    "academic-paper/agents/intake_agent.md",
-    "academic-pipeline/agents/pipeline_orchestrator_agent.md",
-    "academic-pipeline/agents/state_tracker_agent.md",
-    "academic-paper-reviewer/agents/field_analyst_agent.md",
+    "skills/academic-paper/agents/intake_agent.md",
+    "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md",
+    "skills/academic-pipeline/agents/state_tracker_agent.md",
+    "skills/academic-paper-reviewer/agents/field_analyst_agent.md",
 ]
 
 _NAME_RE = re.compile(r"^name:\s*(.+?)\s*$", re.MULTILINE)
@@ -168,7 +168,7 @@ def run_checks() -> list[str]:
     declared = set(BUCKET_A_AGENT_FILES) | set(BUCKET_BCD_AGENT_FILES)
     undeclared = []
     for md in REPO_ROOT.glob("**/agents/*.md"):
-        if ".git" in md.parts:
+        if ".git" in md.parts or ".claude" in md.parts:
             continue
         # .as_posix() so the comparison uses `/` on every OS (the rosters use `/`).
         rel = md.relative_to(REPO_ROOT).as_posix()

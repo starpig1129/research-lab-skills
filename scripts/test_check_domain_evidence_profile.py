@@ -17,10 +17,10 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 LINT = REPO_ROOT / "scripts" / "check_domain_evidence_profile.py"
 
 # The four files the lint reads.
-INTAKE = "academic-paper/agents/intake_agent.md"
-PROFILES = "academic-paper/references/domain_evidence_profiles.md"
-CONSUMER = "academic-paper/agents/literature_strategist_agent.md"
-SQH = "deep-research/references/source_quality_hierarchy.md"
+INTAKE = "skills/academic-paper/agents/intake_agent.md"
+PROFILES = "skills/academic-paper/references/domain_evidence_profiles.md"
+CONSUMER = "skills/academic-paper/agents/literature_strategist_agent.md"
+SQH = "skills/deep-research/references/source_quality_hierarchy.md"
 
 # Heading literals the C8/C10 fixtures mutate, kept here (not imported from the
 # lint module) deliberately: the suite drives the lint via subprocess, so it

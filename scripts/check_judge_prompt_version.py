@@ -40,7 +40,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-_AGENT_REL = "academic-pipeline/agents/claim_ref_alignment_audit_agent.md"
+_AGENT_REL = "skills/academic-pipeline/agents/claim_ref_alignment_audit_agent.md"
 _CONSTANTS_REL = "scripts/_claim_audit_constants.py"
 
 _SECTION_RE = re.compile(

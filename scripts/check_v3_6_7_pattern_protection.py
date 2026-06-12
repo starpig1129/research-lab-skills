@@ -854,9 +854,9 @@ INV2_PATTERNS = [
 # passes for all 4, INV-3 skips the new file because it is in
 # manifest_set, full pass) can no longer slip past lint.
 EXPECTED_MANIFEST_FILES = (
-    "deep-research/agents/synthesis_agent.md",
-    "deep-research/agents/research_architect_agent.md",
-    "deep-research/agents/report_compiler_agent.md",
+    "skills/deep-research/agents/synthesis_agent.md",
+    "skills/deep-research/agents/research_architect_agent.md",
+    "skills/deep-research/agents/report_compiler_agent.md",
 )
 
 

@@ -65,8 +65,8 @@ def test_cli_reports_metrics() -> None:
 
 def test_socratic_agents_define_wording_pattern_advisory() -> None:
     for rel_path in (
-        "deep-research/agents/socratic_mentor_agent.md",
-        "academic-paper/agents/socratic_mentor_agent.md",
+        "skills/deep-research/agents/socratic_mentor_agent.md",
+        "skills/academic-paper/agents/socratic_mentor_agent.md",
     ):
         text = _read(rel_path)
         assert "## Wording-Pattern Advisory (Kong #257)" in text
@@ -80,8 +80,8 @@ def test_socratic_agents_define_wording_pattern_advisory() -> None:
 
 def test_lit_review_agents_define_distributional_skew_advisory() -> None:
     for rel_path in (
-        "deep-research/agents/bibliography_agent.md",
-        "academic-paper/agents/literature_strategist_agent.md",
+        "skills/deep-research/agents/bibliography_agent.md",
+        "skills/academic-paper/agents/literature_strategist_agent.md",
     ):
         text = _read(rel_path)
         assert "Distributional Skew Advisory (Kong #257)" in text
@@ -96,7 +96,7 @@ def test_lit_review_agents_define_distributional_skew_advisory() -> None:
 
 
 def test_example_and_design_doc_cover_boundaries() -> None:
-    example = _read("deep-research/examples/idea_diversity_coverage_gap_advisory.md")
+    example = _read("skills/deep-research/examples/idea_diversity_coverage_gap_advisory.md")
     assert "WORDING_PATTERN_ADVISORY" in example
     assert "DISTRIBUTIONAL_SKEW_ADVISORY" in example
     assert "not say the idea is generic or bad" in example

@@ -110,7 +110,7 @@ class TestPassportResetContractLint(unittest.TestCase):
             # The protocol doc IS the reference — it does not need to link to itself.
             _write(
                 root,
-                "academic-pipeline/references/passport_as_reset_boundary.md",
+                "skills/academic-pipeline/references/passport_as_reset_boundary.md",
                 "# Passport as Reset Boundary\n\n"
                 "This protocol is activated by the ARS_PASSPORT_RESET env flag.\n",
             )
@@ -124,7 +124,7 @@ class TestPassportResetContractLint(unittest.TestCase):
                 root,
                 "shared/contracts/passport/reset_ledger_entry.schema.json",
                 '{"description": "Set ARS_PASSPORT_RESET=1; see '
-                'academic-pipeline/references/passport_as_reset_boundary.md for protocol."}\n',
+                'skills/academic-pipeline/references/passport_as_reset_boundary.md for protocol."}\n',
             )
             result = run_script(SCRIPT, "--root", str(root))
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)

@@ -82,7 +82,7 @@ class CheckV392PhaseBoundaryTests(unittest.TestCase):
         spec.loader.exec_module(module)
 
         self.assertIn(
-            "deep-research/agents/timeline_extraction_agent.md",
+            "skills/deep-research/agents/timeline_extraction_agent.md",
             module.BUCKET_A_AGENTS,
             "timeline_extraction_agent.md must be in BUCKET_A_AGENTS (v3.9.4 Phase 2 sibling)"
         )

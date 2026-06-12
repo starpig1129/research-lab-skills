@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "experiment": "demo",
+    "date": "2026-06-12",
+    "footer": "research-lab-skills · 2026-06-12"
+  },
+  "slides": [
+    {
+      "index": 4,
+      "type": "bullet_list",
+      "title": "What Gets Captured Automatically",
+      "bullets": [
+        "Git HEAD commit SHA — every entry is tied to an exact point in history",
+        "YAML frontmatter — date, tags, mode, and experiment chain (follows:)",
+        "Structured sections — Goal, Changes, Setup, Results, Analysis, Next Steps",
+        "INDEX.md — rebuilt automatically after every add or amend",
+        "slide_decks field — populated when /report-slides runs on this entry"
+      ],
+      "numbered": false
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <!-- Top accent bar -->
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+  <!-- Bottom accent bar -->
+  <rect y="669" width="1200" height="6" fill="#1e3a5f"/>
+
+  <!-- Left accent strip -->
+  <rect x="100" y="180" width="4" height="280" fill="#1e3a5f" opacity="0.15"/>
+
+  <!-- Main title -->
+  <text x="600" y="270" text-anchor="middle" font-size="76" font-weight="700" fill="#1e3a5f" letter-spacing="-2">research-lab-skills</text>
+
+  <!-- Divider line -->
+  <rect x="300" y="305" width="600" height="2" fill="#e2e8f0"/>
+
+  <!-- Subtitle -->
+  <text x="600" y="355" text-anchor="middle" font-size="26" fill="#374151">Structured Experiment Logging for Researchers</text>
+
+  <!-- Tag pills -->
+  <rect x="352" y="390" width="160" height="36" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="432" y="413" text-anchor="middle" font-size="15" fill="#64748b">research-log</text>
+
+  <rect x="524" y="390" width="152" height="36" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="413" text-anchor="middle" font-size="15" fill="#64748b">report-slides</text>
+
+  <rect x="688" y="390" width="160" height="36" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="768" y="413" text-anchor="middle" font-size="15" fill="#64748b">svg → pptx</text>
+
+  <!-- Version / date -->
+  <text x="600" y="480" text-anchor="middle" font-size="18" fill="#64748b">Onboarding Demo · v1.0.0 · 2026-06-12</text>
+
+  <!-- Footer -->
+  <text x="600" y="655" text-anchor="middle" font-size="13" fill="#64748b">research-lab-skills · 2026-06-12</text>
+</svg>

@@ -1,0 +1,73 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <!-- Top bar -->
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+
+  <!-- Title -->
+  <text x="60" y="66" font-size="32" font-weight="700" fill="#1e3a5f">What Gets Captured Automatically</text>
+  <rect x="60" y="78" width="1080" height="1.5" fill="#e2e8f0"/>
+
+  <!-- LEFT: bullet list -->
+  <!-- Bullet 1 -->
+  <circle cx="80" cy="128" r="7" fill="#1e3a5f"/>
+  <text x="104" y="122" font-size="18" font-weight="700" fill="#1e3a5f">Git HEAD commit SHA</text>
+  <text x="104" y="146" font-size="15" fill="#374151">Every entry is tied to an exact point in history</text>
+
+  <!-- Bullet 2 -->
+  <circle cx="80" cy="196" r="7" fill="#1e3a5f"/>
+  <text x="104" y="190" font-size="18" font-weight="700" fill="#1e3a5f">YAML frontmatter</text>
+  <text x="104" y="214" font-size="15" fill="#374151">date, tags, mode, experiment chain (follows:)</text>
+
+  <!-- Bullet 3 -->
+  <circle cx="80" cy="264" r="7" fill="#1e3a5f"/>
+  <text x="104" y="258" font-size="18" font-weight="700" fill="#1e3a5f">Structured sections</text>
+  <text x="104" y="282" font-size="15" fill="#374151">Goal · Changes · Setup · Results · Analysis · Next Steps</text>
+
+  <!-- Bullet 4 -->
+  <circle cx="80" cy="332" r="7" fill="#059669"/>
+  <text x="104" y="326" font-size="18" font-weight="700" fill="#059669">Auto-rebuilt INDEX.md</text>
+  <text x="104" y="350" font-size="15" fill="#374151">Always-fresh table of all experiments after every add or amend</text>
+
+  <!-- Bullet 5 -->
+  <circle cx="80" cy="400" r="7" fill="#059669"/>
+  <text x="104" y="394" font-size="18" font-weight="700" fill="#059669">slide_decks field</text>
+  <text x="104" y="418" font-size="15" fill="#374151">Automatically linked when /report-slides runs on this entry</text>
+
+  <!-- Divider between columns -->
+  <line x1="580" y1="90" x2="580" y2="600" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+  <!-- RIGHT: code snippet panel -->
+  <text x="610" y="110" font-size="15" font-weight="600" fill="#64748b">Example entry — 2026-06-12_demo.md</text>
+
+  <rect x="610" y="120" width="540" height="430" rx="8" fill="#1e3a5f" opacity="0.04" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Code content -->
+  <text x="632" y="152" font-size="13" fill="#64748b" font-family="'Courier New', monospace">---</text>
+  <text x="632" y="172" font-size="13" fill="#374151" font-family="'Courier New', monospace">date: <tspan fill="#059669">2026-06-12</tspan></text>
+  <text x="632" y="192" font-size="13" fill="#374151" font-family="'Courier New', monospace">experiment: <tspan fill="#059669">demo</tspan></text>
+  <text x="632" y="212" font-size="13" fill="#374151" font-family="'Courier New', monospace">mode: <tspan fill="#059669">exp</tspan></text>
+  <text x="632" y="232" font-size="13" fill="#374151" font-family="'Courier New', monospace">tags: <tspan fill="#059669">[demo, onboarding]</tspan></text>
+  <text x="632" y="252" font-size="13" fill="#374151" font-family="'Courier New', monospace">follows: <tspan fill="#059669">baseline_v1</tspan></text>
+  <text x="632" y="272" font-size="13" fill="#374151" font-family="'Courier New', monospace">git_head: <tspan fill="#d97706">a417f35</tspan></text>
+  <text x="632" y="292" font-size="13" fill="#374151" font-family="'Courier New', monospace">slide_decks: <tspan fill="#059669">[docs/slides/...]</tspan></text>
+  <text x="632" y="312" font-size="13" fill="#64748b" font-family="'Courier New', monospace">---</text>
+
+  <rect x="628" y="326" width="500" height="1" fill="#e2e8f0"/>
+
+  <text x="632" y="348" font-size="13" fill="#1e3a5f" font-family="'Courier New', monospace">## Goal</text>
+  <text x="632" y="368" font-size="13" fill="#374151" font-family="'Courier New', monospace">Demonstrate research-log to potential</text>
+  <text x="632" y="386" font-size="13" fill="#374151" font-family="'Courier New', monospace">users...</text>
+
+  <text x="632" y="412" font-size="13" fill="#1e3a5f" font-family="'Courier New', monospace">## Analysis</text>
+  <text x="632" y="432" font-size="13" fill="#374151" font-family="'Courier New', monospace">Feature working as expected. Git</text>
+  <text x="632" y="450" font-size="13" fill="#374151" font-family="'Courier New', monospace">context captured automatically...</text>
+
+  <text x="632" y="476" font-size="13" fill="#1e3a5f" font-family="'Courier New', monospace">## Next Steps</text>
+  <text x="632" y="496" font-size="13" fill="#374151" font-family="'Courier New', monospace">- Run /report-slides to generate</text>
+  <text x="632" y="514" font-size="13" fill="#374151" font-family="'Courier New', monospace">  a presentation demo</text>
+
+  <!-- Footer -->
+  <text x="600" y="655" text-anchor="middle" font-size="13" fill="#64748b">research-lab-skills · 2026-06-12</text>
+  <text x="1140" y="655" text-anchor="end" font-size="13" fill="#64748b">4 / 5</text>
+</svg>

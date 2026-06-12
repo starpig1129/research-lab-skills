@@ -1,6 +1,9 @@
 ---
 name: report-slides
 description: Generate SVG presentation slides for research progress reports from research log entries, then optionally export to PPTX. Use when the user wants to make slides, create a presentation, or produce a visual report from experiment logs. Triggers on "make slides", "create presentation", "report slides", "generate deck", "export to pptx". Reads docs/research_log/ entries, proposes a slide outline for user confirmation, then generates files. Suggest /research-log add first if new experiments have not been logged yet.
+metadata:
+  data_access_level: raw
+  task_type: open-ended
 ---
 
 # Report Slides

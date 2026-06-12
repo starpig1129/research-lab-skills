@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <!-- background -->
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <!-- top accent bar -->
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+
+  <!-- center content block -->
+  <rect x="100" y="180" width="1000" height="3" fill="#e2e8f0"/>
+
+  <!-- title -->
+  <text x="600" y="290"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="52" font-weight="700"
+        fill="#1e3a5f" text-anchor="middle">Backbone V3 — Weekly Progress</text>
+
+  <!-- subtitle -->
+  <text x="600" y="355"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="26" font-weight="400"
+        fill="#374151" text-anchor="middle">LR Sweep Results &amp; CIFAR-10/100 Benchmarks</text>
+
+  <!-- divider below subtitle -->
+  <rect x="100" y="390" width="1000" height="3" fill="#e2e8f0"/>
+
+  <!-- author -->
+  <text x="600" y="445"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#64748b" text-anchor="middle">ZI-YUE,CHAO</text>
+
+  <!-- date -->
+  <text x="600" y="478"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="18" fill="#64748b" text-anchor="middle">2026-05-22</text>
+
+  <!-- bottom footer line -->
+  <rect x="0" y="650" width="1200" height="1" fill="#e2e8f0"/>
+  <text x="600" y="665"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" fill="#64748b" text-anchor="middle">Lab Weekly Progress · 2026-05-22</text>
+</svg>

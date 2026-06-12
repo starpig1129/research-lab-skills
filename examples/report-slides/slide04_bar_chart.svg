@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <!-- background -->
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <!-- top accent bar -->
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+
+  <!-- slide title -->
+  <text x="60" y="60"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="30" font-weight="700" fill="#1e3a5f">LR Sweep — Val-Accuracy by Configuration</text>
+  <rect x="60" y="72" width="1080" height="2" fill="#e2e8f0"/>
+
+  <!-- chart area: x 80..1120, y 110..580 -->
+  <!-- y-axis labels (0..100 in steps of 20) -->
+  <text x="68" y="584" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">0</text>
+  <text x="68" y="490" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">20</text>
+  <text x="68" y="396" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">40</text>
+  <text x="68" y="302" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">60</text>
+  <text x="68" y="208" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">80</text>
+  <text x="68" y="114" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="end">100</text>
+
+  <!-- horizontal grid lines -->
+  <line x1="80" y1="580" x2="1120" y2="580" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="80" y1="486" x2="1120" y2="486" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="80" y1="392" x2="1120" y2="392" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="80" y1="298" x2="1120" y2="298" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="80" y1="204" x2="1120" y2="204" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="80" y1="110" x2="1120" y2="110" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- ResNet-50 reference line at 93.2% → y = 580 - (93.2/100)×470 = 580 - 438.04 = 141.96 ≈ 142 -->
+  <line x1="80" y1="142" x2="1120" y2="142" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="1122" y="146" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">ResNet-50 93.2%</text>
+
+  <!-- chart_height = 470 (580→110), bar_width = 60, group_gap = 40, group_width = 200 -->
+  <!-- Groups at x: 160 (LR=1e-3), 480 (LR=3e-4), 800 (LR=1e-4) -->
+  <!-- Each group: cosine bar (offset 0), step bar (offset 70) -->
+
+  <!-- LR=1e-3 group -->
+  <!-- cosine 93.1% → height=470×0.931=437.6, y=580-438=142 -->
+  <rect x="140" y="142" width="60" height="438" fill="#059669" rx="3"/>
+  <text x="170" y="135" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#059669" text-anchor="middle">93.1%</text>
+  <!-- step 91.8% → height=470×0.918=431.5, y=580-432=148 -->
+  <rect x="215" y="148" width="60" height="432" fill="#d97706" rx="3"/>
+  <text x="245" y="141" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#d97706" text-anchor="middle">91.8%</text>
+  <!-- x-label -->
+  <text x="197" y="600" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151" text-anchor="middle">LR = 1e-3</text>
+
+  <!-- LR=3e-4 group -->
+  <!-- cosine 92.4% → height=470×0.924=434.3, y=580-434=146 -->
+  <rect x="460" y="146" width="60" height="434" fill="#059669" rx="3"/>
+  <text x="490" y="139" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#059669" text-anchor="middle">92.4%</text>
+  <!-- step 90.7% → height=470×0.907=426.3, y=580-426=154 -->
+  <rect x="535" y="154" width="60" height="426" fill="#d97706" rx="3"/>
+  <text x="565" y="147" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#d97706" text-anchor="middle">90.7%</text>
+  <text x="517" y="600" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151" text-anchor="middle">LR = 3e-4</text>
+
+  <!-- LR=1e-4 group -->
+  <!-- cosine 89.2% → height=470×0.892=419.2, y=580-419=161 -->
+  <rect x="780" y="161" width="60" height="419" fill="#059669" rx="3"/>
+  <text x="810" y="154" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#059669" text-anchor="middle">89.2%</text>
+  <!-- step 88.5% → height=470×0.885=415.95, y=580-416=164 -->
+  <rect x="855" y="164" width="60" height="416" fill="#d97706" rx="3"/>
+  <text x="885" y="157" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#d97706" text-anchor="middle">88.5%</text>
+  <text x="837" y="600" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151" text-anchor="middle">LR = 1e-4</text>
+
+  <!-- legend -->
+  <rect x="960" y="160" width="16" height="16" fill="#059669" rx="2"/>
+  <text x="982" y="173" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">cosine scheduler</text>
+  <rect x="960" y="186" width="16" height="16" fill="#d97706" rx="2"/>
+  <text x="982" y="199" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">step scheduler</text>
+
+  <!-- note -->
+  <text x="600" y="638"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" fill="#64748b" text-anchor="middle">CIFAR-10 val-accuracy at epoch 60 · dashed line = ResNet-50 reference (93.2%)</text>
+
+  <!-- bottom footer -->
+  <rect x="0" y="650" width="1200" height="1" fill="#e2e8f0"/>
+  <text x="600" y="665"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" fill="#64748b" text-anchor="middle">Lab Weekly Progress · 2026-05-22</text>
+</svg>

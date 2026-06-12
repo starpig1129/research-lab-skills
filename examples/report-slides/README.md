@@ -59,6 +59,8 @@ python scripts/generate_slides.py \
 | `slide05_table.svg` | Table | 6-row × 5-col，DIF 顏色標記 |
 | `slide06_metric_cards.svg` | Metric cards | 4 張 KPI 卡，amber pending 樣式 |
 | `slide07_conclusion.svg` | Conclusion | 結論 + next steps 側邊色條 |
+| `slide08_architecture.svg` | **Architecture** | 三層系統架構圖（Data / Model / Evaluation）+ drop shadow + gradient |
+| `slide09_flowchart.svg` | **Flowchart** | 研究決策流程圖：菱形決策節點、彩色路徑分支、三欄佈局 |
 
 ## 風格規範
 

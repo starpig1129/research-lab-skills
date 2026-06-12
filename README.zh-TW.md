@@ -1,5 +1,6 @@
 # research-lab-skills
 
+[![npm](https://img.shields.io/npm/v/research-lab-skills)](https://www.npmjs.com/package/research-lab-skills)
 [![Version](https://img.shields.io/badge/version-v1.0.0-blue)](https://github.com/starpig1129/research-lab-skills/releases/tag/v1.0.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![GitHub](https://img.shields.io/badge/GitHub-starpig1129-black?logo=github)](https://github.com/starpig1129/research-lab-skills)
@@ -98,29 +99,51 @@
 
 ## 安裝
 
-**一鍵安裝全部 7 個技能（推薦）：**
+### npm（推薦）
 
 ```bash
+npm install -g research-lab-skills
+crs init --global          # 全域安裝全部 7 個技能
+```
+
+或用 npx 一次性執行（不需永久安裝 npm 套件）：
+
+```bash
+npx research-lab-skills init --global
+```
+
+**安裝選項：**
+
+| 旗標 | 安裝內容 |
+|------|---------|
+| （無）| 全部 7 個技能（專案本機 `.claude/skills/`） |
+| `--global` | 全部 7 個技能（全域 `~/.claude/skills/`） |
+| `--lab-only` | `research-log`、`report-slides`、`research-mode` |
+| `--ars-only` | `deep-research`、`academic-paper`、`academic-paper-reviewer`、`academic-pipeline` |
+| `--ai cursor` | 安裝給 Cursor 而非 Claude Code |
+
+```bash
+crs update --global        # npm 升級後重新安裝
+crs uninstall --global     # 移除技能
+```
+
+### curl（不需 npm）
+
+```bash
+# 全部技能（全域）
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh)
-```
 
-**只安裝學術研究技能（ARS）：**
+# 專案本機
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --local
 
-```bash
+# 只安裝 ARS 技能
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --ars-only
-```
 
-**只安裝 Lab 技能：**
-
-```bash
+# 只安裝 Lab 技能
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --lab-only
-```
 
-**Plugin 安裝（Claude Code v3.7.0+）：**
-
-```text
-/plugin marketplace add starpig1129/research-lab-skills
-/plugin install research-lab-skills
+# 解除安裝
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) uninstall
 ```
 
 安裝後重啟 Claude Code。詳細說明見 [docs/SETUP.zh-TW.md](docs/SETUP.zh-TW.md)。

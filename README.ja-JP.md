@@ -1,5 +1,6 @@
 # research-lab-skills
 
+[![npm](https://img.shields.io/npm/v/research-lab-skills)](https://www.npmjs.com/package/research-lab-skills)
 [![Version](https://img.shields.io/badge/version-v1.0.0-blue)](https://github.com/starpig1129/research-lab-skills/releases/tag/v1.0.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![GitHub](https://img.shields.io/badge/GitHub-starpig1129-black?logo=github)](https://github.com/starpig1129/research-lab-skills)
@@ -96,29 +97,51 @@
 
 ## インストール
 
-**全7スキルを一括インストール（推奨）：**
+### npm（推奨）
 
 ```bash
+npm install -g research-lab-skills
+crs init --global          # 全7スキルをグローバルインストール
+```
+
+npxで一回限りの実行（npmグローバルインストール不要）：
+
+```bash
+npx research-lab-skills init --global
+```
+
+**オプション：**
+
+| フラグ | インストール内容 |
+|--------|----------------|
+| （なし）| 全7スキル（プロジェクトローカル `.claude/skills/`） |
+| `--global` | 全7スキル（グローバル `~/.claude/skills/`） |
+| `--lab-only` | `research-log`、`report-slides`、`research-mode` |
+| `--ars-only` | `deep-research`、`academic-paper`、`academic-paper-reviewer`、`academic-pipeline` |
+| `--ai cursor` | Claude CodeではなくCursorにインストール |
+
+```bash
+crs update --global        # npmアップグレード後に再インストール
+crs uninstall --global     # スキルを削除
+```
+
+### curl（npmなし）
+
+```bash
+# 全スキル（グローバル）
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh)
-```
 
-**学術研究スキル（ARS）のみ：**
+# プロジェクトローカル
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --local
 
-```bash
+# ARSスキルのみ
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --ars-only
-```
 
-**Lab スキルのみ：**
-
-```bash
+# Labスキルのみ
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --lab-only
-```
 
-**Plugin インストール（Claude Code v3.7.0+）：**
-
-```text
-/plugin marketplace add starpig1129/research-lab-skills
-/plugin install research-lab-skills
+# アンインストール
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) uninstall
 ```
 
 インストール後に Claude Code を再起動してください。詳細は [docs/SETUP.md](docs/SETUP.md) を参照してください。

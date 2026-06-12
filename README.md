@@ -7,23 +7,26 @@
 
 ---
 
-## Why this project exists
+## What this is for
 
-Research has two distinct lives that rarely speak to each other.
+I built research-lab-skills as a Claude Code skill suite covering the full academic research lifecycle — from daily experiment journals and progress presentations to systematic literature review, paper writing, and peer review simulation. It integrates two complementary toolsets:
 
-The first is the **daily process** — the experiment that ran overnight, the chart that finally made sense, the decision to pivot the architecture, the slide you made for Friday's lab meeting. This layer is invisible in most publications, yet it's where most of the actual thinking happens.
+- **Lab skills** (`research-log`, `report-slides`, `research-mode`) — experiment journals, progress slides, session mode routing
+- **Academic Research Skills** (`deep-research`, `academic-paper`, `academic-paper-reviewer`, `academic-pipeline`) — literature review, paper writing, peer review, full-pipeline orchestration
 
-The second is the **formal output** — the systematic literature review, the paper draft that survives three rounds of peer review, the citation that actually supports the claim it's attached to. This layer is where the field accumulates knowledge, but it's often disconnected from the messy reality of how that knowledge was reached.
+See the detailed sections below for each skill.
 
-I originally built the **lab skills** (`research-log`, `report-slides`, `research-mode`) to capture the first layer: a structured experiment journal, a slide generator that turns those journal entries into progress presentations, and a session mode system that remembers what kind of work you're doing. The goal was to make the research *process* legible — to yourself, your advisor, your collaborators.
+## Why you need it
 
-[Cheng-I Wu](https://github.com/Imbad0202) independently built **Academic Research Skills** (ARS) to systematise the second layer: a 13-agent deep research engine with PRISMA support and four-index citation verification, a 12-agent paper writing system with citation anchors and figure fidelity gates, a multi-perspective peer review system, and a 10-stage pipeline orchestrator that chains them all together.
+Research labs spend enormous amounts of time making slides for weekly meetings. The problem isn't slide design — most presentation tools handle that fine. The problem is they have no idea **what belongs in this week's slides**. You end up staring at a blank deck, trying to remember what you actually did.
 
-When I found ARS, the complementarity was immediate. The lab skills record *where you've been*; ARS structures *where you're going*. The experiment journal feeds the paper's methodology section. The progress slides become the draft's figures. The session modes (`exp` → `explore` → `publish`) map directly onto the research lifecycle ARS was designed to handle. The `report-slides` skill even supports `--source academic` to pull directly from ARS's Material Passport.
+That's why I built the research journal mechanism first. When you log your experiments in a structured format, the AI already knows what ran this week, what failed, what the numbers look like, and what needs to be communicated. The slides are a natural output of that record — not a separate task on top of your research.
 
-These two systems don't just sit side by side — they're designed for the same researcher at different stages of the same project. Merging them into one repo with one install command is the natural conclusion.
+The same problem runs deeper. The daily process of research — the experiments that didn't pan out, the architectural pivots, the decisions made between runs — vanishes long before the paper gets written. By the time you're writing the methodology section, you're reconstructing from memory what you actually did and why. The formal output pipeline often starts from scratch, disconnected from the months of work that produced the insight.
 
-This is that merged project.
+This suite keeps the thread intact. Your journal records the *why* behind every decision; the lab-meeting slides come from those logs; the methodology section comes from those logs too. The session modes (`exp` → `explore` → `publish`) track which phase of research you're in and route you to the right tools automatically.
+
+Nothing gets lost between the bench and the bibliography.
 
 ---
 

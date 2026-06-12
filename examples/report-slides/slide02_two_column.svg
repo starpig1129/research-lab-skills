@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+
+  <!-- title -->
+  <text x="60" y="58"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="28" font-weight="700" fill="#1e3a5f">Background &amp; Research Question</text>
+  <rect x="60" y="70" width="1080" height="2" fill="#e2e8f0"/>
+
+  <!-- left column card -->
+  <rect x="60" y="90" width="510" height="520" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="60" y="90" width="510" height="44" rx="6" fill="#1e3a5f"/>
+  <rect x="60" y="112" width="510" height="22" fill="#1e3a5f"/>
+  <text x="315" y="118"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">The Problem</text>
+
+  <!-- left bullets -->
+  <rect x="88" y="164" width="6" height="6" rx="3" fill="#dc2626"/>
+  <text x="104" y="172" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
+    <tspan x="104" dy="0">English ESAS systems (QWK~0.85) cannot</tspan>
+    <tspan x="104" dy="22">transfer to zh-TW without significant bias</tspan>
+  </text>
+
+  <rect x="88" y="222" width="6" height="6" rx="3" fill="#dc2626"/>
+  <text x="104" y="230" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
+    <tspan x="104" dy="0">Discourse markers, sentence-length norms,</tspan>
+    <tspan x="104" dy="22">and rubric anchors differ structurally</tspan>
+    <tspan x="104" dy="22">across languages</tspan>
+  </text>
+
+  <rect x="88" y="306" width="6" height="6" rx="3" fill="#dc2626"/>
+  <text x="104" y="314" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
+    <tspan x="104" dy="0">English models introduce systematic DIF</tspan>
+    <tspan x="104" dy="22">at score boundaries (6 / 12 levels flagged)</tspan>
+  </text>
+
+  <!-- right column card -->
+  <rect x="630" y="90" width="510" height="520" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <rect x="630" y="90" width="510" height="44" rx="6" fill="#059669"/>
+  <rect x="630" y="112" width="510" height="22" fill="#059669"/>
+  <text x="885" y="118"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">Our Approach</text>
+
+  <!-- right bullets -->
+  <rect x="658" y="164" width="6" height="6" rx="3" fill="#059669"/>
+  <text x="674" y="172" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
+    <tspan x="674" dy="0">Phase 1: GPT-4 zero-shot baseline</tspan>
+    <tspan x="674" dy="22">QWK=0.674 — upper-bound without training</tspan>
+  </text>
+
+  <rect x="658" y="228" width="6" height="6" rx="3" fill="#059669"/>
+  <text x="674" y="236" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
+    <tspan x="674" dy="0">Phase 2: BERT fine-tuned per-prompt</tspan>
+    <tspan x="674" dy="22">+ rubric prefix → QWK=0.836 (EN)</tspan>
+  </text>
+
+  <rect x="658" y="292" width="6" height="6" rx="3" fill="#059669"/>
+  <text x="674" y="300" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
+    <tspan x="674" dy="0">Phase 3: Cross-lingual evaluation</tspan>
+    <tspan x="674" dy="22">ZH-BERT-FT: QWK=0.811, 0 DIF flags</tspan>
+  </text>
+
+  <!-- bottom footer -->
+  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
+  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+</svg>

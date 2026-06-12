@@ -39,6 +39,55 @@ This is that merged project.
 
 ---
 
+## The integrated research lifecycle
+
+These skills are not a feature list — they're a workflow. Each one was designed for a specific phase of research and hands off naturally to the next.
+
+**Phase 1 — Daily experiment work** (`/mode exp`)
+
+```bash
+/mode exp                       # start an experiment session
+/research-log add               # log today's work (quick: 3 questions; full: 9 sections)
+/report-slides                  # turn this week's journal into a progress presentation
+/mode end                       # draft the next entry from today's git diff
+```
+
+The journal's `follows:` field links experiments into a traceable timeline. `amended:` records post-hoc corrections. `slide_decks:` updates automatically when slides are generated. These entries are the raw material for your methodology section when you eventually write the paper — capturing not just what worked, but why you tried it and what failed first.
+
+**Phase 2 — Literature exploration** (`/mode explore`)
+
+```bash
+/mode explore
+/ars-lit-review "your topic"    # 13-agent literature review with PRISMA support
+/ars-socratic                   # Socratic dialogue to sharpen your research question
+/mode end                       # extract RQ + key findings into the log
+```
+
+**Phase 3 — Writing and publication** (`/mode publish`)
+
+```bash
+/mode publish
+/ars-plan                       # Socratic-guided chapter planning
+/ars-full                       # 12-agent paper writing + citation verification
+/ars-review                     # multi-perspective peer review (EIC + 3 reviewers + DA)
+/ars-re-review                  # post-revision acceptance check
+/ars-pipeline                   # full 10-stage orchestrated pipeline with integrity gates
+```
+
+**How the journal connects to the paper**
+
+| Journal field | Paper section |
+|--------------|--------------|
+| `Goal` + `Setup` | Methodology |
+| `Results` + `Charts` | Results & Figures |
+| `Failures` + `Analysis` | Discussion / Limitations |
+| `slide_decks:` links | Figure sources |
+| `follows:` timeline | Research design narrative |
+
+→ See **[examples/](examples/)** for a complete worked example: three journal entries showing the messy week-by-week process (failures, `amended:` corrections, unresolved problems), a 7-slide lab-meeting progress deck generated from those logs, and the JSON data file that drove the charts. The SVG slides also ship as a `deck.pptx` — every element editable in PowerPoint or Keynote.
+
+---
+
 ## Installation
 
 ### Global install — all skills (recommended)
@@ -103,8 +152,8 @@ Reads journal entries, proposes a slide outline for confirmation, then generates
 - **[C] Claude SVG** — free-form slides: conceptual layouts, text-heavy content
 
 Output: `docs/slides/reports/YYYY-MM-DD_<deck-name>/`
-- `slide01_title.svg`, `slide02_bar_chart.svg`, … (editable SVG source)
-- `deck.pptx` (16:9 PPTX with native SVG embedding)
+- `slide01_title.svg`, `slide02_bar_chart.svg`, … (editable SVG source files)
+- **`deck.pptx`** — 16:9 PPTX with native SVG embedding. Every title, number, colour, and layout element is directly editable in PowerPoint or Keynote — no roundtripping back to source code.
 - `slide_data.json` (Path A source, use `--slide N` to re-render one slide)
 
 **First-time project setup:**
@@ -174,7 +223,17 @@ deep-research (socratic/full)
               → academic-paper (format-convert → final output)
 ```
 
-**Showcase:** Real artifacts from a complete 10-stage pipeline run at **[examples/showcase/](examples/showcase/)**.
+See **[examples/showcase/](examples/showcase/)** for artifacts from a complete 10-stage pipeline run (peer review reports, integrity checks, final papers).
+
+---
+
+## Examples
+
+The [`examples/`](examples/) directory contains a complete worked scenario — an NLP researcher working on cross-lingual automated essay scoring across three weeks of experiments.
+
+**Research journal** ([`examples/research-log/`](examples/research-log/)) — three entries showing the full arc: a quick baseline log on day one, a full entry mid-project with failures and a post-hoc `amended:` correction, and a final-week entry with two amendments and open questions. The `follows:` chain links them into a traceable timeline.
+
+**Progress slides** ([`examples/report-slides/`](examples/report-slides/)) — a 7-slide weekly lab-meeting presentation generated from those journal entries. Slides cover: title, problem/approach, timeline (with `amended` badges), grouped bar chart, model comparison table (with DIF fairness markers), metric cards, and conclusion + next steps. All slides are SVG source files convertible to an editable `deck.pptx` — see [`examples/report-slides/README.md`](examples/report-slides/README.md) for the generation command.
 
 ---
 

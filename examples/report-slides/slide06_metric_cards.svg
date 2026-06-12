@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+
+  <text x="60" y="58" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Key Results — ZH-BERT-FT Best Model</text>
+  <rect x="60" y="70" width="1080" height="2" fill="#e2e8f0"/>
+
+  <!-- Card layout: 4 cards in a row, each ~252px wide, gap=16px -->
+  <!-- Card positions: x = 60, 322, 584, 846; width=252, height=280 -->
+
+  <!-- Card 1: zh-TW QWK = 0.811 (green) -->
+  <rect x="60" y="100" width="252" height="280" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="2"/>
+  <rect x="60" y="100" width="252" height="6" rx="4" fill="#059669"/>
+  <rect x="60" y="104" width="252" height="2" fill="#059669"/>
+  <text x="186" y="148" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#64748b" text-anchor="middle">zh-TW QWK</text>
+  <text x="186" y="228" font-family="'Helvetica Neue', Arial, sans-serif" font-size="64" font-weight="700" fill="#059669" text-anchor="middle">0.811</text>
+  <line x1="86" y1="258" x2="286" y2="258" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="186" y="278" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#059669" text-anchor="middle">+0.270 vs. zero-shot</text>
+  <text x="186" y="298" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">ZH-BERT-FT · test set</text>
+  <text x="186" y="318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">macro-avg P1–P4</text>
+  <text x="186" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">parity with human EN scoring</text>
+
+  <!-- Card 2: EN↔zh-TW Gap = −0.017 (green) -->
+  <rect x="322" y="100" width="252" height="280" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="2"/>
+  <rect x="322" y="100" width="252" height="6" rx="4" fill="#059669"/>
+  <rect x="322" y="104" width="252" height="2" fill="#059669"/>
+  <text x="448" y="148" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#64748b" text-anchor="middle">EN↔zh-TW Gap</text>
+  <text x="448" y="228" font-family="'Helvetica Neue', Arial, sans-serif" font-size="56" font-weight="700" fill="#059669" text-anchor="middle">−0.017</text>
+  <line x1="348" y1="258" x2="548" y2="258" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="448" y="278" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#059669" text-anchor="middle">within annotation noise</text>
+  <text x="448" y="298" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">EN-ZS gap was −0.312</text>
+  <text x="448" y="318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">18× improvement</text>
+  <text x="448" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">cross-lingual parity achieved</text>
+
+  <!-- Card 3: DIF Flags = 0 / 12 (green) -->
+  <rect x="584" y="100" width="252" height="280" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="2"/>
+  <rect x="584" y="100" width="252" height="6" rx="4" fill="#059669"/>
+  <rect x="584" y="104" width="252" height="2" fill="#059669"/>
+  <text x="710" y="148" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#64748b" text-anchor="middle">DIF Flags</text>
+  <text x="710" y="228" font-family="'Helvetica Neue', Arial, sans-serif" font-size="64" font-weight="700" fill="#059669" text-anchor="middle">0 / 12</text>
+  <line x1="610" y1="258" x2="810" y2="258" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="710" y="278" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#059669" text-anchor="middle">EN-ZS had 6 / 12</text>
+  <text x="710" y="298" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Mantel-Haenszel, p&lt;.05</text>
+  <text x="710" y="318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">score levels 1–12 tested</text>
+  <text x="710" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">no systematic bias detected</text>
+
+  <!-- Card 4: Annotation κ = 0.84 (amber — pending) -->
+  <rect x="846" y="100" width="252" height="280" rx="8" fill="#fffbeb" stroke="#fde68a" stroke-width="2"/>
+  <rect x="846" y="100" width="252" height="6" rx="4" fill="#d97706"/>
+  <rect x="846" y="104" width="252" height="2" fill="#d97706"/>
+  <!-- pending badge -->
+  <rect x="910" y="112" width="74" height="20" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+  <text x="947" y="125" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#d97706" text-anchor="middle">⏳ Pending</text>
+  <text x="972" y="148" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#64748b" text-anchor="middle">Annotation κ</text>
+  <text x="972" y="228" font-family="'Helvetica Neue', Arial, sans-serif" font-size="64" font-weight="700" fill="#d97706" text-anchor="middle">0.84</text>
+  <line x1="872" y1="258" x2="1072" y2="258" stroke="#fde68a" stroke-width="1"/>
+  <text x="972" y="278" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#d97706" text-anchor="middle">P5–P8 pending budget</text>
+  <text x="972" y="298" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">P1–P4 only (current)</text>
+  <text x="972" y="318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">target: 2026-06-10</text>
+  <text x="972" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Cohen's κ, 2 annotators</text>
+
+  <!-- summary bar -->
+  <rect x="60" y="420" width="1080" height="56" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="600" y="446" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" fill="#059669" text-anchor="middle">ZH-BERT-FT achieves human-parity cross-lingual scoring with zero fairness violations</text>
+  <text x="600" y="466" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151" text-anchor="middle">Language-matched fine-tuning + rubric-prefix conditioning is the winning recipe</text>
+
+  <!-- bottom footer -->
+  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
+  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+</svg>

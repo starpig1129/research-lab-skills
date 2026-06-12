@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+
+  <text x="60" y="58" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Model Comparison — Key Metrics</text>
+  <rect x="60" y="70" width="1080" height="2" fill="#e2e8f0"/>
+
+  <!-- table: x=60..1140, header y=90 -->
+  <!-- col widths: 360, 100, 110, 100, 120 -->
+  <!-- col x starts: 60, 420, 520, 630, 730 -->
+
+  <!-- header row -->
+  <rect x="60" y="90" width="1080" height="38" fill="#1e3a5f" rx="4"/>
+  <rect x="60" y="112" width="1080" height="16" fill="#1e3a5f"/>
+  <text x="240" y="114" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">Model</text>
+  <text x="470" y="114" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">EN QWK</text>
+  <text x="580" y="114" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">zh-TW QWK</text>
+  <text x="690" y="114" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">Δ Drop</text>
+  <text x="830" y="114" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">DIF Flags</text>
+
+  <!-- col dividers in header -->
+  <line x1="420" y1="90" x2="420" y2="128" stroke="#2d5490" stroke-width="1"/>
+  <line x1="520" y1="90" x2="520" y2="128" stroke="#2d5490" stroke-width="1"/>
+  <line x1="630" y1="90" x2="630" y2="128" stroke="#2d5490" stroke-width="1"/>
+  <line x1="750" y1="90" x2="750" y2="128" stroke="#2d5490" stroke-width="1"/>
+
+  <!-- Row 1: GPT-4 zero-shot (baseline) — y=128, h=54 -->
+  <rect x="60" y="128" width="1080" height="54" fill="#f8fafc"/>
+  <text x="80" y="160" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151">GPT-4 zero-shot (baseline)</text>
+  <text x="470" y="160" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151" text-anchor="middle">0.671</text>
+  <text x="580" y="160" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <text x="690" y="160" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <text x="830" y="160" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <line x1="60" y1="182" x2="1140" y2="182" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Row 2: BERT cross-prompt + rubric — y=182, h=54 -->
+  <rect x="60" y="182" width="1080" height="54" fill="#ffffff"/>
+  <text x="80" y="214" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151">BERT cross-prompt + rubric</text>
+  <text x="470" y="214" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151" text-anchor="middle">0.819</text>
+  <text x="580" y="214" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <text x="690" y="214" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <text x="830" y="214" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <line x1="60" y1="236" x2="1140" y2="236" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Row 3: BERT per-prompt + rubric (EN) — y=236, h=54 -->
+  <rect x="60" y="236" width="1080" height="54" fill="#f8fafc"/>
+  <text x="80" y="268" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151">BERT per-prompt + rubric (EN)</text>
+  <text x="470" y="268" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#1e3a5f" text-anchor="middle">0.836</text>
+  <text x="580" y="268" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <text x="690" y="268" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <text x="830" y="268" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">—</text>
+  <line x1="60" y1="290" x2="1140" y2="290" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Row 4: EN-BERT-ZS transfer — y=290, h=54 — DIF danger highlight -->
+  <rect x="60" y="290" width="1080" height="54" fill="#ffffff"/>
+  <text x="80" y="322" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151">EN-BERT-ZS transfer</text>
+  <text x="470" y="322" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151" text-anchor="middle">0.853</text>
+  <text x="580" y="322" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151" text-anchor="middle">0.541</text>
+  <text x="690" y="322" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#dc2626" text-anchor="middle">−0.312</text>
+  <!-- DIF badge: danger -->
+  <rect x="762" y="305" width="80" height="24" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+  <text x="802" y="321" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#dc2626" text-anchor="middle">6 / 12</text>
+  <line x1="60" y1="344" x2="1140" y2="344" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Row 5: mBERT-FT (translated) — y=344, h=54 -->
+  <rect x="60" y="344" width="1080" height="54" fill="#f8fafc"/>
+  <text x="80" y="376" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151">mBERT-FT (translated)</text>
+  <text x="470" y="376" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151" text-anchor="middle">0.831</text>
+  <text x="580" y="376" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151" text-anchor="middle">0.784</text>
+  <text x="690" y="376" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#d97706" text-anchor="middle">−0.047</text>
+  <!-- DIF badge: warn -->
+  <rect x="762" y="359" width="80" height="24" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+  <text x="802" y="375" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#d97706" text-anchor="middle">2 / 12</text>
+  <line x1="60" y1="398" x2="1140" y2="398" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Row 6: ZH-BERT-FT — highlight green — y=398, h=60 -->
+  <rect x="60" y="398" width="1080" height="60" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="80" y="432" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#059669">ZH-BERT-FT</text>
+  <!-- best model badge -->
+  <rect x="218" y="418" width="90" height="20" rx="3" fill="#dcfce7" stroke="#059669" stroke-width="1"/>
+  <text x="263" y="431" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#059669" text-anchor="middle">✓ Best Model</text>
+  <text x="470" y="432" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#059669" text-anchor="middle">0.828</text>
+  <text x="580" y="432" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#059669" text-anchor="middle">0.811</text>
+  <text x="690" y="432" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#059669" text-anchor="middle">−0.017</text>
+  <!-- DIF badge: success -->
+  <rect x="762" y="419" width="80" height="24" rx="4" fill="#dcfce7" stroke="#059669" stroke-width="1"/>
+  <text x="802" y="435" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#059669" text-anchor="middle">0 / 12</text>
+  <!-- bottom border of table -->
+  <rect x="60" y="458" width="1080" height="2" fill="#e2e8f0"/>
+
+  <!-- col vertical dividers across all data rows -->
+  <line x1="420" y1="128" x2="420" y2="458" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="520" y1="128" x2="520" y2="458" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="630" y1="128" x2="630" y2="458" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="750" y1="128" x2="750" y2="458" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- note -->
+  <text x="60" y="490" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">QWK = Quadratic Weighted Kappa · DIF = Differential Item Functioning (Mantel-Haenszel, p&lt;.05)</text>
+  <text x="60" y="510" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">— = English-only model; cross-lingual transfer not evaluated</text>
+
+  <!-- legend for DIF colours -->
+  <rect x="60" y="530" width="12" height="12" rx="2" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+  <text x="78" y="541" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">High bias (≥ 4 flags)</text>
+  <rect x="220" y="530" width="12" height="12" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+  <text x="238" y="541" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">Moderate bias (1–3 flags)</text>
+  <rect x="410" y="530" width="12" height="12" rx="2" fill="#dcfce7" stroke="#059669" stroke-width="1"/>
+  <text x="428" y="541" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">No bias (0 flags)</text>
+
+  <!-- bottom footer -->
+  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
+  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+</svg>

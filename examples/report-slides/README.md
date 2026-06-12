@@ -1,69 +1,79 @@
-# report-slides — Example Output
+# examples/report-slides — 週報簡報範例
 
-This directory shows what `/report-slides` produces from the two research-log entries in `../research-log/`.
+這個目錄展示 `/report-slides` 技能的輸出樣貌。所有投影片都由 [`slide_data_weekly_progress.json`](slide_data_weekly_progress.json) 這個資料檔驅動，對應 `../research-log/` 裡三篇實驗日誌的內容。
 
-## Input
+## 這是什麼？
 
-| Log entry | Mode | Experiment |
-|-----------|------|------------|
-| `2026-05-15_backbone_v3_quick.md` | Quick | Initial backbone_v3 test, 87.4% CIFAR-10 |
-| `2026-05-22_finetune_lr_sweep.md` | Full | LR sweep grid, best run 93.1% CIFAR-10 |
+這是一份**每週 lab meeting 進度報告**，從實驗日誌自動生成。重點在：
 
-## Files in this directory
+- 這不是論文，這是**中繼匯報**——研究還在進行中
+- slide03 的時間線顯示三週的演進，包含兩個 `amended` 修正標記
+- 日誌裡的失敗（P7 梯度發散、rubric 截斷、score-boundary confusion）都反映在簡報的「下一步」裡
+- 從 `slide_data.json` 到最終簡報，整個流程是資料驅動的，不是手工排版的
 
-| File | Rendering path | Description |
-|------|---------------|-------------|
-| `slide_data_weekly_progress.json` | [A] Python | Input data for `generate_slides.py`; 7 slides covering the full progression |
-| `slide01_title.svg` | [C] Claude SVG | Title slide — generated directly by Claude |
-| `slide04_bar_chart.svg` | [A] Python (example render) | Bar chart of LR sweep results, rendered by `generate_slides.py` |
+## 輸出格式
 
-> Slides `#02` (two_column), `#03` (timeline), `#05` (table), `#06` (metric_cards), `#07` (conclusion)
-> are defined in `slide_data_weekly_progress.json` and rendered when you run `generate_slides.py`.
+`/report-slides` 生成以下三種輸出：
 
-## How to regenerate
+### 1. SVG 原始檔（本目錄的 `.svg` 檔案）
 
-**Step 1 — set up** (first time per project):
+每張投影片是一個獨立的 SVG 檔案，可以在任何向量編輯器（Inkscape、Figma、Illustrator）中直接開啟修改。尺寸固定為 1200×675（16:9）。
+
+### 2. PPTX（`deck.pptx`）
+
+**PPTX 的可編輯性是核心功能**。SVG 以原生方式嵌入 PowerPoint，每一個文字、圖形、顏色都可以在 PowerPoint 或 Keynote 裡直接點擊修改，不需要回來改原始碼。
+
+從 SVG 檔案生成 PPTX：
+
 ```bash
-bash "$(find ~/.claude -path "*/report-slides/scripts/setup.sh" | head -1)"
+# 確保已安裝依賴
+pip install python-pptx
+
+# 找到 to_pptx.py 路徑（安裝後位於 scripts/ 目錄）
+python scripts/to_pptx.py \
+  --slides examples/report-slides/slide*.svg \
+  --output examples/report-slides/deck.pptx
 ```
 
-**Step 2 — run the renderer**:
+或者直接用 `/report-slides` 技能生成，它會同時輸出 SVG 和 PPTX。
+
+### 3. `slide_data.json`（資料來源）
+
+Path A（Python 資料驅動）投影片的資料定義檔。修改數字或文字後，用 `--slide N` 重新渲染單張投影片：
+
 ```bash
 python scripts/generate_slides.py \
-    --data examples/report-slides/slide_data_weekly_progress.json \
-    --out  docs/slides/reports/2026-05-22_weekly-progress/
+  --data slide_data_weekly_progress.json \
+  --slide 4 \
+  --output slide04_bar_chart.svg
 ```
 
-**Step 3 — optional PPTX export**:
+## 投影片列表
+
+| 檔案 | 類型 | 技術說明 |
+|------|------|---------|
+| `slide01_title.svg` | Title | 純 SVG，decorative layout |
+| `slide02_two_column.svg` | Two-column | 紅/綠 color-coded 卡片 |
+| `slide03_timeline.svg` | Timeline | 3-node + `marker-end` 箭頭 + `amended` badges |
+| `slide04_bar_chart.svg` | Bar chart | 分組長條圖，`Best Model` badge |
+| `slide05_table.svg` | Table | 6-row × 5-col，DIF 顏色標記 |
+| `slide06_metric_cards.svg` | Metric cards | 4 張 KPI 卡，amber pending 樣式 |
+| `slide07_conclusion.svg` | Conclusion | 結論 + next steps 側邊色條 |
+
+## 風格規範
+
+所有投影片遵循 `default` 風格調色板：
+
+| 用途 | 顏色 |
+|------|------|
+| Primary / 標題 | `#1e3a5f` |
+| Positive / 達標 | `#059669` |
+| Warning / 待定 | `#d97706` |
+| Danger / 失敗 | `#dc2626` |
+| Muted / 標注 | `#64748b` |
+
+切換風格：
+
 ```bash
-cd "$(find ~/.claude -path "*/report-slides/scripts" -type d | head -1)"
-python3 -m svg_to_pptx \
-    --slides docs/slides/reports/2026-05-22_weekly-progress/ \
-    --out    docs/slides/reports/2026-05-22_weekly-progress/deck.pptx
+bash "$(find ~/.claude -path "*/report-slides/scripts/set-style.sh" | head -1)" minimal
 ```
-
-## Slide outline
-
-```
-#01  Title                   [C] Claude SVG
-#02  Background & Goal       [A] two_column
-#03  Experiment Timeline     [A] timeline
-#04  LR Sweep Bar Chart      [A] bar_chart      ← slide04_bar_chart.svg shows this type
-#05  Architecture Comparison [A] table
-#06  Key Results             [A] metric_cards
-#07  Conclusion & Next Steps [A] conclusion
-```
-
-## Invoking from the skill
-
-From any project that has research-log entries, simply run:
-
-```
-/report-slides
-```
-
-Claude will:
-1. Show the available log entries and which already have decks
-2. Ask audience, chart mode, language, and style (one message)
-3. Propose a slide outline and wait for confirmation
-4. Generate SVG files + optionally export PPTX

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <rect width="1200" height="6" fill="#1e3a5f"/>
+
+  <text x="60" y="58" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Experiment Timeline</text>
+  <rect x="60" y="70" width="1080" height="2" fill="#e2e8f0"/>
+
+  <!-- timeline axis -->
+  <line x1="160" y1="340" x2="1060" y2="340" stroke="#e2e8f0" stroke-width="3"/>
+
+  <!-- node 1: GPT-4 baseline -->
+  <circle cx="260" cy="340" r="18" fill="#64748b"/>
+  <text x="260" y="346" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+  <!-- date above -->
+  <text x="260" y="295" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">2026-05-10</text>
+  <!-- label below -->
+  <rect x="160" y="375" width="200" height="80" rx="6" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="260" y="398" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#374151" text-anchor="middle">GPT-4 Baseline</text>
+  <text x="260" y="418" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Zero-shot (Quick mode)</text>
+  <text x="260" y="438" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#64748b" text-anchor="middle">QWK = 0.674</text>
+
+  <!-- node 2: BERT fine-tuned -->
+  <circle cx="600" cy="340" r="18" fill="#d97706"/>
+  <text x="600" y="346" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+  <text x="600" y="295" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">2026-05-18</text>
+  <!-- detail above axis: amended badge -->
+  <rect x="544" y="210" width="112" height="24" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+  <text x="600" y="226" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#d97706" text-anchor="middle">amended 2026-05-20</text>
+  <rect x="499" y="375" width="202" height="80" rx="6" fill="#fffbeb" stroke="#fde68a" stroke-width="1"/>
+  <text x="600" y="398" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#374151" text-anchor="middle">BERT Fine-tuned</text>
+  <text x="600" y="418" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Per-prompt + rubric prefix</text>
+  <text x="600" y="438" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#d97706" text-anchor="middle">QWK = 0.836</text>
+
+  <!-- node 3: Cross-lingual -->
+  <circle cx="960" cy="340" r="18" fill="#059669"/>
+  <text x="960" y="346" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+  <text x="960" y="295" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">2026-05-25</text>
+  <!-- amended badges -->
+  <rect x="880" y="175" width="160" height="24" rx="4" fill="#dcfce7" stroke="#059669" stroke-width="1"/>
+  <text x="960" y="191" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#059669" text-anchor="middle">amended ×2 (05-27, 05-29)</text>
+  <rect x="859" y="375" width="202" height="80" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="960" y="398" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#374151" text-anchor="middle">Cross-Lingual Eval</text>
+  <text x="960" y="418" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">ZH-BERT-FT · 0 DIF flags</text>
+  <text x="960" y="438" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#059669" text-anchor="middle">zh-TW QWK = 0.811</text>
+
+  <!-- follows arrows on axis -->
+  <path d="M 278 340 L 582 340" stroke="#e2e8f0" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M 618 340 L 942 340" stroke="#e2e8f0" stroke-width="2" marker-end="url(#arr)"/>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <text x="430" y="328" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">follows:</text>
+  <text x="780" y="328" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">follows:</text>
+
+  <!-- bottom footer -->
+  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
+  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+</svg>

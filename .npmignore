@@ -1,0 +1,30 @@
+# Development and CI
+.claude/
+.github/
+agents/
+bridge/
+commands/
+docs/
+evals/
+examples/
+hooks/
+scripts/
+shared/
+tests/
+
+# Config and dev files
+pyproject.toml
+requirements-dev.txt
+install.sh
+*.local
+
+# Docs (keep README.md, LICENSE, CHANGELOG.md via package.json files field)
+README.zh-CN.md
+README.zh-TW.md
+README.ja-JP.md
+CONTRIBUTING.md
+QUICKSTART.md
+POSITIONING.md
+SECURITY.md
+NOTICE.md
+MODE_REGISTRY.md

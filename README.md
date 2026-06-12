@@ -1,5 +1,6 @@
 # research-lab-skills
 
+[![npm](https://img.shields.io/npm/v/research-lab-skills)](https://www.npmjs.com/package/research-lab-skills)
 [![Version](https://img.shields.io/badge/version-v1.0.0-blue)](https://github.com/starpig1129/research-lab-skills/releases/tag/v1.0.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 
@@ -93,33 +94,50 @@ The journal's `follows:` field links experiments into a traceable timeline. `ame
 
 ## Installation
 
-### Global install — all skills (recommended)
+### npm (recommended)
 
 ```bash
+npm install -g research-lab-skills
+crs init --global          # install all 7 skills globally
+```
+
+Or one-shot with npx (no permanent npm install):
+
+```bash
+npx research-lab-skills init --global
+```
+
+**Options:**
+
+| Flag | What installs |
+|------|---------------|
+| _(none)_ | All 7 skills (project-local `.claude/skills/`) |
+| `--global` | All 7 skills globally (`~/.claude/skills/`) |
+| `--lab-only` | `research-log`, `report-slides`, `research-mode` |
+| `--ars-only` | `deep-research`, `academic-paper`, `academic-paper-reviewer`, `academic-pipeline` |
+| `--ai cursor` | Install for Cursor instead of Claude Code |
+
+```bash
+crs update --global        # reinstall after npm upgrade
+crs uninstall --global     # remove skills
+```
+
+### curl (no npm)
+
+```bash
+# All skills (global)
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh)
-```
 
-### Project-local install
-
-```bash
+# Project-local
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --local
-```
 
-### Install only academic research skills
-
-```bash
+# ARS skills only
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --ars-only
-```
 
-### Install only lab skills (research-log, report-slides, research-mode)
-
-```bash
+# Lab skills only
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --lab-only
-```
 
-### Uninstall
-
-```bash
+# Uninstall
 bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) uninstall
 ```
 

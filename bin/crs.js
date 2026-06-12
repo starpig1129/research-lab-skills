@@ -140,6 +140,13 @@ research-lab-skills (crs) v${VERSION}
   Lab:      /research-log  /report-slides  /mode
   Academic: /ars-full  /ars-plan  /ars-lit-review  /ars-review  and more
 
+Quick install (no global npm needed):
+  npx research-lab-skills init --global
+
+Or install globally then use crs:
+  npm install -g research-lab-skills
+  crs init --global
+
 Usage:
   crs init                        Install all 7 skills (project-local)
   crs init --global               Install all 7 skills globally

@@ -6,7 +6,7 @@ tags: [nlp, esa, cross-lingual, chinese, mbert, bias, fairness]
 follows: 2026-05-18_bert_finetuned_full.md
 reason_follows: English model strong (QWK=0.836); testing cross-lingual transfer and Chinese fine-tuning
 git_head: 9c4f7a2
-slide_decks: [docs/slides/reports/2026-05-25_weekly-progress]
+slide_decks: [examples/report-slides/deck.pptx]
 amended:
   - date: 2026-05-27
     summary: Added DIF analysis results and bias characterisation after receiving annotator feedback

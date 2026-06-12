@@ -12,142 +12,141 @@
   </defs>
 
   <!-- Background -->
-  <rect width="1200" height="675" fill="#ffffff"/>
+  <path d="M 0,0 H 1200 V 675 H 0 Z" fill="#ffffff"/>
   <rect width="1200" height="5" fill="#1f618d"/>
 
   <!-- Title -->
-  <text x="60" y="35" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#1f618d">Fig. 2  —  Model Development and Evaluation Protocol</text>
+  <text x="60" y="35" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#1f618d">Fig. 2  —  Model Development and Evaluation Protocol</text>
   <line x1="60" y1="48" x2="1140" y2="48" stroke="#d5dbdb" stroke-width="1.5"/>
 
   <!-- ─── VERTICAL SEPARATOR LINE ─── -->
   <line x1="652" y1="56" x2="652" y2="617" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="4,3"/>
 
   <!-- Column labels -->
-  <text x="420" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic" text-anchor="middle">Model Development Flow</text>
-  <text x="920" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic" text-anchor="middle">Evaluation Criteria and Results</text>
+  <text x="420" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic" text-anchor="middle">Model Development Flow</text>
+  <text x="920" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic" text-anchor="middle">Evaluation Criteria and Results</text>
 
   <!-- ─── NODE 0: START  y_center=82  y=60..104 ─── -->
-  <rect x="320" y="60" width="200" height="44" rx="22" fill="#1f618d" stroke="#1f618d" stroke-width="1.5"/>
-  <text x="420" y="87" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">START</text>
+  <path d="M 342,60 H 498 A 22,22 0 0,1 520,82 A 22,22 0 0,1 498,104 H 342 A 22,22 0 0,1 320,82 A 22,22 0 0,1 342,60 Z" fill="#1f618d" stroke="#1f618d" stroke-width="1.5"/>
+  <text x="420" y="87" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">START</text>
 
   <!-- N0 → N1 arrow -->
   <line x1="420" y1="104" x2="420" y2="135" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
 
   <!-- ─── NODE 1: Data Prep  y_center=162  y=136..188 ─── -->
   <rect x="300" y="136" width="240" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
-  <text x="420" y="158" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Data Preparation &amp;</text>
-  <text x="420" y="173" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Model Configuration</text>
+  <text x="420" y="158" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">Data Preparation &amp;</text>
+  <text x="420" y="175" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">Model Configuration</text>
 
   <!-- N1 → N2 arrow -->
   <line x1="420" y1="188" x2="420" y2="219" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
 
   <!-- ─── NODE 2: Fine-Tune  y_center=246  y=220..272 ─── -->
   <rect x="300" y="220" width="240" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
-  <text x="420" y="242" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Fine-Tune ZH-BERT-FT</text>
-  <text x="420" y="257" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">(per-prompt, epochs = 10)</text>
+  <text x="420" y="242" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">Fine-Tune ZH-BERT-FT</text>
+  <text x="420" y="259" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">(per-prompt, epochs = 10)</text>
 
   <!-- N2 → N3 arrow -->
   <line x1="420" y1="272" x2="420" y2="299" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
 
   <!-- ─── NODE 3: Decision QWK  y_center=329  diamond y=299..359 ─── -->
   <path d="M 420,299 L 550,329 L 420,359 L 290,329 Z" fill="#ffffff" stroke="#d5dbdb" stroke-width="1"/>
-  <text x="420" y="333" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50" text-anchor="middle">zh-TW QWK ≥ 0.80?</text>
+  <text x="420" y="333" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#2c3e50" text-anchor="middle">zh-TW QWK ≥ 0.80?</text>
 
   <!-- N3 YES → N4 -->
   <line x1="420" y1="359" x2="420" y2="386" stroke="#1e8449" stroke-width="1.25" marker-end="url(#ag)"/>
-  <text x="432" y="375" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449" font-weight="600">Yes</text>
+  <text x="432" y="375" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#1e8449" font-weight="600">Yes</text>
 
   <!-- N3 NO → back to N2 (left loop) -->
   <line x1="290" y1="329" x2="230" y2="329" stroke="#c0392b" stroke-width="1" marker-end="url(#ar)"/>
   <line x1="230" y1="329" x2="230" y2="246" stroke="#c0392b" stroke-width="1"/>
   <line x1="230" y1="246" x2="299" y2="246" stroke="#c0392b" stroke-width="1" marker-end="url(#ar)"/>
-  <text x="148" y="290" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b" text-anchor="middle">No</text>
-  <text x="148" y="302" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b" text-anchor="middle">(adjust</text>
-  <text x="148" y="314" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b" text-anchor="middle">hyper-params)</text>
+  <text x="148" y="290" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">No</text>
+  <text x="148" y="304" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">(adjust</text>
+  <text x="148" y="318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">hyper-params)</text>
 
   <!-- ─── NODE 4: Decision DIF  y_center=416  diamond y=386..446 ─── -->
   <path d="M 420,386 L 550,416 L 420,446 L 290,416 Z" fill="#ffffff" stroke="#d5dbdb" stroke-width="1"/>
-  <text x="420" y="420" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50" text-anchor="middle">DIF flags = 0?</text>
+  <text x="420" y="420" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#2c3e50" text-anchor="middle">DIF flags = 0?</text>
 
   <!-- N4 YES → N5 -->
   <line x1="420" y1="446" x2="420" y2="473" stroke="#1e8449" stroke-width="1.25" marker-end="url(#ag)"/>
-  <text x="432" y="462" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449" font-weight="600">Yes</text>
+  <text x="432" y="462" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#1e8449" font-weight="600">Yes</text>
 
   <!-- N4 NO → back to N2 (right loop) -->
   <line x1="550" y1="416" x2="614" y2="416" stroke="#c0392b" stroke-width="1" marker-end="url(#ar)"/>
   <line x1="614" y1="416" x2="614" y2="246" stroke="#c0392b" stroke-width="1"/>
   <line x1="614" y1="246" x2="541" y2="246" stroke="#c0392b" stroke-width="1" marker-end="url(#ar)"/>
-  <text x="636" y="320" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b">No</text>
-  <text x="636" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b">(augment /</text>
-  <text x="636" y="344" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b">re-design)</text>
+  <text x="636" y="320" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#c0392b">No</text>
+  <text x="636" y="334" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#c0392b">(augment /</text>
+  <text x="636" y="348" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#c0392b">re-design)</text>
 
   <!-- ─── NODE 5: Full Eval  y_center=500  y=474..526 ─── -->
   <rect x="300" y="474" width="240" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
-  <text x="420" y="496" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Full Test-Set Evaluation</text>
-  <text x="420" y="511" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">(QWK + DIF report)</text>
+  <text x="420" y="496" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">Full Test-Set Evaluation</text>
+  <text x="420" y="513" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">(QWK + DIF report)</text>
 
   <!-- N5 → N6 arrow -->
   <line x1="420" y1="526" x2="420" y2="557" stroke="#1e8449" stroke-width="1.25" marker-end="url(#ag)"/>
 
   <!-- ─── NODE 6: END  y_center=580  y=558..602 ─── -->
-  <rect x="320" y="558" width="200" height="44" rx="22" fill="#1e8449" stroke="#1e8449" stroke-width="1.5"/>
-  <text x="420" y="575" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">Model Accepted</text>
-  <text x="420" y="590" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#dcfce7" text-anchor="middle">for Deployment</text>
+  <path d="M 342,558 H 498 A 22,22 0 0,1 520,580 A 22,22 0 0,1 498,602 H 342 A 22,22 0 0,1 320,580 A 22,22 0 0,1 342,558 Z" fill="#1e8449" stroke="#1e8449" stroke-width="1.5"/>
+  <text x="420" y="575" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Model Accepted</text>
+  <text x="420" y="591" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#dcfce7" text-anchor="middle">for Deployment</text>
 
   <!-- ─── RIGHT COLUMN ANNOTATIONS ─── -->
 
-  <!-- N0 annotation (y=60..100, ann y=62..100) -->
+  <!-- N0 annotation (y=62..102) -->
   <rect x="670" y="62" width="480" height="40" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
-  <text x="682" y="79" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Input: zh-TW student essays (P1–P4)</text>
-  <text x="682" y="94" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">Annotated scores: integer range 0–3 per prompt</text>
-  <!-- Dashed connector N0 → ann0 -->
+  <text x="682" y="79" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">Input: zh-TW student essays (P1–P4)</text>
+  <text x="682" y="96" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic">Annotated scores: integer range 0–3 per prompt</text>
   <line x1="520" y1="82" x2="668" y2="82" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
-  <!-- N1 annotation (y=136..188, ann y=136..192) -->
+  <!-- N1 annotation (y=138..192) -->
   <rect x="670" y="138" width="480" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
-  <text x="682" y="155" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Split: 60/20/20 train/val/test (per prompt)</text>
-  <text x="682" y="169" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Model: bert-base-chinese · LR = 2×10⁻⁵ · batch = 16</text>
-  <text x="682" y="183" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">Rubric-prefix conditioning applied</text>
+  <text x="682" y="156" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">Split: 60/20/20 train/val/test (per prompt)</text>
+  <text x="682" y="172" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">Model: bert-base-chinese · LR = 2×10⁻⁵ · batch = 16</text>
+  <text x="682" y="186" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic">Rubric-prefix conditioning applied</text>
   <line x1="540" y1="162" x2="668" y2="162" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
-  <!-- N2 annotation (y=220..272, ann y=220..276) -->
+  <!-- N2 annotation (y=222..276) -->
   <rect x="670" y="222" width="480" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
-  <text x="682" y="239" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Separate model trained per prompt (P1–P8)</text>
-  <text x="682" y="253" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">QWK loss · soft-label regression · max-seq = 256</text>
-  <text x="682" y="267" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">Early stopping on validation QWK plateau</text>
+  <text x="682" y="240" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">Separate model trained per prompt (P1–P8)</text>
+  <text x="682" y="256" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">QWK loss · soft-label regression · max-seq = 256</text>
+  <text x="682" y="270" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic">Early stopping on validation QWK plateau</text>
   <line x1="540" y1="246" x2="668" y2="246" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
-  <!-- N3 annotation (y=299..359, ann y=305..361) -->
+  <!-- N3 annotation (y=305..361) -->
   <rect x="670" y="305" width="480" height="54" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
-  <text x="682" y="323" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Threshold: QWK ≥ 0.80 (publication-grade for ESAS)</text>
-  <text x="682" y="337" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449">Final result: zh-TW QWK = 0.811 ≥ 0.80 ✓</text>
-  <text x="682" y="351" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">Evaluated on held-out test set (20%)</text>
+  <text x="682" y="323" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">Threshold: QWK ≥ 0.80 (publication-grade for ESAS)</text>
+  <text x="682" y="339" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#1e8449">Final result: zh-TW QWK = 0.811 ≥ 0.80 ✓</text>
+  <text x="682" y="353" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic">Evaluated on held-out test set (20%)</text>
   <line x1="550" y1="329" x2="668" y2="329" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
-  <!-- N4 annotation (y=386..446, ann y=390..446) -->
+  <!-- N4 annotation (y=390..446) -->
   <rect x="670" y="390" width="480" height="54" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
-  <text x="682" y="408" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Mantel-Haenszel test · p &lt; .05 threshold</text>
-  <text x="682" y="422" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">12 score levels · EN vs. zh-TW comparison</text>
-  <text x="682" y="436" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449">Final result: 0/12 DIF flags ✓</text>
+  <text x="682" y="408" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">Mantel-Haenszel test · p &lt; .05 threshold</text>
+  <text x="682" y="424" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">12 score levels · EN vs. zh-TW comparison</text>
+  <text x="682" y="438" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#1e8449">Final result: 0/12 DIF flags ✓</text>
   <line x1="550" y1="416" x2="668" y2="416" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
-  <!-- N5 annotation (y=474..526, ann y=476..532) -->
+  <!-- N5 annotation (y=476..532) -->
   <rect x="670" y="476" width="480" height="54" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
-  <text x="682" y="494" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Final: zh-TW QWK = 0.811 · EN = 0.828</text>
-  <text x="682" y="508" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">EN↔zh-TW gap = −0.017 (noise level)</text>
-  <text x="682" y="522" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449">0/12 DIF flags  ·  Annotation κ = 0.84 ✓</text>
+  <text x="682" y="494" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">Final: zh-TW QWK = 0.811 · EN = 0.828</text>
+  <text x="682" y="510" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#2c3e50">EN↔zh-TW gap = −0.017 (noise level)</text>
+  <text x="682" y="524" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#1e8449">0/12 DIF flags  ·  Annotation κ = 0.84 ✓</text>
   <line x1="540" y1="500" x2="668" y2="500" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
-  <!-- N6 annotation (y=558..602, ann y=560..604) -->
+  <!-- N6 annotation (y=560..604) -->
   <rect x="670" y="560" width="480" height="42" rx="2" fill="#f2f3f4" stroke="#1e8449" stroke-width="0.75"/>
-  <text x="682" y="577" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449" font-weight="600">ZH-BERT-FT: selected as production candidate</text>
-  <text x="682" y="593" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">P5–P8 annotation ongoing (budget constraint)</text>
+  <text x="682" y="578" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#1e8449" font-weight="600">ZH-BERT-FT: selected as production candidate</text>
+  <text x="682" y="595" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic">P5–P8 annotation ongoing (budget constraint)</text>
   <line x1="520" y1="580" x2="668" y2="580" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
   <!-- ─── NOTE CAPTION ─── -->
-  <text x="60" y="630" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#7f8c8d" font-style="italic">Note.  Dashed lines connect each node to its decision criteria (right column).  Loop-back iterations adjust training hyperparameters or data augmentation strategy.</text>
+  <text x="60" y="630" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#7f8c8d" font-style="italic">Note.  Dashed lines connect each node to its decision criteria (right column).  Loop-back iterations adjust training hyperparameters or data augmentation strategy.</text>
 
   <!-- ─── FOOTER ─── -->
   <line x1="0" y1="648" x2="1200" y2="648" stroke="#d5dbdb" stroke-width="0.75"/>
-  <text x="600" y="661" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#7f8c8d" text-anchor="middle">Cross-Lingual ESAS  ·  Weekly Progress  ·  2026-05-25</text>
+  <text x="600" y="661" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#7f8c8d" text-anchor="middle">Cross-Lingual ESAS  ·  Weekly Progress  ·  2026-05-25</text>
 </svg>

@@ -6,7 +6,7 @@ tags: [nlp, esa, gpt-4, baseline, educational-assessment]
 follows:
 reason_follows:
 git_head: b4c1a09
-slide_decks: []
+slide_decks: [examples/report-slides/deck.pptx]
 amended: []
 ---
 

@@ -1,70 +1,89 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
-  <rect width="1200" height="675" fill="#ffffff"/>
-  <rect width="1200" height="6" fill="#1e3a5f"/>
+  <path d="M 0,0 H 1200 V 675 H 0 Z" fill="#ffffff"/>
+  <rect width="1200" height="5" fill="#1f618d"/>
 
-  <text x="60" y="58" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Cross-Lingual QWK — EN vs zh-TW by Model Strategy</text>
-  <rect x="60" y="70" width="1080" height="2" fill="#e2e8f0"/>
+  <!-- title -->
+  <text x="60" y="52" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="26" font-weight="700" fill="#1f618d">Cross-Lingual QWK — EN vs zh-TW by Model Strategy</text>
+  <line x1="60" y1="65" x2="1140" y2="65" stroke="#d5dbdb" stroke-width="1.5"/>
 
-  <!-- chart area: x=90..1100, y=100..560; height=460 -->
-  <!-- y-axis: 0.0 to 1.0 in 0.2 steps; step=92px -->
+  <!-- chart area: x=100..1020, y=90..530; height=440 -->
+  <!-- y-axis: 0.0 to 1.0 in 0.2 steps; step = 88px -->
 
   <!-- y-axis labels -->
-  <text x="78" y="564" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="end">0.0</text>
-  <text x="78" y="472" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="end">0.2</text>
-  <text x="78" y="380" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="end">0.4</text>
-  <text x="78" y="288" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="end">0.6</text>
-  <text x="78" y="196" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="end">0.8</text>
-  <text x="78" y="104" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="end">1.0</text>
+  <text x="88" y="534" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#7f8c8d" text-anchor="end">0.0</text>
+  <text x="88" y="446" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#7f8c8d" text-anchor="end">0.2</text>
+  <text x="88" y="358" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#7f8c8d" text-anchor="end">0.4</text>
+  <text x="88" y="270" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#7f8c8d" text-anchor="end">0.6</text>
+  <text x="88" y="182" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#7f8c8d" text-anchor="end">0.8</text>
+  <text x="88" y="94" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#7f8c8d" text-anchor="end">1.0</text>
 
   <!-- grid lines -->
-  <line x1="90" y1="560" x2="1100" y2="560" stroke="#e2e8f0" stroke-width="1"/>
-  <line x1="90" y1="468" x2="1100" y2="468" stroke="#e2e8f0" stroke-width="1"/>
-  <line x1="90" y1="376" x2="1100" y2="376" stroke="#e2e8f0" stroke-width="1"/>
-  <line x1="90" y1="284" x2="1100" y2="284" stroke="#e2e8f0" stroke-width="1"/>
-  <line x1="90" y1="192" x2="1100" y2="192" stroke="#e2e8f0" stroke-width="1"/>
-  <line x1="90" y1="100" x2="1100" y2="100" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="100" y1="530" x2="1020" y2="530" stroke="#d5dbdb" stroke-width="1"/>
+  <line x1="100" y1="442" x2="1020" y2="442" stroke="#d5dbdb" stroke-width="0.75"/>
+  <line x1="100" y1="354" x2="1020" y2="354" stroke="#d5dbdb" stroke-width="0.75"/>
+  <line x1="100" y1="266" x2="1020" y2="266" stroke="#d5dbdb" stroke-width="0.75"/>
+  <line x1="100" y1="178" x2="1020" y2="178" stroke="#d5dbdb" stroke-width="0.75"/>
+  <line x1="100" y1="90"  x2="1020" y2="90"  stroke="#d5dbdb" stroke-width="0.75"/>
 
-  <!-- Group 1: EN-BERT-ZS (x=180) -->
-  <!-- EN: 0.853 → h=0.853×460=392.4, y=560-392=168 -->
-  <rect x="152" y="168" width="55" height="392" fill="#1e3a5f" rx="3"/>
-  <text x="179" y="161" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#1e3a5f" text-anchor="middle">0.853</text>
-  <!-- zh-TW: 0.541 → h=0.541×460=248.9, y=560-249=311 -->
-  <rect x="215" y="311" width="55" height="249" fill="#059669" rx="3"/>
-  <text x="242" y="304" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#dc2626" text-anchor="middle">0.541</text>
-  <text x="216" y="598" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151" text-anchor="middle">EN-BERT-ZS</text>
-  <text x="216" y="614" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">(zero-shot)</text>
+  <!-- Group 1: EN-BERT-ZS (zero-shot transfer) — centered x=215 -->
+  <!-- EN: 0.853 → h=0.853×440=375, y=530-375=155 -->
+  <rect x="163" y="155" width="60" height="375" fill="#1f618d" rx="3"/>
+  <text x="193" y="148" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" font-weight="600" fill="#1f618d" text-anchor="middle">0.853</text>
+  <!-- zh-TW: 0.541 → h=0.541×440=238, y=530-238=292 -->
+  <rect x="231" y="292" width="60" height="238" fill="#1e8449" rx="3"/>
+  <text x="261" y="284" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" font-weight="600" fill="#c0392b" text-anchor="middle">0.541</text>
+  <text x="212" y="570" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#2c3e50" text-anchor="middle">EN-BERT-ZS</text>
+  <text x="212" y="589" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" fill="#7f8c8d" text-anchor="middle">(zero-shot)</text>
 
-  <!-- Group 2: mBERT-FT (x=490) -->
-  <!-- EN: 0.831 → h=382.3, y=178 -->
-  <rect x="462" y="178" width="55" height="382" fill="#1e3a5f" rx="3"/>
-  <text x="489" y="171" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#1e3a5f" text-anchor="middle">0.831</text>
-  <!-- zh-TW: 0.784 → h=360.6, y=199 -->
-  <rect x="525" y="199" width="55" height="361" fill="#059669" rx="3"/>
-  <text x="552" y="192" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#059669" text-anchor="middle">0.784</text>
-  <text x="516" y="598" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151" text-anchor="middle">mBERT-FT</text>
-  <text x="516" y="614" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">(translated)</text>
+  <!-- Group 2: mBERT-FT — centered x=515 -->
+  <!-- EN: 0.831 → h=366, y=164 -->
+  <rect x="463" y="164" width="60" height="366" fill="#1f618d" rx="3"/>
+  <text x="493" y="157" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" font-weight="600" fill="#1f618d" text-anchor="middle">0.831</text>
+  <!-- zh-TW: 0.784 → h=345, y=185 -->
+  <rect x="531" y="185" width="60" height="345" fill="#1e8449" rx="3"/>
+  <text x="561" y="178" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" font-weight="600" fill="#1e8449" text-anchor="middle">0.784</text>
+  <text x="512" y="570" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#2c3e50" text-anchor="middle">mBERT-FT</text>
+  <text x="512" y="589" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" fill="#7f8c8d" text-anchor="middle">(translated)</text>
 
-  <!-- Group 3: ZH-BERT-FT (x=800) — best model -->
-  <!-- EN: 0.828 → h=380.9, y=179 -->
-  <rect x="772" y="179" width="55" height="381" fill="#1e3a5f" rx="3"/>
-  <text x="799" y="172" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#1e3a5f" text-anchor="middle">0.828</text>
-  <!-- zh-TW: 0.811 → h=373.1, y=187 -->
-  <rect x="835" y="187" width="55" height="373" fill="#059669" rx="3"/>
-  <text x="862" y="180" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" fill="#059669" text-anchor="middle">0.811</text>
+  <!-- Group 3: ZH-BERT-FT (best model) — centered x=815 -->
+  <!-- EN: 0.828 → h=364, y=166 -->
+  <rect x="763" y="166" width="60" height="364" fill="#1f618d" rx="3"/>
+  <text x="793" y="159" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" font-weight="600" fill="#1f618d" text-anchor="middle">0.828</text>
+  <!-- zh-TW: 0.811 → h=357, y=173 -->
+  <rect x="831" y="173" width="60" height="357" fill="#1e8449" rx="3"/>
+  <text x="861" y="166" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" font-weight="600" fill="#1e8449" text-anchor="middle">0.811</text>
   <!-- best model badge -->
-  <rect x="762" y="92" width="115" height="22" rx="4" fill="#dcfce7" stroke="#059669" stroke-width="1"/>
-  <text x="819" y="107" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="600" fill="#059669" text-anchor="middle">✓ Best Model</text>
-  <text x="820" y="598" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151" text-anchor="middle">ZH-BERT-FT</text>
-  <text x="820" y="614" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">(language-matched)</text>
+  <rect x="753" y="82" width="122" height="24" rx="4" fill="#d5f5e3" stroke="#1e8449" stroke-width="1"/>
+  <text x="814" y="98" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" font-weight="600" fill="#1e8449" text-anchor="middle">✓ Best Model</text>
+  <text x="812" y="570" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#2c3e50" text-anchor="middle">ZH-BERT-FT</text>
+  <text x="812" y="589" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" fill="#7f8c8d" text-anchor="middle">(language-matched)</text>
 
   <!-- legend -->
-  <rect x="930" y="130" width="16" height="16" fill="#1e3a5f" rx="2"/>
-  <text x="952" y="143" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151">English QWK</text>
-  <rect x="930" y="156" width="16" height="16" fill="#059669" rx="2"/>
-  <text x="952" y="169" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#374151">zh-TW QWK</text>
+  <rect x="940" y="115" width="18" height="18" fill="#1f618d" rx="2"/>
+  <text x="964" y="129" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" fill="#2c3e50">English QWK</text>
+  <rect x="940" y="143" width="18" height="18" fill="#1e8449" rx="2"/>
+  <text x="964" y="157" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" fill="#2c3e50">zh-TW QWK</text>
 
   <!-- note -->
-  <text x="600" y="640" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Prompts P1–P4 · test set · macro-average QWK</text>
-  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
-  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+  <text x="600" y="618" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" fill="#7f8c8d" text-anchor="middle">Prompts P1–P4 · test set · macro-average QWK</text>
+
+  <!-- footer -->
+  <line x1="0" y1="648" x2="1200" y2="648" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="12" fill="#7f8c8d" text-anchor="middle">Cross-Lingual ESAS  ·  Weekly Progress  ·  2026-05-25</text>
 </svg>

@@ -1,69 +1,96 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
-  <rect width="1200" height="675" fill="#ffffff"/>
-  <rect width="1200" height="6" fill="#1e3a5f"/>
+  <path d="M 0,0 H 1200 V 675 H 0 Z" fill="#ffffff"/>
+  <rect width="1200" height="5" fill="#1f618d"/>
 
-  <text x="60" y="58" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Conclusion &amp; Next Steps</text>
-  <rect x="60" y="70" width="1080" height="2" fill="#e2e8f0"/>
+  <!-- title -->
+  <text x="60" y="52" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="26" font-weight="700" fill="#1f618d">Conclusion &amp; Next Steps</text>
+  <line x1="60" y1="65" x2="1140" y2="65" stroke="#d5dbdb" stroke-width="1.5"/>
 
-  <!-- Left: Conclusion card -->
-  <rect x="60" y="90" width="530" height="470" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
-  <rect x="60" y="90" width="530" height="44" rx="6" fill="#1e3a5f"/>
-  <rect x="60" y="112" width="530" height="22" fill="#1e3a5f"/>
-  <text x="325" y="118" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">Conclusions</text>
+  <!-- LEFT: Conclusions card (x=60..590) -->
+  <path d="M 68,80 H 582 A 8,8 0 0,1 590,88 V 552 A 8,8 0 0,1 582,560 H 68 A 8,8 0 0,1 60,552 V 88 A 8,8 0 0,1 68,80 Z" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1.5"/>
+  <rect x="60" y="80" width="530" height="44" rx="6" fill="#1f618d"/>
+  <rect x="60" y="102" width="530" height="22" fill="#1f618d"/>
+  <text x="325" y="108" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#ffffff" text-anchor="middle">Conclusions</text>
 
   <!-- Conclusion 1 -->
-  <circle cx="94" cy="180" r="14" fill="#059669"/>
-  <text x="94" y="185" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
-  <text x="118" y="173" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#1e3a5f">Language-matched fine-tuning achieves parity</text>
-  <text x="118" y="192" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151">ZH-BERT-FT: QWK=0.811, 0 DIF flags — parity with</text>
-  <text x="118" y="210" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151">English scoring, zero systematic bias</text>
+  <circle cx="94" cy="174" r="16" fill="#1e8449"/>
+  <text x="94" y="180" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+  <text x="121" y="167" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#1f618d">Language-matched fine-tuning achieves parity</text>
+  <text x="121" y="191" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="16" fill="#2c3e50">ZH-BERT-FT: QWK = 0.811, 0 DIF flags</text>
+  <text x="121" y="211" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="16" fill="#2c3e50">Parity with EN scoring, zero bias</text>
 
   <!-- Conclusion 2 -->
-  <circle cx="94" cy="265" r="14" fill="#dc2626"/>
-  <text x="94" y="270" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
-  <text x="118" y="258" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#1e3a5f">Zero-shot transfer is both inaccurate and unfair</text>
-  <text x="118" y="277" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151">EN-BERT-ZS: QWK=0.541 and 6/12 score levels</text>
-  <text x="118" y="295" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151">flagged — unacceptable for deployment</text>
+  <circle cx="94" cy="265" r="16" fill="#c0392b"/>
+  <text x="94" y="271" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+  <text x="121" y="258" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#1f618d">Zero-shot transfer is inaccurate and unfair</text>
+  <text x="121" y="282" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="16" fill="#2c3e50">EN-BERT-ZS: QWK = 0.541, 6/12 flags</text>
+  <text x="121" y="302" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="16" fill="#2c3e50">Unacceptable for deployment</text>
 
   <!-- Conclusion 3 -->
-  <circle cx="94" cy="350" r="14" fill="#d97706"/>
-  <text x="94" y="355" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
-  <text x="118" y="343" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#1e3a5f">Rubric-prefix is highest-value intervention</text>
-  <text x="118" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151">+2.2pp for argumentation-heavy prompts —</text>
-  <text x="118" y="380" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#374151">low cost, high impact, prompt-agnostic</text>
+  <circle cx="94" cy="356" r="16" fill="#d68910"/>
+  <text x="94" y="362" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+  <text x="121" y="349" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#1f618d">Rubric-prefix is highest-value intervention</text>
+  <text x="121" y="373" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="16" fill="#2c3e50">+2.2pp on argumentation-heavy prompts</text>
+  <text x="121" y="393" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="16" fill="#2c3e50">Low cost, high impact, prompt-agnostic</text>
 
-  <!-- Right: Next Steps card -->
-  <rect x="610" y="90" width="530" height="470" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <rect x="610" y="90" width="530" height="44" rx="6" fill="#059669"/>
-  <rect x="610" y="112" width="530" height="22" fill="#059669"/>
-  <text x="875" y="118" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">Next Steps</text>
+  <!-- RIGHT: Next Steps card (x=610..1140) -->
+  <path d="M 618,80 H 1132 A 8,8 0 0,1 1140,88 V 552 A 8,8 0 0,1 1132,560 H 618 A 8,8 0 0,1 610,552 V 88 A 8,8 0 0,1 618,80 Z" fill="#eafaf1" stroke="#a9dfbf" stroke-width="1.5"/>
+  <rect x="610" y="80" width="530" height="44" rx="6" fill="#1e8449"/>
+  <rect x="610" y="102" width="530" height="22" fill="#1e8449"/>
+  <text x="875" y="108" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#ffffff" text-anchor="middle">Next Steps</text>
 
   <!-- Next 1 -->
-  <rect x="634" y="158" width="482" height="72" rx="6" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
-  <rect x="634" y="158" width="6" height="72" rx="3" fill="#059669"/>
-  <text x="654" y="181" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#374151">Complete P5–P8 zh-TW annotation</text>
-  <text x="654" y="200" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b">Budget approval pending · target: 2026-06-10</text>
-  <text x="654" y="218" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b">~400 additional zh-TW essays to label</text>
+  <path d="M 640,145 H 1110 A 6,6 0 0,1 1116,151 V 219 A 6,6 0 0,1 1110,225 H 640 A 6,6 0 0,1 634,219 V 151 A 6,6 0 0,1 640,145 Z" fill="#ffffff" stroke="#a9dfbf" stroke-width="1"/>
+  <rect x="634" y="145" width="6" height="80" rx="3" fill="#1e8449"/>
+  <text x="654" y="172" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#2c3e50">Complete P5–P8 zh-TW annotation</text>
+  <text x="654" y="196" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#7f8c8d">Budget approval pending · target: 2026-06-10</text>
+  <text x="654" y="216" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#7f8c8d">~400 additional zh-TW essays to label</text>
 
   <!-- Next 2 -->
-  <rect x="634" y="250" width="482" height="72" rx="6" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
-  <rect x="634" y="250" width="6" height="72" rx="3" fill="#d97706"/>
-  <text x="654" y="273" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#374151">Contrastive-pair augmentation for P2/P7</text>
-  <text x="654" y="292" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b">Score-boundary confusion at levels 5→6, 9→10</text>
-  <text x="654" y="310" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b">Expected +1.5pp QWK on boundary-heavy prompts</text>
+  <path d="M 640,243 H 1110 A 6,6 0 0,1 1116,249 V 317 A 6,6 0 0,1 1110,323 H 640 A 6,6 0 0,1 634,317 V 249 A 6,6 0 0,1 640,243 Z" fill="#ffffff" stroke="#a9dfbf" stroke-width="1"/>
+  <rect x="634" y="243" width="6" height="80" rx="3" fill="#d68910"/>
+  <text x="654" y="270" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#2c3e50">Contrastive-pair augmentation for P2/P7</text>
+  <text x="654" y="294" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#7f8c8d">Score-boundary confusion at levels 5→6, 9→10</text>
+  <text x="654" y="314" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#7f8c8d">Expected +1.5pp QWK on boundary-heavy prompts</text>
 
   <!-- Next 3 -->
-  <rect x="634" y="342" width="482" height="72" rx="6" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
-  <rect x="634" y="342" width="6" height="72" rx="3" fill="#1e3a5f"/>
-  <text x="654" y="365" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#374151">Begin paper draft</text>
-  <text x="654" y="384" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b">Fairness-aware cross-lingual ESAS framework</text>
-  <text x="654" y="402" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b">Target venue: ACL 2027 · deadline: 2026-09-15</text>
+  <path d="M 640,341 H 1110 A 6,6 0 0,1 1116,347 V 415 A 6,6 0 0,1 1110,421 H 640 A 6,6 0 0,1 634,415 V 347 A 6,6 0 0,1 640,341 Z" fill="#ffffff" stroke="#a9dfbf" stroke-width="1"/>
+  <rect x="634" y="341" width="6" height="80" rx="3" fill="#1f618d"/>
+  <text x="654" y="368" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#2c3e50">Begin paper draft</text>
+  <text x="654" y="392" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#7f8c8d">Fairness-aware cross-lingual ESAS framework</text>
+  <text x="654" y="412" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#7f8c8d">Target venue: ACL 2027 · deadline: 2026-09-15</text>
 
-  <!-- Thank-you / closing line -->
-  <rect x="60" y="578" width="1080" height="46" rx="6" fill="#1e3a5f"/>
-  <text x="600" y="607" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">Thank you — Questions Welcome</text>
+  <!-- Thank-you bar -->
+  <path d="M 66,575 H 1134 A 6,6 0 0,1 1140,581 V 619 A 6,6 0 0,1 1134,625 H 66 A 6,6 0 0,1 60,619 V 581 A 6,6 0 0,1 66,575 Z" fill="#1f618d"/>
+  <text x="600" y="606" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="17" font-weight="600" fill="#ffffff" text-anchor="middle">Thank you — Questions Welcome</text>
 
-  <!-- bottom footer -->
-  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
-  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+  <!-- footer -->
+  <line x1="0" y1="648" x2="1200" y2="648" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="12" fill="#7f8c8d" text-anchor="middle">Cross-Lingual ESAS  ·  Weekly Progress  ·  2026-05-25</text>
 </svg>

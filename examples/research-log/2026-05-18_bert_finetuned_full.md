@@ -6,7 +6,7 @@ tags: [nlp, esa, bert, fine-tuning, qwk, asap-sas]
 follows: 2026-05-10_esa_baseline_quick.md
 reason_follows: Baseline confirmed fine-tuning is necessary (QWK=0.674); now training supervised model
 git_head: f2d8e31
-slide_decks: []
+slide_decks: [examples/report-slides/deck.pptx]
 amended:
   - date: 2026-05-20
     summary: Added per-prompt QWK breakdown after completing full evaluation run; revised analysis section

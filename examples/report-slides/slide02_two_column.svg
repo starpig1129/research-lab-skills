@@ -1,69 +1,82 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
-  <rect width="1200" height="675" fill="#ffffff"/>
-  <rect width="1200" height="6" fill="#1e3a5f"/>
+  <path d="M 0,0 H 1200 V 675 H 0 Z" fill="#ffffff"/>
+  <rect width="1200" height="5" fill="#1f618d"/>
 
   <!-- title -->
-  <text x="60" y="58"
-        font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="28" font-weight="700" fill="#1e3a5f">Background &amp; Research Question</text>
-  <rect x="60" y="70" width="1080" height="2" fill="#e2e8f0"/>
+  <text x="60" y="52" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="26" font-weight="700" fill="#1f618d">Background &amp; Research Question</text>
+  <line x1="60" y1="65" x2="1140" y2="65" stroke="#d5dbdb" stroke-width="1.5"/>
 
-  <!-- left column card -->
-  <rect x="60" y="90" width="510" height="520" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
-  <rect x="60" y="90" width="510" height="44" rx="6" fill="#1e3a5f"/>
-  <rect x="60" y="112" width="510" height="22" fill="#1e3a5f"/>
-  <text x="315" y="118"
-        font-family="'Helvetica Neue', Arial, sans-serif"
+  <!-- LEFT COLUMN: Problem -->
+  <path d="M 66,82 H 564 A 6,6 0 0,1 570,88 V 586 A 6,6 0 0,1 564,592 H 66 A 6,6 0 0,1 60,586 V 88 A 6,6 0 0,1 66,82 Z" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1.5"/>
+  <rect x="60" y="82" width="510" height="42" rx="6" fill="#1f618d"/>
+  <rect x="60" y="103" width="510" height="21" fill="#1f618d"/>
+  <text x="315" y="109" font-family="'Helvetica Neue', Arial, sans-serif"
         font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">The Problem</text>
 
-  <!-- left bullets -->
-  <rect x="88" y="164" width="6" height="6" rx="3" fill="#dc2626"/>
-  <text x="104" y="172" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
-    <tspan x="104" dy="0">English ESAS systems (QWK~0.85) cannot</tspan>
-    <tspan x="104" dy="22">transfer to zh-TW without significant bias</tspan>
+  <rect x="84" y="157" width="7" height="7" rx="3" fill="#c0392b"/>
+  <text x="102" y="165" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#2c3e50">
+    <tspan x="102" dy="0">EN ESAS (QWK~0.85) cannot transfer to</tspan>
+    <tspan x="102" dy="26">zh-TW without significant scoring bias</tspan>
   </text>
 
-  <rect x="88" y="222" width="6" height="6" rx="3" fill="#dc2626"/>
-  <text x="104" y="230" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
-    <tspan x="104" dy="0">Discourse markers, sentence-length norms,</tspan>
-    <tspan x="104" dy="22">and rubric anchors differ structurally</tspan>
-    <tspan x="104" dy="22">across languages</tspan>
+  <rect x="84" y="225" width="7" height="7" rx="3" fill="#c0392b"/>
+  <text x="102" y="233" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#2c3e50">
+    <tspan x="102" dy="0">Discourse markers and rubric anchors</tspan>
+    <tspan x="102" dy="26">differ structurally across languages</tspan>
   </text>
 
-  <rect x="88" y="306" width="6" height="6" rx="3" fill="#dc2626"/>
-  <text x="104" y="314" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
-    <tspan x="104" dy="0">English models introduce systematic DIF</tspan>
-    <tspan x="104" dy="22">at score boundaries (6 / 12 levels flagged)</tspan>
+  <rect x="84" y="293" width="7" height="7" rx="3" fill="#c0392b"/>
+  <text x="102" y="301" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#2c3e50">
+    <tspan x="102" dy="0">EN models introduce systematic DIF at</tspan>
+    <tspan x="102" dy="26">score boundaries (6/12 levels flagged)</tspan>
   </text>
 
-  <!-- right column card -->
-  <rect x="630" y="90" width="510" height="520" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <rect x="630" y="90" width="510" height="44" rx="6" fill="#059669"/>
-  <rect x="630" y="112" width="510" height="22" fill="#059669"/>
-  <text x="885" y="118"
-        font-family="'Helvetica Neue', Arial, sans-serif"
+  <!-- RQ box -->
+  <path d="M 82,380 H 548 A 4,4 0 0,1 552,384 V 466 A 4,4 0 0,1 548,470 H 82 A 4,4 0 0,1 78,466 V 384 A 4,4 0 0,1 82,380 Z" fill="#eaf1fb" stroke="#1f618d" stroke-width="1.5"/>
+  <text x="315" y="408" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" font-weight="600" fill="#1f618d" text-anchor="middle">Research Question</text>
+  <text x="315" y="433" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#2c3e50" text-anchor="middle">Can ZH-BERT achieve EN-parity while</text>
+  <text x="315" y="456" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#2c3e50" text-anchor="middle">maintaining rubric-level fairness (DIF = 0)?</text>
+
+  <!-- RIGHT COLUMN: Approach -->
+  <path d="M 636,82 H 1134 A 6,6 0 0,1 1140,88 V 586 A 6,6 0 0,1 1134,592 H 636 A 6,6 0 0,1 630,586 V 88 A 6,6 0 0,1 636,82 Z" fill="#eafaf1" stroke="#a9dfbf" stroke-width="1.5"/>
+  <rect x="630" y="82" width="510" height="42" rx="6" fill="#1e8449"/>
+  <rect x="630" y="103" width="510" height="21" fill="#1e8449"/>
+  <text x="885" y="109" font-family="'Helvetica Neue', Arial, sans-serif"
         font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">Our Approach</text>
 
-  <!-- right bullets -->
-  <rect x="658" y="164" width="6" height="6" rx="3" fill="#059669"/>
-  <text x="674" y="172" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
-    <tspan x="674" dy="0">Phase 1: GPT-4 zero-shot baseline</tspan>
-    <tspan x="674" dy="22">QWK=0.674 — upper-bound without training</tspan>
+  <rect x="654" y="157" width="7" height="7" rx="3" fill="#1e8449"/>
+  <text x="672" y="165" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#2c3e50">
+    <tspan x="672" dy="0">Phase 1: GPT-4 zero-shot baseline</tspan>
+    <tspan x="672" dy="26">QWK = 0.674 — EN upper-bound</tspan>
   </text>
 
-  <rect x="658" y="228" width="6" height="6" rx="3" fill="#059669"/>
-  <text x="674" y="236" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
-    <tspan x="674" dy="0">Phase 2: BERT fine-tuned per-prompt</tspan>
-    <tspan x="674" dy="22">+ rubric prefix → QWK=0.836 (EN)</tspan>
+  <rect x="654" y="225" width="7" height="7" rx="3" fill="#1e8449"/>
+  <text x="672" y="233" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#2c3e50">
+    <tspan x="672" dy="0">Phase 2: BERT fine-tuned per-prompt</tspan>
+    <tspan x="672" dy="26">+ rubric prefix → QWK = 0.836 (EN)</tspan>
   </text>
 
-  <rect x="658" y="292" width="6" height="6" rx="3" fill="#059669"/>
-  <text x="674" y="300" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#374151">
-    <tspan x="674" dy="0">Phase 3: Cross-lingual evaluation</tspan>
-    <tspan x="674" dy="22">ZH-BERT-FT: QWK=0.811, 0 DIF flags</tspan>
+  <rect x="654" y="293" width="7" height="7" rx="3" fill="#1e8449"/>
+  <text x="672" y="301" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#2c3e50">
+    <tspan x="672" dy="0">Phase 3: Cross-lingual evaluation</tspan>
+    <tspan x="672" dy="26">ZH-BERT-FT: QWK = 0.811, 0 DIF flags</tspan>
   </text>
 
-  <!-- bottom footer -->
-  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
-  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+  <!-- Achievement box -->
+  <path d="M 652,380 H 1118 A 4,4 0 0,1 1122,384 V 466 A 4,4 0 0,1 1118,470 H 652 A 4,4 0 0,1 648,466 V 384 A 4,4 0 0,1 652,380 Z" fill="#d5f5e3" stroke="#1e8449" stroke-width="1.5"/>
+  <text x="885" y="408" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" font-weight="600" fill="#1e8449" text-anchor="middle">Achieved</text>
+  <text x="885" y="433" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#2c3e50" text-anchor="middle">ZH QWK = 0.811  (EN = 0.828, gap = −0.017)</text>
+  <text x="885" y="456" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#2c3e50" text-anchor="middle">DIF flags: 0 / 12 rubric items ✓</text>
+
+  <!-- footer -->
+  <line x1="0" y1="648" x2="1200" y2="648" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="12" fill="#7f8c8d" text-anchor="middle">Cross-Lingual ESAS  ·  Weekly Progress  ·  2026-05-25</text>
 </svg>

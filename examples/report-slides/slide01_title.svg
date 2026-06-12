@@ -1,43 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
-  <rect width="1200" height="675" fill="#ffffff"/>
-  <rect width="1200" height="6" fill="#1e3a5f"/>
-  <!-- decorative side accent -->
-  <rect x="0" y="6" width="6" height="669" fill="#e2e8f0"/>
+  <path d="M 0,0 H 1200 V 675 H 0 Z" fill="#ffffff"/>
+  <rect width="1200" height="5" fill="#1f618d"/>
 
-  <!-- centered content block -->
-  <rect x="100" y="195" width="1000" height="3" fill="#1e3a5f" opacity="0.15"/>
+  <!-- left accent bar -->
+  <rect x="120" y="190" width="5" height="210" fill="#1f618d"/>
 
-  <text x="600" y="175"
-        font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="14" font-weight="600" letter-spacing="3"
-        fill="#64748b" text-anchor="middle">WEEKLY RESEARCH PROGRESS</text>
+  <!-- category label -->
+  <text x="142" y="224" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="12" font-weight="600" letter-spacing="3" fill="#7f8c8d">WEEKLY RESEARCH PROGRESS</text>
 
-  <text x="600" y="275"
-        font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="48" font-weight="700"
-        fill="#1e3a5f" text-anchor="middle">Cross-Lingual Automated</text>
-  <text x="600" y="335"
-        font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="48" font-weight="700"
-        fill="#1e3a5f" text-anchor="middle">Short-Answer Scoring</text>
+  <!-- main title -->
+  <text x="142" y="290" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="44" font-weight="700" fill="#1f618d">Cross-Lingual Automated</text>
+  <text x="142" y="348" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="44" font-weight="700" fill="#1f618d">Short-Answer Scoring</text>
 
-  <rect x="100" y="360" width="1000" height="3" fill="#1e3a5f" opacity="0.15"/>
+  <!-- divider -->
+  <line x1="142" y1="372" x2="840" y2="372" stroke="#d5dbdb" stroke-width="2"/>
 
-  <text x="600" y="410"
-        font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="22" font-weight="400"
-        fill="#374151" text-anchor="middle">Fairness-Aware ESAS for Mandarin-Medium Secondary Education</text>
+  <!-- subtitle -->
+  <text x="142" y="412" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="21" fill="#2c3e50">Fairness-Aware ESAS for Mandarin-Medium Secondary Education</text>
 
-  <text x="600" y="468"
-        font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="18" fill="#64748b" text-anchor="middle">ZI-YUE,CHAO</text>
-  <text x="600" y="496"
-        font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="16" fill="#64748b" text-anchor="middle">2026-05-25</text>
+  <!-- author + date -->
+  <text x="142" y="458" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="18" fill="#7f8c8d">ZI-YUE, CHAO</text>
+  <text x="385" y="458" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="18" fill="#d5dbdb">|</text>
+  <text x="405" y="458" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="18" fill="#7f8c8d">2026-05-25</text>
+  <text x="142" y="485" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="15" fill="#7f8c8d">Lab Meeting  ·  Phase 3 Cross-Lingual Results</text>
 
-  <!-- bottom footer -->
-  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
-  <text x="600" y="663"
-        font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+  <!-- footer -->
+  <line x1="0" y1="648" x2="1200" y2="648" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="12" fill="#7f8c8d" text-anchor="middle">Cross-Lingual ESAS  ·  Weekly Progress  ·  2026-05-25</text>
 </svg>

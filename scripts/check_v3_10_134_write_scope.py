@@ -168,7 +168,15 @@ def run_checks() -> list[str]:
     declared = set(BUCKET_A_AGENT_FILES) | set(BUCKET_BCD_AGENT_FILES)
     undeclared = []
     for md in REPO_ROOT.glob("**/agents/*.md"):
-        if ".git" in md.parts or ".claude" in md.parts:
+        rel_parts = md.relative_to(REPO_ROOT).parts
+        if ".git" in rel_parts or ".claude" in rel_parts:
+            continue
+        # Skip the root-level `agents/` aggregate directory: it holds legacy
+        # path copies (real files, not symlinks) of the per-skill agent files
+        # that were in place before the skills/ subdirectory migration. These
+        # are not authoritative definitions and are covered by their canonical
+        # `skills/` counterparts in the roster.
+        if rel_parts[0] == "agents":
             continue
         # .as_posix() so the comparison uses `/` on every OS (the rosters use `/`).
         rel = md.relative_to(REPO_ROOT).as_posix()

@@ -1,138 +1,145 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
   <defs>
-    <filter id="sh" x="-10%" y="-10%" width="130%" height="140%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#00000020"/>
-    </filter>
-    <marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-      <path d="M0,0 L0,8 L10,4 z" fill="#94a3b8"/>
+    <marker id="a" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0,0 9,3.5 0,7" fill="#7f8c8d"/>
     </marker>
-    <marker id="arr-g" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-      <path d="M0,0 L0,8 L10,4 z" fill="#059669"/>
+    <marker id="ad" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0,0 9,3.5 0,7" fill="#b0b8c1"/>
     </marker>
-    <linearGradient id="g-navy" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1e3a5f"/>
-      <stop offset="100%" stop-color="#0f2847"/>
-    </linearGradient>
-    <linearGradient id="g-teal" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0d9488"/>
-      <stop offset="100%" stop-color="#0f766e"/>
-    </linearGradient>
-    <linearGradient id="g-green" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#059669"/>
-      <stop offset="100%" stop-color="#047857"/>
-    </linearGradient>
   </defs>
 
-  <rect width="1200" height="675" fill="#f8fafc"/>
-  <rect width="1200" height="6" fill="#1e3a5f"/>
+  <!-- Background -->
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <!-- Top accent bar -->
+  <rect width="1200" height="5" fill="#1f618d"/>
 
   <!-- Title -->
-  <text x="60" y="52" font-family="'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" fill="#1e3a5f">System Architecture</text>
-  <rect x="60" y="64" width="1080" height="2" fill="#e2e8f0"/>
+  <text x="60" y="35" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#1f618d">Fig. 1  —  ZH-BERT-FT System Architecture for Cross-Lingual ESAS</text>
+  <line x1="60" y1="48" x2="1140" y2="48" stroke="#d5dbdb" stroke-width="1.5"/>
 
-  <!-- ── COLUMN HEADERS ── -->
-  <text x="200" y="90" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle" letter-spacing="2">DATA SOURCES</text>
-  <text x="600" y="90" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle" letter-spacing="2">MODEL STRATEGIES</text>
-  <text x="1000" y="90" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle" letter-spacing="2">KEY RESULTS</text>
+  <!-- ─── COLUMN LABELS ─── -->
+  <text x="145" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#7f8c8d" font-style="italic" text-anchor="middle">(a) Input</text>
+  <text x="342" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#7f8c8d" font-style="italic" text-anchor="middle">(b) Tokenisation</text>
+  <text x="567" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#7f8c8d" font-style="italic" text-anchor="middle">(c) Encoder</text>
+  <text x="796" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#7f8c8d" font-style="italic" text-anchor="middle">(d) Scoring</text>
+  <text x="1013" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#7f8c8d" font-style="italic" text-anchor="middle">(e) Output</text>
 
-  <!-- ── COLUMN 1: DATA SOURCES (x=60..380) ── -->
+  <!-- ─── PIPELINE ROW  y=73..173 ─── -->
 
-  <!-- EN Dataset box -->
-  <rect x="60" y="105" width="280" height="140" rx="10" fill="url(#g-navy)" filter="url(#sh)"/>
-  <!-- flag accent -->
-  <rect x="60" y="105" width="10" height="140" rx="5" fill="#3b82f6"/>
-  <rect x="65" y="105" width="5" height="140" fill="#3b82f6"/>
-  <text x="185" y="148" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">ASAP-SAS</text>
-  <text x="185" y="172" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#93c5fd" text-anchor="middle">English · 8 prompts</text>
-  <text x="185" y="195" font-family="'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="700" fill="#60a5fa" text-anchor="middle">4,000</text>
-  <text x="185" y="216" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">student essays</text>
+  <!-- Box 1a: Student Essay -->
+  <rect x="50" y="73" width="190" height="48" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="145" y="101" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">zh-TW Student Essay</text>
 
-  <!-- Translation connector -->
-  <rect x="140" y="258" width="90" height="30" rx="6" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1.5"/>
-  <text x="185" y="278" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#0284c7" text-anchor="middle" font-weight="600">NLLB-200</text>
-  <line x1="185" y1="245" x2="185" y2="258" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
-  <line x1="185" y1="288" x2="185" y2="300" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Box 1b: Rubric Prompt -->
+  <rect x="50" y="125" width="190" height="48" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="145" y="153" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Rubric Prompt (P1–P8)</text>
 
-  <!-- zh-TW Dataset box -->
-  <rect x="60" y="300" width="280" height="140" rx="10" fill="url(#g-teal)" filter="url(#sh)"/>
-  <rect x="60" y="300" width="10" height="140" rx="5" fill="#14b8a6"/>
-  <rect x="65" y="300" width="5" height="140" fill="#14b8a6"/>
-  <text x="185" y="345" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">zh-TW Set</text>
-  <text x="185" y="369" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#99f6e4" text-anchor="middle">Mandarin · 8 prompts</text>
-  <text x="185" y="392" font-family="'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="700" fill="#5eead4" text-anchor="middle">1,600</text>
-  <text x="185" y="413" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#99f6e4" text-anchor="middle">student essays</text>
+  <!-- Box 2: Tokeniser -->
+  <rect x="262" y="73" width="160" height="100" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="342" y="105" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">bert-base-chinese</text>
+  <text x="342" y="120" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Tokenizer</text>
+  <text x="342" y="135" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">[CLS] · [SEP]</text>
+  <text x="342" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">max-seq = 256</text>
 
-  <!-- Horizontal arrows col1 → col2 -->
-  <line x1="340" y1="175" x2="430" y2="175" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
-  <line x1="340" y1="370" x2="430" y2="370" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- Box 3: Encoder -->
+  <rect x="444" y="73" width="245" height="100" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="567" y="105" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Transformer Encoder</text>
+  <text x="567" y="120" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">12 layers × 768 hidden dim</text>
+  <text x="567" y="135" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">bert-base-chinese (pre-trained)</text>
+  <text x="567" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">[CLS] token → final hidden state</text>
 
-  <!-- ── COLUMN 2: MODEL STRATEGIES (x=430..760) ── -->
+  <!-- Box 4: Scoring Head -->
+  <rect x="711" y="73" width="170" height="100" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="796" y="105" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Regression Head</text>
+  <text x="796" y="120" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Dense (768→1)</text>
+  <text x="796" y="135" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">QWK loss</text>
+  <text x="796" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">soft-label regression</text>
 
-  <!-- Strategy 1: EN-BERT-ZS -->
-  <rect x="430" y="105" width="310" height="100" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#sh)"/>
-  <rect x="430" y="105" width="6" height="100" rx="3" fill="#64748b"/>
-  <text x="458" y="133" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#374151">EN-BERT  Zero-Shot</text>
-  <text x="458" y="153" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#94a3b8">No zh-TW training · instant deploy</text>
-  <rect x="458" y="165" width="90" height="24" rx="4" fill="#fee2e2"/>
-  <text x="503" y="181" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#dc2626" text-anchor="middle" font-weight="600">QWK 0.541</text>
-  <rect x="556" y="165" width="80" height="24" rx="4" fill="#fee2e2"/>
-  <text x="596" y="181" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#dc2626" text-anchor="middle" font-weight="600">6 DIF ✗</text>
+  <!-- Box 5: Output -->
+  <rect x="903" y="73" width="220" height="100" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="1013" y="105" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Score ŷ ∈ [0, 3]</text>
+  <text x="1013" y="120" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Per-prompt model</text>
+  <text x="1013" y="135" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">(P1–P8 independently)</text>
+  <text x="1013" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449" text-anchor="middle">QWK (zh-TW) = 0.811</text>
 
-  <!-- Strategy 2: mBERT-FT -->
-  <rect x="430" y="225" width="310" height="100" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#sh)"/>
-  <rect x="430" y="225" width="6" height="100" rx="3" fill="#d97706"/>
-  <text x="458" y="253" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#374151">mBERT  Translated</text>
-  <text x="458" y="273" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#94a3b8">Multilingual + MT translation</text>
-  <rect x="458" y="285" width="90" height="24" rx="4" fill="#fef3c7"/>
-  <text x="503" y="301" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#92400e" text-anchor="middle" font-weight="600">QWK 0.784</text>
-  <rect x="556" y="285" width="80" height="24" rx="4" fill="#fef3c7"/>
-  <text x="596" y="301" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#92400e" text-anchor="middle" font-weight="600">2 DIF ~</text>
+  <!-- ─── HORIZONTAL ARROWS (y=123) ─── -->
+  <line x1="240" y1="123" x2="260" y2="123" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
+  <line x1="422" y1="123" x2="442" y2="123" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
+  <line x1="689" y1="123" x2="709" y2="123" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
+  <line x1="881" y1="123" x2="901" y2="123" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
 
-  <!-- Strategy 3: ZH-BERT-FT (best) -->
-  <rect x="426" y="341" width="318" height="116" rx="8" fill="#f0fdf4" stroke="#059669" stroke-width="2.5" filter="url(#sh)"/>
-  <rect x="426" y="341" width="6" height="116" rx="3" fill="#059669"/>
-  <!-- star badge -->
-  <rect x="636" y="345" width="100" height="24" rx="4" fill="#059669"/>
-  <text x="686" y="361" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">★ Best Model</text>
-  <text x="458" y="373" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" fill="#059669">ZH-BERT  Language-Matched</text>
-  <text x="458" y="393" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b">Fine-tuned on zh-TW + rubric prefix</text>
-  <rect x="458" y="405" width="90" height="24" rx="4" fill="#dcfce7" stroke="#059669" stroke-width="1"/>
-  <text x="503" y="421" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="700">QWK 0.811</text>
-  <rect x="556" y="405" width="80" height="24" rx="4" fill="#dcfce7" stroke="#059669" stroke-width="1"/>
-  <text x="596" y="421" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="700">0 DIF ✓</text>
+  <!-- ─── RUBRIC CONDITIONING DETAIL ─── -->
+  <rect x="262" y="200" width="160" height="70" rx="2" fill="#ffffff" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="342" y="225" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50" text-anchor="middle">[SEP] concatenation</text>
+  <text x="342" y="240" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">rubric text prepended</text>
+  <text x="342" y="254" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" text-anchor="middle">before student essay</text>
 
-  <!-- Horizontal arrows col2 → col3 -->
-  <line x1="744" y1="155" x2="810" y2="290" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-  <line x1="744" y1="275" x2="810" y2="310" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-  <line x1="744" y1="400" x2="810" y2="350" stroke="#059669" stroke-width="2" marker-end="url(#arr-g)"/>
+  <!-- Arrow: rubric detail → tokeniser (upward) -->
+  <line x1="342" y1="200" x2="342" y2="175" stroke="#7f8c8d" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#a)"/>
 
-  <!-- ── COLUMN 3: RESULTS (x=810..1140) ── -->
+  <!-- Elbow: Box 1b → rubric detail -->
+  <polyline points="240,149 254,149 254,235 262,235" fill="none" stroke="#b0b8c1" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#ad)"/>
 
-  <!-- QWK result card -->
-  <rect x="810" y="105" width="310" height="180" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#sh)"/>
-  <rect x="810" y="105" width="310" height="4" rx="2" fill="#1e3a5f"/>
-  <text x="965" y="140" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle" letter-spacing="1">SCORING ACCURACY</text>
-  <text x="965" y="200" font-family="'Helvetica Neue', Arial, sans-serif" font-size="56" font-weight="800" fill="#1e3a5f" text-anchor="middle">0.811</text>
-  <text x="965" y="228" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">zh-TW QWK · test set</text>
-  <text x="965" y="248" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">+0.270 vs. zero-shot baseline</text>
-  <rect x="840" y="258" width="250" height="20" rx="4" fill="#dbeafe"/>
-  <text x="965" y="271" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#1e3a5f" text-anchor="middle">EN=0.828 · gap = −0.017 (noise level)</text>
+  <!-- +2.2pp annotation -->
+  <text x="440" y="220" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#d68910" font-style="italic">+2.2 pp QWK on argumentation prompts (P2, P7)</text>
+  <text x="440" y="235" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#d68910" font-style="italic">vs. no rubric-prefix conditioning</text>
 
-  <!-- DIF fairness card -->
-  <rect x="810" y="305" width="310" height="160" rx="10" fill="#ffffff" stroke="#059669" stroke-width="2" filter="url(#sh)"/>
-  <rect x="810" y="305" width="310" height="4" rx="2" fill="#059669"/>
-  <text x="965" y="340" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle" letter-spacing="1">FAIRNESS ANALYSIS</text>
-  <text x="965" y="395" font-family="'Helvetica Neue', Arial, sans-serif" font-size="64" font-weight="800" fill="#059669" text-anchor="middle">0/12</text>
-  <text x="965" y="423" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">DIF flags · Mantel-Haenszel</text>
-  <text x="965" y="445" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">Zero systematic bias detected</text>
+  <!-- ─── EVALUATION PANEL  y=295..383 ─── -->
 
-  <!-- ── BOTTOM SUMMARY BAR ── -->
-  <rect x="60" y="490" width="1080" height="50" rx="8" fill="#1e3a5f"/>
-  <text x="600" y="520" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">Language-matched fine-tuning achieves human-parity scoring with zero fairness violations</text>
+  <!-- QWK Card -->
+  <rect x="50" y="295" width="330" height="88" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="60" y="315" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#1f618d">Evaluation — QWK</text>
+  <text x="60" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#1e8449">EN: 0.828   zh-TW: 0.811   Gap: −0.017</text>
+  <text x="60" y="348" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d">test set · prompts P1–P4 · macro-avg</text>
+  <text x="60" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d">gap within annotation noise level</text>
+  <text x="60" y="376" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">3–5 random seeds per prompt</text>
 
-  <!-- ── FOOTER ── -->
-  <rect x="0" y="560" width="1200" height="1" fill="#e2e8f0"/>
-  <text x="600" y="575" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">60 / 20 / 20 train / val / test split · rubric-prefix conditioning · per-prompt models P1–P8</text>
-  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
-  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+  <!-- DIF Card -->
+  <rect x="400" y="295" width="330" height="88" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="410" y="315" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#1f618d">Fairness — DIF (Mantel-Haenszel)</text>
+  <text x="410" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#1e8449">ZH-BERT-FT: 0/12   EN-BERT-ZS: 6/12</text>
+  <text x="410" y="348" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d">12 score levels · p &lt; .05 threshold</text>
+  <text x="410" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d">EN vs. zh-TW group comparison</text>
+  <text x="410" y="376" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449" font-weight="600">Zero systematic bias detected ✓</text>
+
+  <!-- Training Config Card -->
+  <rect x="750" y="295" width="400" height="88" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="760" y="315" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#1f618d">Training Configuration</text>
+  <text x="760" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50">LR = 2×10⁻⁵  ·  batch = 16  ·  epochs = 10</text>
+  <text x="760" y="348" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50">max-seq = 256  ·  QWK loss (soft labels)</text>
+  <text x="760" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50">60/20/20 train/val/test split (per prompt)</text>
+  <text x="760" y="376" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">early stopping on validation QWK</text>
+
+  <!-- ─── MODEL COMPARISON ROW  y=402..484 ─── -->
+
+  <!-- Phase 1 box + colored strip -->
+  <rect x="50" y="402" width="328" height="82" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <rect x="50" y="402" width="6" height="82" rx="1" fill="#c0392b"/>
+  <text x="68" y="421" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#2c3e50">Phase 1: EN-BERT Zero-Shot</text>
+  <text x="68" y="438" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50">QWK (zh-TW) = 0.541  ·  DIF: 6/12 flags</text>
+  <text x="68" y="454" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#c0392b">Insufficient — substantial bias detected</text>
+  <text x="68" y="470" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#7f8c8d">May 10, 2026</text>
+
+  <!-- Phase 2 box + colored strip -->
+  <rect x="400" y="402" width="328" height="82" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <rect x="400" y="402" width="6" height="82" rx="1" fill="#d68910"/>
+  <text x="418" y="421" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#2c3e50">Phase 2: mBERT + MT Translation</text>
+  <text x="418" y="438" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50">QWK (zh-TW) = 0.784  ·  DIF: 2/12 flags</text>
+  <text x="418" y="454" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#d68910">Partial — residual bias on 2 levels</text>
+  <text x="418" y="470" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#7f8c8d">May 18, 2026</text>
+
+  <!-- Phase 3 box + colored strip (highlighted) -->
+  <rect x="750" y="402" width="400" height="82" rx="2" fill="#f2f3f4" stroke="#1e8449" stroke-width="1.5"/>
+  <rect x="750" y="402" width="6" height="82" rx="1" fill="#1e8449"/>
+  <text x="768" y="421" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#2c3e50">Phase 3: ZH-BERT Language-Matched  ★</text>
+  <text x="768" y="438" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#1e8449" font-weight="600">QWK (zh-TW) = 0.811  ·  DIF: 0/12 flags</text>
+  <text x="768" y="454" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449">Production candidate — zero bias detected</text>
+  <text x="768" y="470" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#7f8c8d">May 25, 2026</text>
+
+  <!-- ─── NOTE CAPTION ─── -->
+  <text x="60" y="510" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#7f8c8d" font-style="italic">Note.  Transformer weights initialised from bert-base-chinese; one model trained per prompt (P1–P8); rubric text prepended at tokenisation stage via [SEP] token.</text>
+
+  <!-- ─── FOOTER ─── -->
+  <line x1="0" y1="648" x2="1200" y2="648" stroke="#d5dbdb" stroke-width="0.75"/>
+  <text x="600" y="661" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#7f8c8d" text-anchor="middle">Cross-Lingual ESAS  ·  Weekly Progress  ·  2026-05-25</text>
 </svg>

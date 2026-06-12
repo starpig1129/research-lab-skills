@@ -1,39 +1,37 @@
 {
   "meta": {
-    "experiment": "weekly-progress",
-    "date": "2026-05-22",
-    "footer": "Lab Weekly Progress · 2026-05-22"
+    "experiment": "esa-weekly-progress",
+    "date": "2026-05-25",
+    "footer": "Cross-Lingual ESAS · Weekly Progress · 2026-05-25"
   },
   "slides": [
     {
       "index": 1,
       "type": "title",
-      "title": "Backbone V3 — Weekly Progress",
-      "subtitle": "LR Sweep Results & CIFAR-10/100 Benchmarks",
+      "title": "Cross-Lingual Automated Short-Answer Scoring",
+      "subtitle": "Fairness-Aware ESAS for Mandarin-Medium Secondary Education",
       "author": "ZI-YUE,CHAO",
-      "date": "2026-05-22"
+      "date": "2026-05-25"
     },
 
     {
       "index": 2,
       "type": "two_column",
-      "title": "Background & This Week's Goal",
+      "title": "Background & Research Question",
       "left": {
-        "title": "Context",
+        "title": "The Problem",
         "content": [
-          "backbone_v2: 11.2M params, 84.1% CIFAR-10",
-          "Target: match ResNet-50 (93.2%) with fewer params",
-          "backbone_v3 introduced depthwise conv + SE-blocks",
-          "Quick run (2026-05-15) showed stable training at 87.4%"
+          "English ESAS systems (QWK~0.85) cannot transfer to zh-TW without significant bias",
+          "Discourse markers, sentence-length norms, and rubric anchors differ structurally across languages",
+          "Deploying English models on zh-TW responses introduces systematic DIF at score boundaries"
         ]
       },
       "right": {
-        "title": "This Week",
+        "title": "Our Approach",
         "content": [
-          "6-run LR × Scheduler grid search (3×2)",
-          "LR ∈ {1e-3, 3e-4, 1e-4} × {cosine, step}",
-          "60 epochs per run on 2× A100",
-          "Overnight CIFAR-100 pilot at best setting"
+          "Phase 1: GPT-4 zero-shot baseline (QWK=0.674) — establishes upper-bound without fine-tuning",
+          "Phase 2: BERT fine-tuned per-prompt + rubric prefix (QWK=0.836)",
+          "Phase 3: Cross-lingual evaluation — ZH-BERT-FT achieves QWK=0.811 with 0 DIF flags"
         ]
       }
     },
@@ -43,49 +41,51 @@
       "type": "timeline",
       "title": "Experiment Timeline",
       "events": [
-        { "label": "backbone_v2 baseline", "date": "2026-04-10", "color": "#64748b", "detail": "84.1%" },
-        { "label": "backbone_v3 design",   "date": "2026-05-01", "color": "#1e3a5f", "detail": "architecture draft" },
-        { "label": "v3 quick run",          "date": "2026-05-15", "color": "#d97706", "detail": "87.4%" },
-        { "label": "LR sweep",              "date": "2026-05-22", "color": "#059669", "detail": "93.1% best" }
+        { "label": "GPT-4 baseline", "date": "2026-05-10", "color": "#64748b", "detail": "QWK=0.674 zero-shot" },
+        { "label": "BERT fine-tuned", "date": "2026-05-18", "color": "#d97706", "detail": "QWK=0.836 (per-prompt + rubric)" },
+        { "label": "Cross-lingual eval", "date": "2026-05-25", "color": "#059669", "detail": "zh-TW QWK=0.811, 0 DIF flags" }
       ]
     },
 
     {
       "index": 4,
       "type": "bar_chart",
-      "title": "LR Sweep — Val-Accuracy by Configuration",
-      "categories": ["1e-3", "3e-4", "1e-4"],
+      "title": "Cross-Lingual QWK — EN vs zh-TW by Model Strategy",
+      "categories": ["EN-BERT-ZS\n(zero-shot)", "mBERT-FT\n(translated)", "ZH-BERT-FT\n(language-matched)"],
       "series": [
-        { "label": "cosine scheduler", "color": "#059669", "values": [93.1, 92.4, 89.2] },
-        { "label": "step scheduler",   "color": "#d97706", "values": [91.8, 90.7, 88.5] }
+        { "label": "English QWK", "color": "#1e3a5f", "values": [0.853, 0.831, 0.828] },
+        { "label": "zh-TW QWK",   "color": "#059669", "values": [0.541, 0.784, 0.811] }
       ],
-      "y_max": 100,
-      "note": "CIFAR-10 val-accuracy at epoch 60 · dashed line = ResNet-50 reference (93.2%)"
+      "y_max": 1.0,
+      "note": "Prompts P1–P4 · test set · error bars = σ across 3–5 seeds"
     },
 
     {
       "index": 5,
       "type": "table",
-      "title": "Architecture Comparison",
-      "columns": ["Model", "Params", "CIFAR-10", "CIFAR-100", "Latency (CPU)"],
+      "title": "Model Comparison — Key Metrics",
+      "columns": ["Model", "EN QWK", "zh-TW QWK", "Δ Drop", "DIF Flags"],
       "rows": [
-        ["backbone_v2 (baseline)", "11.2M", "84.1%", "68.3%", "21ms"],
-        ["ResNet-50 (reference)",  "25.6M", "93.2%", "73.8%", "38ms"],
-        ["backbone_v3 (ours)",     "8.7M",  "93.1%", "72.6%†", "TBD"]
+        ["GPT-4 zero-shot (baseline)",   "0.671", "—",     "—",     "—"],
+        ["BERT cross-prompt + rubric",   "0.819", "—",     "—",     "—"],
+        ["BERT per-prompt + rubric (EN)", "0.836", "—",     "—",     "—"],
+        ["EN-BERT-ZS transfer",          "0.853", "0.541", "−0.312", "6 / 12"],
+        ["mBERT-FT (translated)",        "0.831", "0.784", "−0.047", "2 / 12"],
+        ["ZH-BERT-FT ✓",                "0.828", "0.811", "−0.017", "0 / 12"]
       ],
-      "highlight_col": 2,
-      "note": "† CIFAR-100 at 80 epochs; full 120-epoch run pending"
+      "highlight_col": 4,
+      "note": "QWK = Quadratic Weighted Kappa · DIF = Differential Item Functioning (Mantel-Haenszel, p<.05)"
     },
 
     {
       "index": 6,
       "type": "metric_cards",
-      "title": "Key Results — backbone_v3 Best Run",
+      "title": "Key Results — ZH-BERT-FT Best Model",
       "metrics": [
-        { "label": "CIFAR-10 Acc",   "value": "93.1%", "color": "#059669", "change": "+9.0pp vs v2" },
-        { "label": "Param Reduction","value": "−22%",  "color": "#059669", "change": "11.2M → 8.7M" },
-        { "label": "vs ResNet-50",   "value": "−0.1pp","color": "#d97706", "change": "3× fewer params" },
-        { "label": "CIFAR-100 (80ep)","value": "72.6%","color": "#d97706", "change": "120ep run pending" }
+        { "label": "zh-TW QWK",     "value": "0.811",  "color": "#059669", "change": "+0.270 vs. zero-shot" },
+        { "label": "EN↔zh-TW Gap",  "value": "−0.017", "color": "#059669", "change": "within annotation noise" },
+        { "label": "DIF Flags",     "value": "0 / 12",  "color": "#059669", "change": "EN-ZS had 6 / 12" },
+        { "label": "Annotation κ",  "value": "0.84",    "color": "#d97706", "change": "P5–P8 pending budget" }
       ]
     },
 
@@ -94,14 +94,14 @@
       "type": "conclusion",
       "title": "Conclusion & Next Steps",
       "conclusions": [
-        "backbone_v3 matches ResNet-50 accuracy on CIFAR-10 with 66% fewer parameters",
-        "Cosine scheduler outperforms step at all LR values — confirmed best LR=1e-3",
-        "CIFAR-100 pilot (72.6%) within 1.2pp of reference; projected to close at 120 epochs"
+        "Language-matched fine-tuning (ZH-BERT-FT) achieves QWK=0.811 on zh-TW — parity with English, zero DIF bias",
+        "Zero-shot cross-lingual transfer is both inaccurate (QWK=0.541) and systematically unfair (6/12 score levels flagged)",
+        "Rubric-prefix conditioning is the single highest-value intervention (+2.2pp) for argumentation-heavy prompts"
       ],
       "next_steps": [
-        "CIFAR-100 full benchmark: LR=1e-3, cosine, 120 epochs (ETA: 2026-05-28)",
-        "CPU inference latency profiling (target ≤15ms/image)",
-        "Prepare conference submission draft if CIFAR-100 ≥73%"
+        "Complete P5–P8 zh-TW annotation (budget approval pending; target: 2026-06-10)",
+        "Contrastive-pair augmentation for P2/P7 score-boundary confusion",
+        "Begin paper draft: fairness-aware cross-lingual ESAS framework"
       ]
     }
   ]

@@ -1,139 +1,153 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
   <defs>
-    <filter id="sh" x="-10%" y="-10%" width="130%" height="140%">
-      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#00000018"/>
-    </filter>
-    <marker id="a0" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-      <path d="M0,0 L0,8 L10,4 z" fill="#94a3b8"/>
+    <marker id="a" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0,0 9,3.5 0,7" fill="#7f8c8d"/>
     </marker>
-    <marker id="ag" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-      <path d="M0,0 L0,8 L10,4 z" fill="#059669"/>
+    <marker id="ag" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0,0 9,3.5 0,7" fill="#1e8449"/>
     </marker>
-    <marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-      <path d="M0,0 L0,8 L10,4 z" fill="#dc2626"/>
+    <marker id="ar" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0,0 9,3.5 0,7" fill="#c0392b"/>
     </marker>
   </defs>
 
-  <rect width="1200" height="675" fill="#f8fafc"/>
-  <rect width="1200" height="6" fill="#1e3a5f"/>
+  <!-- Background -->
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <rect width="1200" height="5" fill="#1f618d"/>
 
-  <text x="60" y="52" font-family="'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" fill="#1e3a5f">Research Journey — Three-Phase Evolution</text>
-  <rect x="60" y="64" width="1080" height="2" fill="#e2e8f0"/>
+  <!-- Title -->
+  <text x="60" y="35" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#1f618d">Fig. 2  —  Model Development and Evaluation Protocol</text>
+  <line x1="60" y1="48" x2="1140" y2="48" stroke="#d5dbdb" stroke-width="1.5"/>
 
-  <!-- ─── TOP LABEL: "Why each approach was tried and what was learned" ─── -->
-  <text x="600" y="88" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Each phase built on the failure of the previous — zero-shot → fine-tuned → language-matched</text>
+  <!-- ─── VERTICAL SEPARATOR LINE ─── -->
+  <line x1="652" y1="56" x2="652" y2="617" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="4,3"/>
 
-  <!-- ═══════════════════════════════════════════════════════
-       THREE PHASE CARDS  (horizontal, centered, equally spaced)
-       Card width 290px, gap 45px
-       x positions: Phase1=60, Phase2=395, Phase3=730
-       Card height = 340px, y=110..450
-  ═══════════════════════════════════════════════════════ -->
+  <!-- Column labels -->
+  <text x="420" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic" text-anchor="middle">Model Development Flow</text>
+  <text x="920" y="63" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic" text-anchor="middle">Evaluation Criteria and Results</text>
 
-  <!-- ─── PHASE 1: GPT-4 Zero-Shot ─── -->
-  <rect x="60" y="110" width="290" height="340" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" filter="url(#sh)"/>
-  <!-- header -->
-  <rect x="60" y="110" width="290" height="52" rx="12" fill="#64748b"/>
-  <rect x="60" y="138" width="290" height="24" fill="#64748b"/>
-  <!-- phase number -->
-  <circle cx="96" cy="136" r="16" fill="#ffffff"/>
-  <text x="96" y="141" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="800" fill="#64748b" text-anchor="middle">1</text>
-  <text x="218" y="132" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">Zero-Shot</text>
-  <text x="218" y="152" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#e2e8f0" text-anchor="middle">GPT-4 · No training</text>
+  <!-- ─── NODE 0: START  y_center=82  y=60..104 ─── -->
+  <rect x="320" y="60" width="200" height="44" rx="22" fill="#1f618d" stroke="#1f618d" stroke-width="1.5"/>
+  <text x="420" y="87" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">START</text>
 
-  <!-- big QWK number -->
-  <text x="205" y="232" font-family="'Helvetica Neue', Arial, sans-serif" font-size="60" font-weight="800" fill="#64748b" text-anchor="middle">0.674</text>
-  <text x="205" y="256" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Quadratic Weighted Kappa</text>
+  <!-- N0 → N1 arrow -->
+  <line x1="420" y1="104" x2="420" y2="135" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
 
-  <!-- divider -->
-  <line x1="84" y1="272" x2="336" y2="272" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- ─── NODE 1: Data Prep  y_center=162  y=136..188 ─── -->
+  <rect x="300" y="136" width="240" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="420" y="158" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Data Preparation &amp;</text>
+  <text x="420" y="173" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Model Configuration</text>
 
-  <!-- findings -->
-  <text x="84" y="296" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151" font-weight="600">What we learned:</text>
-  <text x="84" y="316" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151">Argumentation prompts (P2, P7) hard</text>
-  <text x="84" y="333" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151">without explicit rubric grounding</text>
-  <text x="84" y="353" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151">Score-distribution bias: overestimates</text>
-  <text x="84" y="370" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151">mid-range by ~18%</text>
+  <!-- N1 → N2 arrow -->
+  <line x1="420" y1="188" x2="420" y2="219" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
 
-  <!-- outcome badge -->
-  <rect x="84" y="388" width="242" height="28" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="205" y="406" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">Next: fine-tune with rubric prefix →</text>
-  <text x="205" y="437" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">2026-05-10</text>
+  <!-- ─── NODE 2: Fine-Tune  y_center=246  y=220..272 ─── -->
+  <rect x="300" y="220" width="240" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="420" y="242" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Fine-Tune ZH-BERT-FT</text>
+  <text x="420" y="257" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">(per-prompt, epochs = 10)</text>
 
-  <!-- ─── ARROW 1 → 2 ─── -->
-  <line x1="350" y1="280" x2="392" y2="280" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#a0)"/>
-  <!-- fail annotation -->
-  <rect x="344" y="258" width="60" height="18" rx="4" fill="#fee2e2"/>
-  <text x="374" y="270" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#dc2626" text-anchor="middle" font-weight="600">Too low</text>
+  <!-- N2 → N3 arrow -->
+  <line x1="420" y1="272" x2="420" y2="299" stroke="#7f8c8d" stroke-width="1.25" marker-end="url(#a)"/>
 
-  <!-- ─── PHASE 2: BERT Fine-Tuned ─── -->
-  <rect x="395" y="110" width="290" height="340" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" filter="url(#sh)"/>
-  <rect x="395" y="110" width="290" height="52" rx="12" fill="#d97706"/>
-  <rect x="395" y="138" width="290" height="24" fill="#d97706"/>
-  <circle cx="431" cy="136" r="16" fill="#ffffff"/>
-  <text x="431" y="141" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="800" fill="#d97706" text-anchor="middle">2</text>
-  <text x="553" y="132" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">Fine-Tuned (EN)</text>
-  <text x="553" y="152" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#fef3c7" text-anchor="middle">BERT · rubric prefix · per-prompt</text>
+  <!-- ─── NODE 3: Decision QWK  y_center=329  diamond y=299..359 ─── -->
+  <path d="M 420,299 L 550,329 L 420,359 L 290,329 Z" fill="#ffffff" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="420" y="333" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50" text-anchor="middle">zh-TW QWK ≥ 0.80?</text>
 
-  <text x="540" y="232" font-family="'Helvetica Neue', Arial, sans-serif" font-size="60" font-weight="800" fill="#d97706" text-anchor="middle">0.836</text>
-  <text x="540" y="256" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">English QWK · test set</text>
+  <!-- N3 YES → N4 -->
+  <line x1="420" y1="359" x2="420" y2="386" stroke="#1e8449" stroke-width="1.25" marker-end="url(#ag)"/>
+  <text x="432" y="375" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449" font-weight="600">Yes</text>
 
-  <line x1="419" y1="272" x2="671" y2="272" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- N3 NO → back to N2 (left loop) -->
+  <line x1="290" y1="329" x2="230" y2="329" stroke="#c0392b" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="230" y1="329" x2="230" y2="246" stroke="#c0392b" stroke-width="1"/>
+  <line x1="230" y1="246" x2="299" y2="246" stroke="#c0392b" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="148" y="290" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b" text-anchor="middle">No</text>
+  <text x="148" y="302" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b" text-anchor="middle">(adjust</text>
+  <text x="148" y="314" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b" text-anchor="middle">hyper-params)</text>
 
-  <text x="419" y="296" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151" font-weight="600">What we learned:</text>
-  <text x="419" y="316" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151">Rubric prefix = +2.2pp on P2/P7</text>
-  <text x="419" y="333" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151">Per-prompt beats cross-prompt by 1.7pp</text>
-  <text x="419" y="353" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#dc2626">zh-TW transfer: QWK=0.541 — fails</text>
-  <text x="419" y="370" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#dc2626">6/12 score levels show DIF bias</text>
+  <!-- ─── NODE 4: Decision DIF  y_center=416  diamond y=386..446 ─── -->
+  <path d="M 420,386 L 550,416 L 420,446 L 290,416 Z" fill="#ffffff" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="420" y="420" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#2c3e50" text-anchor="middle">DIF flags = 0?</text>
 
-  <rect x="419" y="388" width="242" height="28" rx="6" fill="#fef9c3" stroke="#fde047" stroke-width="1"/>
-  <text x="540" y="406" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#92400e" text-anchor="middle">Next: train on zh-TW directly →</text>
-  <text x="540" y="437" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">2026-05-18 (amended 2026-05-20)</text>
+  <!-- N4 YES → N5 -->
+  <line x1="420" y1="446" x2="420" y2="473" stroke="#1e8449" stroke-width="1.25" marker-end="url(#ag)"/>
+  <text x="432" y="462" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449" font-weight="600">Yes</text>
 
-  <!-- ─── ARROW 2 → 3 ─── -->
-  <line x1="685" y1="280" x2="727" y2="280" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#a0)"/>
-  <rect x="678" y="258" width="60" height="18" rx="4" fill="#fee2e2"/>
-  <text x="708" y="270" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#dc2626" text-anchor="middle" font-weight="600">DIF bias</text>
+  <!-- N4 NO → back to N2 (right loop) -->
+  <line x1="550" y1="416" x2="614" y2="416" stroke="#c0392b" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="614" y1="416" x2="614" y2="246" stroke="#c0392b" stroke-width="1"/>
+  <line x1="614" y1="246" x2="541" y2="246" stroke="#c0392b" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="636" y="320" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b">No</text>
+  <text x="636" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b">(augment /</text>
+  <text x="636" y="344" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#c0392b">re-design)</text>
 
-  <!-- ─── PHASE 3: ZH-BERT Language-Matched ─── -->
-  <rect x="730" y="106" width="298" height="348" rx="12" fill="#f0fdf4" stroke="#059669" stroke-width="2.5" filter="url(#sh)"/>
-  <rect x="730" y="106" width="298" height="52" rx="12" fill="#059669"/>
-  <rect x="730" y="134" width="298" height="24" fill="#059669"/>
-  <circle cx="766" cy="132" r="16" fill="#ffffff"/>
-  <text x="766" y="137" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="800" fill="#059669" text-anchor="middle">3</text>
-  <text x="892" y="128" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">Language-Matched</text>
-  <text x="892" y="148" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#dcfce7" text-anchor="middle">ZH-BERT · zh-TW training data</text>
+  <!-- ─── NODE 5: Full Eval  y_center=500  y=474..526 ─── -->
+  <rect x="300" y="474" width="240" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="1"/>
+  <text x="420" y="496" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">Full Test-Set Evaluation</text>
+  <text x="420" y="511" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#2c3e50" text-anchor="middle">(QWK + DIF report)</text>
 
-  <text x="879" y="228" font-family="'Helvetica Neue', Arial, sans-serif" font-size="60" font-weight="800" fill="#059669" text-anchor="middle">0.811</text>
-  <text x="879" y="252" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">zh-TW QWK · test set</text>
+  <!-- N5 → N6 arrow -->
+  <line x1="420" y1="526" x2="420" y2="557" stroke="#1e8449" stroke-width="1.25" marker-end="url(#ag)"/>
 
-  <line x1="754" y1="268" x2="1014" y2="268" stroke="#bbf7d0" stroke-width="1"/>
+  <!-- ─── NODE 6: END  y_center=580  y=558..602 ─── -->
+  <rect x="320" y="558" width="200" height="44" rx="22" fill="#1e8449" stroke="#1e8449" stroke-width="1.5"/>
+  <text x="420" y="575" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">Model Accepted</text>
+  <text x="420" y="590" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#dcfce7" text-anchor="middle">for Deployment</text>
 
-  <text x="754" y="292" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151" font-weight="600">What we achieved:</text>
-  <text x="754" y="312" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#059669">EN↔zh-TW gap = only −0.017</text>
-  <text x="754" y="329" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#059669">0/12 DIF flags — zero bias</text>
-  <text x="754" y="346" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151">Annotation κ = 0.84 (P1–P4)</text>
-  <text x="754" y="363" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#374151">P5–P8 annotation pending (budget)</text>
+  <!-- ─── RIGHT COLUMN ANNOTATIONS ─── -->
 
-  <rect x="754" y="381" width="254" height="28" rx="6" fill="#dcfce7" stroke="#059669" stroke-width="1.5"/>
-  <text x="881" y="399" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="700">★ Production Candidate</text>
-  <text x="879" y="430" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">2026-05-25 (amended ×2)</text>
+  <!-- N0 annotation (y=60..100, ann y=62..100) -->
+  <rect x="670" y="62" width="480" height="40" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
+  <text x="682" y="79" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Input: zh-TW student essays (P1–P4)</text>
+  <text x="682" y="94" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">Annotated scores: integer range 0–3 per prompt</text>
+  <!-- Dashed connector N0 → ann0 -->
+  <line x1="520" y1="82" x2="668" y2="82" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
-  <!-- ─── BOTTOM INSIGHT BAR ─── -->
-  <rect x="60" y="470" width="1080" height="50" rx="8" fill="#1e3a5f"/>
-  <text x="600" y="495" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Key insight: rubric-prefix conditioning (+2.2pp) + language-matched training = production-grade fairness</text>
-  <text x="600" y="513" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">Each failure provided the exact signal needed for the next design decision</text>
+  <!-- N1 annotation (y=136..188, ann y=136..192) -->
+  <rect x="670" y="138" width="480" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
+  <text x="682" y="155" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Split: 60/20/20 train/val/test (per prompt)</text>
+  <text x="682" y="169" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Model: bert-base-chinese · LR = 2×10⁻⁵ · batch = 16</text>
+  <text x="682" y="183" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">Rubric-prefix conditioning applied</text>
+  <line x1="540" y1="162" x2="668" y2="162" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
 
-  <!-- ─── TIMELINE AXIS at bottom ─── -->
-  <line x1="205" y1="560" x2="879" y2="560" stroke="#e2e8f0" stroke-width="2"/>
-  <circle cx="205" cy="560" r="5" fill="#64748b"/>
-  <circle cx="540" cy="560" r="5" fill="#d97706"/>
-  <circle cx="879" cy="560" r="5" fill="#059669"/>
-  <text x="205" y="578" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">May 10</text>
-  <text x="540" y="578" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#d97706" text-anchor="middle">May 18</text>
-  <text x="879" y="578" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#059669" text-anchor="middle">May 25</text>
+  <!-- N2 annotation (y=220..272, ann y=220..276) -->
+  <rect x="670" y="222" width="480" height="52" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
+  <text x="682" y="239" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Separate model trained per prompt (P1–P8)</text>
+  <text x="682" y="253" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">QWK loss · soft-label regression · max-seq = 256</text>
+  <text x="682" y="267" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">Early stopping on validation QWK plateau</text>
+  <line x1="540" y1="246" x2="668" y2="246" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
+
+  <!-- N3 annotation (y=299..359, ann y=305..361) -->
+  <rect x="670" y="305" width="480" height="54" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
+  <text x="682" y="323" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Threshold: QWK ≥ 0.80 (publication-grade for ESAS)</text>
+  <text x="682" y="337" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449">Final result: zh-TW QWK = 0.811 ≥ 0.80 ✓</text>
+  <text x="682" y="351" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">Evaluated on held-out test set (20%)</text>
+  <line x1="550" y1="329" x2="668" y2="329" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
+
+  <!-- N4 annotation (y=386..446, ann y=390..446) -->
+  <rect x="670" y="390" width="480" height="54" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
+  <text x="682" y="408" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Mantel-Haenszel test · p &lt; .05 threshold</text>
+  <text x="682" y="422" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">12 score levels · EN vs. zh-TW comparison</text>
+  <text x="682" y="436" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449">Final result: 0/12 DIF flags ✓</text>
+  <line x1="550" y1="416" x2="668" y2="416" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
+
+  <!-- N5 annotation (y=474..526, ann y=476..532) -->
+  <rect x="670" y="476" width="480" height="54" rx="2" fill="#f2f3f4" stroke="#d5dbdb" stroke-width="0.75"/>
+  <text x="682" y="494" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">Final: zh-TW QWK = 0.811 · EN = 0.828</text>
+  <text x="682" y="508" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#2c3e50">EN↔zh-TW gap = −0.017 (noise level)</text>
+  <text x="682" y="522" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449">0/12 DIF flags  ·  Annotation κ = 0.84 ✓</text>
+  <line x1="540" y1="500" x2="668" y2="500" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
+
+  <!-- N6 annotation (y=558..602, ann y=560..604) -->
+  <rect x="670" y="560" width="480" height="42" rx="2" fill="#f2f3f4" stroke="#1e8449" stroke-width="0.75"/>
+  <text x="682" y="577" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#1e8449" font-weight="600">ZH-BERT-FT: selected as production candidate</text>
+  <text x="682" y="593" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#7f8c8d" font-style="italic">P5–P8 annotation ongoing (budget constraint)</text>
+  <line x1="520" y1="580" x2="668" y2="580" stroke="#d5dbdb" stroke-width="0.75" stroke-dasharray="3,2"/>
+
+  <!-- ─── NOTE CAPTION ─── -->
+  <text x="60" y="630" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8.5" fill="#7f8c8d" font-style="italic">Note.  Dashed lines connect each node to its decision criteria (right column).  Loop-back iterations adjust training hyperparameters or data augmentation strategy.</text>
 
   <!-- ─── FOOTER ─── -->
-  <rect x="0" y="648" width="1200" height="1" fill="#e2e8f0"/>
-  <text x="600" y="663" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Cross-Lingual ESAS · Weekly Progress · 2026-05-25</text>
+  <line x1="0" y1="648" x2="1200" y2="648" stroke="#d5dbdb" stroke-width="0.75"/>
+  <text x="600" y="661" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#7f8c8d" text-anchor="middle">Cross-Lingual ESAS  ·  Weekly Progress  ·  2026-05-25</text>
 </svg>

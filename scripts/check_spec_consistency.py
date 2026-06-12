@@ -84,7 +84,7 @@ def check_claude_md() -> None:
 
 
 def check_reviewer_version_block() -> None:
-    rel_path = "academic-paper-reviewer/SKILL.md"
+    rel_path = "skills/academic-paper-reviewer/SKILL.md"
     text = read(rel_path)
     frontmatter_match = re.search(
         r'metadata:\s*[\s\S]*?\n\s+version:\s"([^"]+)"\n\s+last_updated:\s"([^"]+)"',
@@ -116,18 +116,18 @@ def check_reviewer_version_block() -> None:
 
 def check_pipeline_docs() -> None:
     for rel_path in (
-        "academic-pipeline/SKILL.md",
-        "academic-pipeline/agents/pipeline_orchestrator_agent.md",
+        "skills/academic-pipeline/SKILL.md",
+        "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md",
     ):
         expect_absent(rel_path, "auto-continue in 5 seconds")
         expect_contains(rel_path, "One-line status + explicit continue/pause prompt")
 
     expect_contains(
-        "academic-pipeline/agents/pipeline_orchestrator_agent.md",
+        "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md",
         "Stage 2.5 can NEVER be skipped",
     )
     expect_contains(
-        "academic-pipeline/agents/pipeline_orchestrator_agent.md",
+        "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md",
         "Stage 4.5 can NEVER be skipped",
     )
 
@@ -474,54 +474,54 @@ def check_setup_docs() -> None:
 
 def check_docx_contract() -> None:
     expect_contains(
-        "academic-paper/SKILL.md",
+        "skills/academic-paper/SKILL.md",
         "LaTeX/DOCX-via-Pandoc/PDF output",
     )
     expect_contains(
-        "academic-paper/agents/formatter_agent.md",
+        "skills/academic-paper/agents/formatter_agent.md",
         "If Pandoc is available, generate the `.docx` file directly",
     )
     expect_contains(
-        "academic-paper/agents/formatter_agent.md",
+        "skills/academic-paper/agents/formatter_agent.md",
         "If Pandoc is unavailable, provide complete markdown + DOCX conversion instructions",
     )
     expect_contains(
-        "academic-pipeline/SKILL.md",
+        "skills/academic-pipeline/SKILL.md",
         "DOCX via Pandoc when available, otherwise conversion instructions",
     )
     expect_contains(
-        "academic-pipeline/agents/pipeline_orchestrator_agent.md",
+        "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md",
         "DOCX via Pandoc when available (otherwise instructions)",
     )
     for rel_path in (
-        "academic-pipeline/SKILL.md",
-        "academic-pipeline/agents/pipeline_orchestrator_agent.md",
+        "skills/academic-pipeline/SKILL.md",
+        "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md",
     ):
         expect_absent(rel_path, "Auto-produce MD + DOCX")
 
 
 def check_reference_docs() -> None:
     expect_contains(
-        "academic-pipeline/references/passport_as_reset_boundary.md",
+        "skills/academic-pipeline/references/passport_as_reset_boundary.md",
         "# Passport as Reset Boundary (v3.6.3)",
     )
     expect_contains(
-        "academic-pipeline/references/passport_as_reset_boundary.md",
+        "skills/academic-pipeline/references/passport_as_reset_boundary.md",
         "## `resume_from_passport` mode contract",
     )
     expect_contains(
-        "academic-pipeline/references/passport_as_reset_boundary.md",
+        "skills/academic-pipeline/references/passport_as_reset_boundary.md",
         "## Iron rules",
     )
     # Unified PASSPORT-RESET tag format across protocol doc + orchestrator emission + checkpoint template.
     # Divergence here breaks cross-session machine-stable handoff.
     tag_format = "[PASSPORT-RESET: hash=<hash>, stage=<completed>, next=<next>]"
     expect_contains(
-        "academic-pipeline/references/passport_as_reset_boundary.md",
+        "skills/academic-pipeline/references/passport_as_reset_boundary.md",
         tag_format,
     )
     expect_contains(
-        "academic-pipeline/agents/pipeline_orchestrator_agent.md",
+        "skills/academic-pipeline/agents/pipeline_orchestrator_agent.md",
         tag_format,
     )
 

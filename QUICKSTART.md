@@ -9,7 +9,7 @@ Get from zero to your first AI-assisted research in 3 steps.
 curl -fsSL https://claude.ai/install.sh | bash
 
 # Install all 7 skills globally (recommended)
-bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh)
 ```
 
 Restart Claude Code after install. For project-local install or to install only a subset of skills, see [docs/SETUP.md](docs/SETUP.md).

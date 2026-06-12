@@ -94,7 +94,7 @@ git commit -m "chore: scaffold research-mode, bridge, and .claude directories"
 
 ```bash
 cat > .claude/CLAUDE.md << 'EOF'
-# claude-research-skills — Project Routing Rules
+# research-lab-skills — Project Routing Rules
 
 ## Research Mode Routing
 
@@ -1357,7 +1357,7 @@ When the user passes `--source academic` or selects "academic pipeline" as sourc
 2. Run the bridge script to extract stage data:
    ```bash
    BRIDGE="$(find ~/.claude -path "*/research-skills/bridge/scripts/passport_to_log.py" \
-             -o -path "*/claude-research-skills/bridge/scripts/passport_to_log.py" 2>/dev/null | head -1)"
+             -o -path "*/research-lab-skills/bridge/scripts/passport_to_log.py" 2>/dev/null | head -1)"
    python "$BRIDGE" --passport docs/passport.yaml
    ```
 3. Use the extracted stage records as input for slide generation instead of research-log entries

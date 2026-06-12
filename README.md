@@ -1,4 +1,4 @@
-# claude-research-skills
+# research-lab-skills
 
 [![ARS Version](https://img.shields.io/badge/ARS-v3.11.1-blue)](https://github.com/Imbad0202/academic-research-skills/releases/tag/v3.11.1)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
@@ -182,7 +182,7 @@ scripts/
 
 ## Sources
 
-- Lab skills (`research-log`, `report-slides`, `research-mode`) — originally [`starpig1129/claude-research-skills`](https://github.com/starpig1129/claude-research-skills) (MIT)
+- Lab skills (`research-log`, `report-slides`, `research-mode`) — [`starpig1129/research-lab-skills`](https://github.com/starpig1129/research-lab-skills) (CC BY-NC 4.0)
 - Academic Research Skills (`deep-research`, `academic-paper`, `academic-paper-reviewer`, `academic-pipeline`) — originally [`Imbad0202/academic-research-skills`](https://github.com/Imbad0202/academic-research-skills) (CC BY-NC 4.0)
 
 See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md) for licensing details.

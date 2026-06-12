@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# claude-research-skills installer
+# research-lab-skills installer
 # Usage:
-#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh)
-#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --local
-#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) uninstall
-#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --ars-only
-#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/claude-research-skills/main/install.sh) --lab-only
+#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh)
+#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --local
+#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) uninstall
+#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --ars-only
+#   bash <(curl -fsSL https://raw.githubusercontent.com/starpig1129/research-lab-skills/main/install.sh) --lab-only
 set -e
 
 REPO="https://github.com/starpig1129/research-lab-skills.git"
@@ -42,7 +42,7 @@ install_skills() {
   TMP="$(mktemp -d)"
   trap 'rm -rf "$TMP"' EXIT
 
-  echo "Downloading claude-research-skills..."
+  echo "Downloading research-lab-skills..."
   git clone --depth 1 "$REPO" "$TMP/repo" -q
 
   mkdir -p "$DEST"

@@ -1,4 +1,4 @@
-# claude-research-skills — Project Routing Rules
+# research-lab-skills — Project Routing Rules
 
 ## Research Mode Routing
 

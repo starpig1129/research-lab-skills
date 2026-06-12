@@ -88,7 +88,7 @@ When the user passes `--source academic` or selects "academic pipeline" as sourc
 1. Check for a passport YAML file (default: `docs/passport.yaml`; override with `--passport <path>`)
 2. Run the bridge script to extract stage data:
    ```bash
-   BRIDGE="$(find ~/.claude -path "*/claude-research-skills/bridge/scripts/passport_to_log.py" 2>/dev/null | head -1)"
+   BRIDGE="$(find ~/.claude -path "*/research-lab-skills/bridge/scripts/passport_to_log.py" 2>/dev/null | head -1)"
    python "$BRIDGE" --passport docs/passport.yaml
    ```
 3. Use the extracted stage records as input for slide generation instead of research-log entries

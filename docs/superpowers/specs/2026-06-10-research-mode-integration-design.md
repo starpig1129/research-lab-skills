@@ -99,7 +99,7 @@ Fix: Add `sprint_contract_summary` optional block to publish-mode log template.
 ## Project Folder Structure (Revised)
 
 ```
-claude-research-skills/
+research-lab-skills/
 │
 ├── skills/                          ← Custom skills (this project's work)
 │   ├── research-mode/               ← NEW: mode dispatcher + log orchestrator

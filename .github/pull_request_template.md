@@ -1,4 +1,4 @@
-<!-- Thanks for contributing to academic-research-skills. -->
+<!-- Thanks for contributing to research-lab-skills. -->
 
 ## Summary
 
@@ -30,7 +30,7 @@ gold-set metric:
      - `[eval-regression-acknowledged]` — for the CI deterministic gate, and/or
      - `[ranking-regression-acknowledged]` — for `scripts/check_ranking_lift.py`
    - a link to an **OPEN** follow-up GitHub issue, e.g.
-     `https://github.com/Imbad0202/academic-research-skills/issues/NNN`
+     `https://github.com/starpig1129/research-lab-skills/issues/NNN`
 
 > No eval impact.
 

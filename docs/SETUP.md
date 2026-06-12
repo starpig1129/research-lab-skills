@@ -193,7 +193,7 @@ Do not install the whole repository as one nested skill folder under `.claude/sk
 If you use Claude Code CLI, VS Code extension, or JetBrains extension, install ARS as a plugin:
 
 ```text
-/plugin marketplace add Imbad0202/academic-research-skills
+/plugin marketplace add starpig1129/research-lab-skills
 /plugin install academic-research-skills
 ```
 
@@ -204,7 +204,7 @@ The four skills (`deep-research`, `academic-paper`, `academic-paper-reviewer`, `
 **Plugin platform scope:**
 - ✅ Claude Code CLI / VS Code extension / JetBrains extension — full support
 - ❌ claude.ai web / Claude for Work / Anthropic API direct calls — plugins not supported; use Method 1 / 2 / 3 below
-- ➡️ Codex CLI — install the sibling distribution [`Imbad0202/academic-research-skills-codex`](https://github.com/Imbad0202/academic-research-skills-codex) (same workflow content, Codex-native packaging)
+- ➡️ Codex CLI — install the sibling distribution [`starpig1129/research-lab-skills`](https://github.com/starpig1129/research-lab-skills-codex) (same workflow content, Codex-native packaging)
 
 ### Method 1: As project skills (recommended)
 
@@ -213,14 +213,14 @@ Use this when you want ARS available inside an existing Claude Code project.
 Clone the repo to a stable local path, then copy each skill folder into your project's `.claude/skills/` directory:
 
 ```bash
-git clone https://github.com/Imbad0202/academic-research-skills.git ~/academic-research-skills
+git clone https://github.com/starpig1129/research-lab-skills.git ~/research-lab-skills
 
 cd /path/to/your/project
 mkdir -p .claude/skills
-cp -R ~/academic-research-skills/deep-research .claude/skills/deep-research
-cp -R ~/academic-research-skills/academic-paper .claude/skills/academic-paper
-cp -R ~/academic-research-skills/academic-paper-reviewer .claude/skills/academic-paper-reviewer
-cp -R ~/academic-research-skills/academic-pipeline .claude/skills/academic-pipeline
+cp -R ~/research-lab-skills/skills/deep-research .claude/skills/deep-research
+cp -R ~/research-lab-skills/skills/academic-paper .claude/skills/academic-paper
+cp -R ~/research-lab-skills/skills/academic-paper-reviewer .claude/skills/academic-paper-reviewer
+cp -R ~/research-lab-skills/skills/academic-pipeline .claude/skills/academic-pipeline
 ```
 
 Expected path shape:
@@ -237,13 +237,13 @@ Then copy the `.claude/CLAUDE.md` content into your project's `.claude/CLAUDE.md
 > **Global Claude Code installation:** To make these skills available across your Claude Code projects, install the four folders to `~/.claude/skills/` instead:
 >
 > ```bash
-> git clone https://github.com/Imbad0202/academic-research-skills.git ~/academic-research-skills
+> git clone https://github.com/starpig1129/research-lab-skills.git ~/research-lab-skills
 >
 > mkdir -p ~/.claude/skills
-> cp -R ~/academic-research-skills/deep-research ~/.claude/skills/deep-research
-> cp -R ~/academic-research-skills/academic-paper ~/.claude/skills/academic-paper
-> cp -R ~/academic-research-skills/academic-paper-reviewer ~/.claude/skills/academic-paper-reviewer
-> cp -R ~/academic-research-skills/academic-pipeline ~/.claude/skills/academic-pipeline
+> cp -R ~/research-lab-skills/skills/deep-research ~/.claude/skills/deep-research
+> cp -R ~/research-lab-skills/skills/academic-paper ~/.claude/skills/academic-paper
+> cp -R ~/research-lab-skills/skills/academic-paper-reviewer ~/.claude/skills/academic-paper-reviewer
+> cp -R ~/research-lab-skills/skills/academic-pipeline ~/.claude/skills/academic-pipeline
 > ```
 
 ### Method 2: As a standalone project
@@ -251,15 +251,15 @@ Then copy the `.claude/CLAUDE.md` content into your project's `.claude/CLAUDE.md
 Use this when you want to work directly inside the ARS repository.
 
 ```bash
-git clone https://github.com/Imbad0202/academic-research-skills.git
-cd academic-research-skills
+git clone https://github.com/starpig1129/research-lab-skills.git
+cd research-lab-skills
 claude
 ```
 
 <details>
 <summary><strong>No Git?</strong> Download as ZIP instead</summary>
 
-1. Go to <https://github.com/Imbad0202/academic-research-skills>
+1. Go to <https://github.com/starpig1129/research-lab-skills>
 2. Click the green **Code** button → **Download ZIP**
 3. Extract the ZIP to your desired location
 4. For Method 1: copy the four extracted skill folders (`deep-research`, `academic-paper`, `academic-paper-reviewer`, `academic-pipeline`) into `.claude/skills/` inside your project
@@ -287,11 +287,11 @@ Use this when you want the four ARS skills available in [Claude Cowork](https://
 Clone the repo, then zip each of the four skill folders individually so that each zip has its own `SKILL.md` at the top level (not nested under an extra folder). The `-x "*.DS_Store"` flag keeps macOS metadata out of the archive.
 
 ```bash
-git clone https://github.com/Imbad0202/academic-research-skills.git
-cd academic-research-skills
+git clone https://github.com/starpig1129/research-lab-skills.git
+cd research-lab-skills
 
 for s in deep-research academic-paper academic-paper-reviewer academic-pipeline; do
-  (cd "$s" && zip -r "../$s.zip" . -x "*.DS_Store")
+  (cd "skills/$s" && zip -r "../../$s.zip" . -x "*.DS_Store")
 done
 ```
 
@@ -342,7 +342,7 @@ Use this when you want claude.ai to have access to the repo content — includin
 
 1. Sign in to [claude.ai](https://claude.ai).
 2. Create a new Project: **Projects** → **Create Project**.
-3. Import from GitHub: in the Project, click **Files** → **+** → **GitHub** → select `Imbad0202/academic-research-skills`.
+3. Import from GitHub: in the Project, click **Files** → **+** → **GitHub** → select `starpig1129/research-lab-skills`.
 4. Select the folders/files below.
 
    | Select | Directory / file | Why |
@@ -379,13 +379,13 @@ Method 4a is claude.ai's standard Custom Skill install path: zip each skill fold
 If you still want to try Method 4a despite the limitations above, zip each skill folder so the archive's top-level entry is `<skill-name>/SKILL.md` (not `<skill-name>/<skill-name>/SKILL.md` — that nesting buries the discovery file one level too deep). The `zip -r` commands below produce that shape correctly:
 
 ```bash
-git clone https://github.com/Imbad0202/academic-research-skills.git
-cd academic-research-skills
+git clone https://github.com/starpig1129/research-lab-skills.git
+cd research-lab-skills
 
-zip -r deep-research.zip deep-research
-zip -r academic-paper.zip academic-paper
-zip -r academic-paper-reviewer.zip academic-paper-reviewer
-zip -r academic-pipeline.zip academic-pipeline
+zip -r deep-research.zip skills/deep-research
+zip -r academic-paper.zip skills/academic-paper
+zip -r academic-paper-reviewer.zip skills/academic-paper-reviewer
+zip -r academic-pipeline.zip skills/academic-pipeline
 ```
 
 Then in claude.ai:

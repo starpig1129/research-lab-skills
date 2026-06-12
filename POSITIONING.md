@@ -2,7 +2,7 @@
 
 ## What this is
 
-Academic Research Skills (ARS) is a **source-available academic research copilot framework** for noncommercial scholarly use. The reference distribution is a suite of Claude Code skills that assists human researchers through the full research-to-publication pipeline. Sibling distributions for other agent platforms ([e.g. Codex](https://github.com/Imbad0202/academic-research-skills-codex)) follow the same workflow content, the same human-in-the-loop design philosophy, and the same license terms; see [CONTRIBUTING.md § Platform ports](CONTRIBUTING.md#platform-ports-community-maintained-only).
+research-lab-skills is a **source-available academic research copilot framework** for noncommercial scholarly use. The reference distribution is a unified suite of Claude Code skills that assists human researchers through the full research-to-publication pipeline — from daily experiment logs and progress slides to full academic paper pipelines. Community ports to other agent platforms are accepted; see [CONTRIBUTING.md § Platform ports](CONTRIBUTING.md#platform-ports-community-maintained-only).
 
 It is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). This is not an open source license — it restricts commercial use by design, to keep the tool free for academic communities.
 
@@ -56,5 +56,5 @@ These reflect our policy intent. See the [CC BY-NC 4.0 license](https://creative
 If you use ARS in your research, please cite it:
 
 ```
-Wu, C.-I. (2026). Academic Research Skills for Claude Code (Version 3.8) [Computer software]. https://github.com/Imbad0202/academic-research-skills
+CHAO, Z.-Y. (2026). research-lab-skills (Version 3.11.1) [Computer software]. https://github.com/starpig1129/research-lab-skills
 ```

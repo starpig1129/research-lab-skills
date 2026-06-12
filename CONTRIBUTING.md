@@ -1,4 +1,4 @@
-# Contributing to Academic Research Skills
+# Contributing to research-lab-skills
 
 Thank you for your interest in contributing. This document explains what kinds of contributions we accept and how to submit them.
 
@@ -6,7 +6,7 @@ Thank you for your interest in contributing. This document explains what kinds o
 
 ## How to submit a contribution
 
-ARS uses the standard **fork-and-PR** workflow. Fork the repo on GitHub, clone your fork, create a branch, make your changes, push to your fork, then open a PR against `Imbad0202/academic-research-skills`.
+This repo uses the standard **fork-and-PR** workflow. Fork the repo on GitHub, clone your fork, create a branch, make your changes, push to your fork, then open a PR against `starpig1129/research-lab-skills`.
 
 **Important**: You cannot push directly to this repo — you must fork it first and submit a PR from your fork.
 
@@ -72,13 +72,13 @@ Either shape is accepted under the same maintainer-facing conditions:
 
 ### Maintainer
 
-The repo is maintained by [Cheng-I Wu](https://github.com/Imbad0202) (HEEACT). The maintainer has final say on all merges.
+The repo is maintained by [ZI-YUE,CHAO](https://github.com/starpig1129). The maintainer has final say on all merges.
 
 ### Decision principles
 
 1. **Accuracy over completeness** — we'd rather have fewer, verified journal entries than a long unvetted list
 2. **Human-in-the-loop always** — contributions that reduce human oversight or enable fully autonomous paper generation will be declined
-3. **No detection evasion** — features designed to make AI-generated text harder to detect (as opposed to higher quality) are out of scope. See [Issue #3](https://github.com/Imbad0202/academic-research-skills/issues/3) for context.
+3. **No detection evasion** — features designed to make AI-generated text harder to detect (as opposed to higher quality) are out of scope.
 4. **Discipline diversity welcome** — ARS defaults to higher education research but aims to be domain-agnostic. Discipline-specific modules are encouraged.
 
 ---

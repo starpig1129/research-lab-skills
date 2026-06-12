@@ -110,9 +110,9 @@ python scripts/adapters/obsidian.py    --input ~/Obsidian/Lit\ Notes       --pas
 #    (concrete invocation depends on which skill you're running — see scripts/adapters/README.md)
 ```
 
-Each adapter emits two files: `passport.yaml` (Schema 9 with `literature_corpus[]` populated) and `rejection_log.yaml` (always emitted, empty when no rejections — closed enum of categorical reasons). Users with non-reference corpus sources are expected to write their own adapters following [`academic-pipeline/references/adapters/overview.md`](../academic-pipeline/references/adapters/overview.md).
+Each adapter emits two files: `passport.yaml` (Schema 9 with `literature_corpus[]` populated) and `rejection_log.yaml` (always emitted, empty when no rejections — closed enum of categorical reasons). Users with non-reference corpus sources are expected to write their own adapters following [`skills/academic-pipeline/references/adapters/overview.md`](../skills/academic-pipeline/references/adapters/overview.md).
 
-v3.6.5 wires `bibliography_agent` (deep-research, Phase 1) and `literature_strategist_agent` (academic-paper, Phase 1) as the consumers — both run the corpus-first / search-fills-gap flow when a non-empty corpus is present and parses cleanly. See [`academic-pipeline/references/literature_corpus_consumers.md`](../academic-pipeline/references/literature_corpus_consumers.md) for the consumer protocol.
+v3.6.5 wires `bibliography_agent` (deep-research, Phase 1) and `literature_strategist_agent` (academic-paper, Phase 1) as the consumers — both run the corpus-first / search-fills-gap flow when a non-empty corpus is present and parses cleanly. See [`skills/academic-pipeline/references/literature_corpus_consumers.md`](../skills/academic-pipeline/references/literature_corpus_consumers.md) for the consumer protocol.
 
 ## Optional environment flags (v3.5.1+)
 

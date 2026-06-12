@@ -96,6 +96,17 @@ deep-research (socratic/full)
                 → Process Summary + AI Self-Reflection Report
 ```
 
+- **Suite version**: 1.0.0
+
+## Skills Overview
+
+| Skill | Description |
+|-------|-------------|
+| `deep-research` v2.9.4 | Research engine |
+| `academic-paper` v3.2.0 | Paper writer |
+| `academic-paper-reviewer` v1.10.0 | Peer reviewer |
+| `academic-pipeline` v3.11.1 | Pipeline orchestrator |
+
 ## Handoff Protocol
 
 ### deep-research → academic-paper

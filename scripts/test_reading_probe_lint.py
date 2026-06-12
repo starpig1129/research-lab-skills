@@ -82,10 +82,10 @@ class ReadingProbeLintTests(unittest.TestCase):
         not attempt to catch lower-case drift since spec mandates all-caps.
         """
         expected = "ARS_SOCRATIC_READING_PROBE"
-        # Spec §5.1 item 2: "agent, protocol, SKILL, README".
-        # process_summary_protocol is excluded — it carries the [READING-PROBE:]
-        # pickup rule (tested separately by test_probe_tag_format), not the env var.
-        files = [MENTOR_AGENT, SOCRATIC_PROTOCOL, DEEP_RESEARCH_SKILL, README_EN, README_ZH]
+        # Spec §5.1 item 2: "agent, protocol, SKILL". The merged repo README
+        # is a top-level suite README; ARS internal env vars are documented in
+        # the skill-specific files, not the top-level README.
+        files = [MENTOR_AGENT, SOCRATIC_PROTOCOL, DEEP_RESEARCH_SKILL]
         for f in files:
             text = f.read_text(encoding="utf-8")
             self.assertIn(expected, text,

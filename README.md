@@ -5,7 +5,27 @@
 
 [简体中文版](README.zh-CN.md) | [繁體中文版](README.zh-TW.md) | [日本語版](README.ja-JP.md)
 
-A unified suite of Claude Code skills for research teams — from daily experiment logs and progress slides to full academic paper pipelines.
+---
+
+## Why this project exists
+
+Research has two distinct lives that rarely speak to each other.
+
+The first is the **daily process** — the experiment that ran overnight, the chart that finally made sense, the decision to pivot the architecture, the slide you made for Friday's lab meeting. This layer is invisible in most publications, yet it's where most of the actual thinking happens.
+
+The second is the **formal output** — the systematic literature review, the paper draft that survives three rounds of peer review, the citation that actually supports the claim it's attached to. This layer is where the field accumulates knowledge, but it's often disconnected from the messy reality of how that knowledge was reached.
+
+I originally built the **lab skills** (`research-log`, `report-slides`, `research-mode`) to capture the first layer: a structured experiment journal, a slide generator that turns those journal entries into progress presentations, and a session mode system that remembers what kind of work you're doing. The goal was to make the research *process* legible — to yourself, your advisor, your collaborators.
+
+[Cheng-I Wu](https://github.com/Imbad0202) independently built **Academic Research Skills** (ARS) to systematise the second layer: a 13-agent deep research engine with PRISMA support and four-index citation verification, a 12-agent paper writing system with citation anchors and figure fidelity gates, a multi-perspective peer review system, and a 10-stage pipeline orchestrator that chains them all together.
+
+When I found ARS, the complementarity was immediate. The lab skills record *where you've been*; ARS structures *where you're going*. The experiment journal feeds the paper's methodology section. The progress slides become the draft's figures. The session modes (`exp` → `explore` → `publish`) map directly onto the research lifecycle ARS was designed to handle. The `report-slides` skill even supports `--source academic` to pull directly from ARS's Material Passport.
+
+These two systems don't just sit side by side — they're designed for the same researcher at different stages of the same project. Merging them into one repo with one install command is the natural conclusion.
+
+This is that merged project.
+
+---
 
 | Skill | Command | Purpose |
 |-------|---------|---------|

@@ -1,6 +1,9 @@
 ---
 name: research-mode
 description: "Work mode dispatcher for research workflows. 5 modes: exp (running experiments), daily (reading/notes), explore (deep-research exploration), report (slide generation), publish (academic-pipeline). Commands: /mode exp|daily|explore|report|publish|status|end. All output in English. Triggers: /mode, switch mode, start experiment, begin research session, mode status, end session."
+metadata:
+  data_access_level: raw
+  task_type: open-ended
 ---
 
 # Research Mode

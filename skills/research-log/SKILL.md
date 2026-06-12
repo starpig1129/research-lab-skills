@@ -1,6 +1,9 @@
 ---
 name: research-log
 description: Record, manage, and query research experiment logs. Use when the user wants to log an experiment result, amend an existing entry, view recent logs, or rebuild the index. Triggers on phrases like "log this experiment", "record results", "add a log entry", "show recent experiments", "amend log". Each entry creates a structured Markdown file in docs/research_log/. Suggest running this before /report-slides when new results have not been logged yet.
+metadata:
+  data_access_level: raw
+  task_type: open-ended
 ---
 
 # Research Log

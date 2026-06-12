@@ -29,9 +29,15 @@ class FrontmatterError(Exception):
 
 
 def iter_skill_files(root: Path) -> list[Path]:
-    """Top-level SKILL.md files only. Skips SKIP_DIRS."""
+    """Top-level SKILL.md files only. Skips SKIP_DIRS.
+
+    Skills may live directly under root/ (legacy) or under root/skills/
+    (merged-repo layout). Prefers root/skills/ when that directory exists.
+    """
     results: list[Path] = []
-    for child in sorted(root.iterdir()):
+    skills_dir = root / "skills"
+    search_root = skills_dir if skills_dir.is_dir() else root
+    for child in sorted(search_root.iterdir()):
         if not child.is_dir() or child.name in SKIP_DIRS:
             continue
         skill_md = child / "SKILL.md"

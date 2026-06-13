@@ -4,8 +4,8 @@
   "author": "ZI-YUE,CHAO <james911129@gmail.com>",
   "description": "Unified suite of Claude Code skills for academic research: experiment logging, presentations, deep research, paper writing, peer review, and full pipeline orchestration.",
   "bin": {
-    "crs": "./bin/crs.js",
-    "research-lab-skills": "./bin/crs.js"
+    "crs": "bin/crs.js",
+    "research-lab-skills": "bin/crs.js"
   },
   "files": [
     "bin/",
@@ -18,8 +18,17 @@
     "node": ">=16"
   },
   "keywords": [
-    "claude", "claude-code", "ai-skills", "research-log", "slides", "presentation",
-    "academic-research", "paper-writing", "peer-review", "deep-research", "academic-pipeline"
+    "claude",
+    "claude-code",
+    "ai-skills",
+    "research-log",
+    "slides",
+    "presentation",
+    "academic-research",
+    "paper-writing",
+    "peer-review",
+    "deep-research",
+    "academic-pipeline"
   ],
   "license": "CC-BY-NC-4.0",
   "homepage": "https://github.com/starpig1129/research-lab-skills#readme",
@@ -28,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/starpig1129/research-lab-skills.git"
+    "url": "git+https://github.com/starpig1129/research-lab-skills.git"
   },
   "publishConfig": {
     "access": "public"
